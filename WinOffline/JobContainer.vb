@@ -391,6 +391,21 @@
         End Try
 
         ' *****************************
+        '  - Parent process check.
+        ' *****************************
+
+        ' Verify immediate parent is software delivery
+        If Not Globals.ParentProcessName.ToLower.Equals("sd_jexec") Then
+
+            ' Write debug
+            Logger.WriteDebug(CallStack, "Job output belongs to parent process.")
+
+            ' Return
+            Return 7
+
+        End If
+
+        ' *****************************
         ' - Check for a dirty execution.
         ' *****************************
 
@@ -482,7 +497,7 @@
             Manifest.UpdateManifest(CallStack, Manifest.EXCEPTION_MANIFEST, {ex.Message, ex.StackTrace})
 
             ' Return
-            Return 7
+            Return 8
 
         End Try
 

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtbHelp.Text" xml:space="preserve">
-    <value>WinOffline Command Line Switches:
+    <value>WinOffline Command Line Switches
 
 -gethistory
 Report agent patch history only. CAF is not recycled and no patch operations are performed. Available in Software Delivery mode only.
@@ -131,7 +131,7 @@ Examples:
 -remove T5X0001,T5X0002
 
 -cleanlogs
-1- Cleans up the DSM logs folder. 
+1- Cleans up the DSM logs folder.
 2- Modifies the folder access control list (ACL) if Administrator permissions are missing.
 
 -resetcftrace
@@ -145,52 +145,22 @@ Runs a "cftrace -c reset".
 1- Cleans up the ..\CA\DSM\Agent\units folder.
 2- Cleans up the ..\CA\DSM\SD\TMP\activate folder.
 3- Cleans up the ..\CA\DSM\dts\dta\status folder.
-4- Cleans up the ..\CA\DSM\dts\dta\staging folder
+4- Cleans up the ..\CA\DSM\dts\dta\staging folder.
 5- Recreates the ..\CA\DSM\dts\dta\status\index file.
 
 -cleanserver
 1- Cleans up the ..\CA\DSM\SD\ASM\D folder.
-2- Cleans up the ..\CA\DSM\SD\ASM\LIBRARY\activate folder**
+2- Cleans up the ..\CA\DSM\SD\ASM\LIBRARY\activate folder.**
 3- Cleans up the ..\CA\DSM\dts\dta\status folder.
-4- Cleans up the ..\CA\DSM\dts\dta\staging folder
+4- Cleans up the ..\CA\DSM\dts\dta\staging folder.
 5- Recreates the ..\CA\DSM\dts\dta\status\index file.
-
 **Removes any NTFS junction points created back to Domain Manager's software library, before deleting any files/folders.
 
 -checklibrary
 Analyzes the software delivery library for consistency problems, and reports results, without making any changes to the database, library.dct file or LIBRARY folder.
-- Verifies system is an ITCM Manager or Scalability Server.
-- Verifies connectivity to the database, and the manager or server is registered there.
-- Load the list of software from the database (usd_rsw).
-- Load the list of software procedures from the database (usd_actproc).
-- Parse the library.dct file, and check the following:
---&gt; associated .arc folder exists and contains a ".vol" folder, "reginfo" folder and "rsw.dat" file.
---&gt; The package UUID is available and correctly formatted in the "rsw.dat" file.
---&gt; The package UUID is not duplicate to a software package already processed.
---&gt; The package UUID matches with existing usd_rsw.objectid in the database.
-- Process each usd_rsw record, checking for any usd_rsw.objectid not captured in the library file. [ITCM manager only]
-- Check for orphaned .arc folders, not captured by the library.
-- Check for orphaned .rcp folders, not captured by the database (usd_actproc).
-- Reports a summary of findings, without making any changes.
 
 -cleanlibrary
 Performs cleanup on the software delivery library, repairing consistency problems between the database, library.dct file and LIBRARY folder.
-- Verifies system is an ITCM Manager or Scalability Server.
-- Verifies connectivity to the database, and the manager or server is registered there.
-- Load the list of software from the database (usd_rsw).
-- Load the list of software procedures from the database (usd_actproc).
-- Parse the library.dct file, and check the following:
---&gt; associated .arc folder exists and contains a ".vol" folder, "reginfo" folder and "rsw.dat" file.
---&gt; The package UUID is available and correctly formatted in the "rsw.dat" file.
---&gt; The package UUID is not duplicate to a software package already processed.
---&gt; The package UUID matches with existing usd_rsw.objectid in the database.
-- Process each usd_rsw record, checking for any usd_rsw.objectid not captured in the library file. [ITCM manager only]
-- Check for orphaned .arc folders, not captured by the library.
-- Check for orphaned .rcp folders, not captured by the database (usd_actproc).
-- Keeps a rolling copy (up to two backups) of the library.dct file.
-- Cleans discrepancies/orphans found from the database.
-- Writes out a clean library.dct file.
-- Removes orphan or invalid .arc or .rcp folders, not consistent with the database or library.dct folder.
 
 -cleancerts
 1- Keeps a rolling backup, up to two copies, of the CBB folder.
@@ -205,10 +175,10 @@ Performs cleanup on the software delivery library, repairing consistency problem
 Don't start the CAF service after performing all patching/maintenance operations.
 
 -skipcam
-Don't stop/recycle the CAM service.  This may prevent some patches from successfully applying without the need for a reboot.
+Don't stop/recycle the CAM service. This may prevent some patches from successfully applying without the need for a reboot.
 
 -skipdmprimer
-Don't stop/recycle the DMPrimer service.  This may prevent some patches from successfully applying without the need for a reboot.
+Don't stop/recycle the DMPrimer service. This may prevent some patches from successfully applying without the need for a reboot.
 
 -skiphm
 Don't stop/recycle the hmAgent service. This may prevent some patches from successfully applying without the need for a reboot.
@@ -245,7 +215,7 @@ Reboot system after completion of the last stage of WinOffline.
 Perform normal uninstallation of ITCM. Choose this option if other CA products are installed.
 
 -removeitcm
-Perform full removal of ITCM. Choose this option if ITCM is the only CA product installed.  Will attempt removal of entire CA folder and ComputerAssociates registry key.
+Perform full removal of ITCM. Choose this option if ITCM is the only CA product installed. Will attempt removal of entire CA folder and ComputerAssociates registry key.
 
 -keepuuid
 When performing full removal (-removeitcm), retain only the HostUUID registry key for future use.
@@ -253,24 +223,7 @@ When performing full removal (-removeitcm), retain only the HostUUID registry ke
 -disableenc
 Disable the ENC client.
 
-WinOffline Software Delivery and Scripting Switches:
-
--showgui
-Software Delivery mode:
-Displays a progress window in the context of each logged on user desktop. This allows the end-user to see the progress of WinOffline as it executes maintenance. The end user can close the progress window at will, without affecting the WinOffline execution. By default, the progress window is hidden from the end-users.
-
-Interactive mode:
-This option is ignored as the progress window is automatically displayed in the context of the user who launched WinOffline. If WinOffline is launched as the SYSTEM identity for interactive mode, this option can be used to display the progress window for all logged on users.
-
--silent
-Software Delivery mode:
-This option will suppress the WinOffline tray icon, which will display based on ITCM comstore policy for the cfsystray icon. By default, software delivery mode is already silent except for the tray icon.
-
-Interactive mode:
-Executes interactive mode silently, without any user interaction or progress window. This switch always overrides the -showgui switch. By default, interactive mode normally displays an interactive window to the user.
-
-WinOffline Database Maintenance Switches:
-
+WinOffline Database Maintenance Switches
 Note: These switches are only valid on ITCM managers.
 
 -testdbconn

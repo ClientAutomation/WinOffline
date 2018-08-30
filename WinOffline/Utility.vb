@@ -2044,28 +2044,25 @@ Partial Public Class WinOffline
 
         End Function
 
-        Public Shared Function StringArrayContains(ByVal StringArray As String(), ByVal SearchString As String) As Boolean
+        Public Shared Function StringArrayContains(ByVal StringArray As String(),
+                                                   ByVal SearchString As String,
+                                                   Optional ByVal RemoveSwitch As Boolean = False) As Boolean
 
             ' Iterate string array
             For Each strLine As String In StringArray
+
+                ' Check flag
+                If RemoveSwitch AndAlso (strLine.StartsWith("/") OrElse strLine.StartsWith("-") OrElse strLine.StartsWith("--")) Then
+
+                    ' Remove switch character
+                    strLine = strLine.TrimStart("/")
+                    strLine = strLine.TrimStart("-")
+                    strLine = strLine.TrimStart("--")
+
+                End If
 
                 ' Check for a match
                 If SearchString.ToLower.Equals(strLine.ToLower) Then Return True
-
-            Next
-
-            ' Return
-            Return False
-
-        End Function
-
-        Public Shared Function StringArrayContainsMatch(ByVal StringArray As String(), ByVal SearchString As String) As Boolean
-
-            ' Iterate string array
-            For Each strLine As String In StringArray
-
-                ' Check for a match
-                If strLine.ToLower.Equals(SearchString.ToLower) Then Return True
 
             Next
 

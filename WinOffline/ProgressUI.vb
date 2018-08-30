@@ -46,21 +46,6 @@ Public Class ProgressUI
 
     End Sub
 
-    Private Sub ProgressUI_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-
-        ' Verify pipe client execution
-        If Globals.PipeClientExecution Then
-
-            ' Cancel the closure
-            e.Cancel = True
-
-            ' Hide form instead
-            Hide()
-
-        End If
-
-    End Sub
-
     Private Sub ProgressUI_Close(sender As Object, e As EventArgs) Handles MyBase.FormClosed
 
         ' Dispose tray icon
@@ -319,25 +304,6 @@ Public Class ProgressUI
 
                 ' Clear AutoScrollBuffer
                 AutoScrollBuffer.Clear()
-
-            End If
-
-        End If
-
-    End Sub
-
-    Private Sub TrayIcon_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles TrayIcon.MouseDoubleClick
-
-        ' Verify pipe client execution
-        If Globals.PipeClientExecution Then
-
-            ' Check if progress gui is already running
-            If Globals.ProgressUIThread Is Nothing OrElse Not Globals.ProgressUIThread.IsAlive Then
-
-                ' Start debug console GUI
-                Globals.ProgressGUI.SetFormTitle(Globals.ProcessFriendlyName + " -- " + Globals.AppVersion)
-                Globals.ProgressUIThread = New System.Threading.Thread(AddressOf Globals.ProgressGUI.ShowDialog)
-                Globals.ProgressUIThread.Start()
 
             End If
 

@@ -4,6 +4,9 @@ Imports System.Threading
 
 Partial Public Class WinOfflineUI
 
+    Private Shared MasterIPv4list As New ArrayList
+    Private Shared MasterIPv6list As New ArrayList
+
     Private Sub InitSystemInfo()
 
         ' Set system info properties
@@ -56,19 +59,19 @@ Partial Public Class WinOfflineUI
         ' Populate IP Addresses
         For Each NetAddr As System.Net.IPAddress In System.Net.Dns.GetHostEntry(Globals.HostName).AddressList
             If NetAddr.IsIPv6LinkLocal Or NetAddr.IsIPv6Multicast Or NetAddr.IsIPv6SiteLocal Then
-                Globals.IPv6list.Add(NetAddr)
+                MasterIPv6list.Add(NetAddr)
             Else
-                Globals.IPv4list.Add(NetAddr)
+                MasterIPv4list.Add(NetAddr)
             End If
         Next
 
         ' Add IPv4 addresses first
-        For Each NetAddr As System.Net.IPAddress In Globals.IPv4list
+        For Each NetAddr As System.Net.IPAddress In MasterIPv4list
             lstNetAddr.Items.Add(NetAddr.ToString)
         Next
 
         ' Add IPv6 addresses next
-        For Each NetAddr As System.Net.IPAddress In Globals.IPv6list
+        For Each NetAddr As System.Net.IPAddress In MasterIPv6list
             lstNetAddr.Items.Add(NetAddr.ToString)
         Next
 
@@ -758,32 +761,6 @@ Partial Public Class WinOfflineUI
                     End If
 
                     ' Get value
-                    TempString = WinOffline.ComstoreAPI.GetParameterValue("itrm/common/caf/systray", "hidden")
-
-                    ' Check for change in value
-                    If Integer.Parse(TempString) = 0 And Globals.TrayIconVisible = False Then
-
-                        ' Write debug
-                        Delegate_Sub_Append_Text(rtbDebug, "SystemInfoThread --> Cfsystray policy changed.")
-                        Delegate_Sub_Append_Text(rtbDebug, "Old value: False")
-                        Delegate_Sub_Append_Text(rtbDebug, "New value: True")
-
-                        ' Update information
-                        Globals.TrayIconVisible = True
-
-                    ElseIf Integer.Parse(TempString) = 1 And Globals.TrayIconVisible Then
-
-                        ' Write debug
-                        Delegate_Sub_Append_Text(rtbDebug, "SystemInfoThread --> Cfsystray policy changed.")
-                        Delegate_Sub_Append_Text(rtbDebug, "Old value: True")
-                        Delegate_Sub_Append_Text(rtbDebug, "New value: False")
-
-                        ' Update information
-                        Globals.TrayIconVisible = False
-
-                    End If
-
-                    ' Get value
                     TempString = WinOffline.ComstoreAPI.GetParameterValue("itrm/usd/shared", "ARCHIVE")
 
                     ' Remove carriage return
@@ -953,8 +930,8 @@ Partial Public Class WinOfflineUI
                 Next
 
                 ' Check for change in values
-                If Not WinOffline.Utility.IsArrayListEqual(IPv4List, Globals.IPv4list) Or
-                    Not WinOffline.Utility.IsArrayListEqual(IPv6List, Globals.IPv6list) Then
+                If Not WinOffline.Utility.IsArrayListEqual(IPv4List, MasterIPv4list) Or
+                    Not WinOffline.Utility.IsArrayListEqual(IPv6List, MasterIPv6list) Then
 
                     ' Combine lists
                     Dim CombinedList As New ArrayList
@@ -969,8 +946,8 @@ Partial Public Class WinOfflineUI
                     Delegate_Sub_Append_Text(rtbDebug, "SystemInfoThread --> Network address list updated.")
 
                     ' Update information
-                    Globals.IPv4list = IPv4List
-                    Globals.IPv6list = IPv6List
+                    MasterIPv4list = IPv4List
+                    MasterIPv6list = IPv6List
                     Delegate_Sub_Set_ListBox(lstNetAddr, CombinedList)
 
                 End If

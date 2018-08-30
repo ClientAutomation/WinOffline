@@ -90,7 +90,7 @@
         ' *****************************
 
         ' Entry point check
-        If Globals.ParentProcessName.ToLower.Equals("sd_jexec") Then
+        If Globals.ParentProcessTree.Contains("sd_jexec") Then
 
             ' *****************************
             ' - Copy WinOffline to temp.

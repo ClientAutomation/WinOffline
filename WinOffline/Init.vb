@@ -8,9 +8,6 @@ Partial Public Class WinOffline
 
         Public Shared Function Init(ByVal CallStack As String) As Integer
 
-            ' Local variables
-            Dim SilentSwitch As Boolean = Utility.StringArrayContains(Globals.CommandLineArgs, "silent")
-
             ' Update call stack
             CallStack += "Init|"
 
@@ -19,8 +16,8 @@ Partial Public Class WinOffline
             ' *****************************
 
             ' Check for help switch
-            If Utility.StringArrayContains(Globals.CommandLineArgs, "?") OrElse
-                Utility.StringArrayContains(Globals.CommandLineArgs, "help") Then
+            If Utility.StringArrayContains(Globals.CommandLineArgs, "?", True) OrElse
+                Utility.StringArrayContains(Globals.CommandLineArgs, "help", True) Then
 
                 ' Set identity flag
                 Globals.RunningAsSystemIdentity = WindowsIdentity.GetCurrent.IsSystem
@@ -45,7 +42,7 @@ Partial Public Class WinOffline
                     ' Detach console
                     WindowsAPI.DetachConsole()
 
-                    ' Return
+                    ' Hard exit
                     Environment.Exit(0)
 
                 End If
@@ -57,8 +54,8 @@ Partial Public Class WinOffline
             ' *****************************
 
             ' Check for removal tool switches
-            If Utility.StringArrayContains(Globals.CommandLineArgs, "removeitcm") OrElse
-                Utility.StringArrayContains(Globals.CommandLineArgs, "uninstallitcm") Then
+            If Utility.StringArrayContains(Globals.CommandLineArgs, "removeitcm", True) OrElse
+                Utility.StringArrayContains(Globals.CommandLineArgs, "uninstallitcm", True) Then
 
                 ' Encacpsulate express initialization
                 Try
@@ -91,8 +88,14 @@ Partial Public Class WinOffline
 
                 End Try
 
-                ' Return
-                Return 0
+                ' Remove ITCM
+                RemoveITCM(CallStack)
+
+                ' Deinitialize
+                DeInit(CallStack, True, False)
+
+                ' Hard exit
+                Environment.Exit(0)
 
             End If
 
@@ -101,8 +104,8 @@ Partial Public Class WinOffline
             ' *****************************
 
             ' Check for caf on-demand stop/start switches
-            If Utility.StringArrayContains(Globals.CommandLineArgs, "stopcaf") OrElse
-                Utility.StringArrayContains(Globals.CommandLineArgs, "startcaf") Then
+            If Utility.StringArrayContains(Globals.CommandLineArgs, "stopcaf", True) OrElse
+                Utility.StringArrayContains(Globals.CommandLineArgs, "startcaf", True) Then
 
                 ' Encapsulate express initialization
                 Try
@@ -136,13 +139,29 @@ Partial Public Class WinOffline
                     ' Detach from console
                     WindowsAPI.DetachConsole()
 
-                    ' Return
+                    ' Hard exit
                     Environment.Exit(0)
 
                 End Try
 
-                ' Return
-                Return 0
+                ' Check for caf on-demand switches
+                If Globals.StopCAFSwitch Then
+
+                    ' Stop CAF
+                    StopCAFOnDemand(CallStack)
+
+                ElseIf Globals.StartCAFSwitch Then
+
+                    ' Start CAF
+                    StartCAFOnDemand(CallStack)
+
+                End If
+
+                ' Deinitialize
+                DeInit(CallStack, True, False)
+
+                ' Hard exit
+                Environment.Exit(0)
 
             End If
 
@@ -151,10 +170,11 @@ Partial Public Class WinOffline
             ' *****************************
 
             ' Check for sql switches
-            If Utility.StringArrayContains(Globals.CommandLineArgs, "testdbconn") OrElse
-                Utility.StringArrayContains(Globals.CommandLineArgs, "testconn") OrElse
-                Utility.StringArrayContains(Globals.CommandLineArgs, "mdboverview") OrElse
-                Utility.StringArrayContains(Globals.CommandLineArgs, "cleanapps") Then
+            If Globals.AttachedtoConsole AndAlso
+                (Utility.StringArrayContains(Globals.CommandLineArgs, "testdbconn", True) OrElse
+                Utility.StringArrayContains(Globals.CommandLineArgs, "testconn", True) OrElse
+                Utility.StringArrayContains(Globals.CommandLineArgs, "mdboverview", True) OrElse
+                Utility.StringArrayContains(Globals.CommandLineArgs, "cleanapps", True)) Then
 
                 ' Encacpsulate express initialization
                 Try
@@ -193,13 +213,19 @@ Partial Public Class WinOffline
                     ' Detach from console
                     WindowsAPI.DetachConsole()
 
-                    ' Return
+                    ' Hard exit
                     Environment.Exit(0)
 
                 End Try
 
-                ' Return
-                Return 0
+                ' Call SQL function dispatcher
+                DatabaseAPI.SQLFunctionDispatch(CallStack)
+
+                ' Deinitialize (keep debug log)
+                DeInit(CallStack, True, True)
+
+                ' Hard exit
+                Environment.Exit(0)
 
             End If
 
@@ -208,7 +234,7 @@ Partial Public Class WinOffline
             ' *****************************
 
             ' Check for sql switches
-            If Utility.StringArrayContains(Globals.CommandLineArgs, "launch") Then
+            If Utility.StringArrayContains(Globals.CommandLineArgs, "launch", True) Then
 
                 ' Encacpsulate express initialization
                 Try
@@ -244,8 +270,76 @@ Partial Public Class WinOffline
 
                 End Try
 
-                ' Return
-                Return 0
+                ' Laumch app
+                LaunchPad(CallStack, Globals.LaunchAppContext, Globals.LaunchAppFileName, FileVector.GetFilePath(Globals.LaunchAppFileName), Globals.LaunchAppArguments)
+
+                ' Deinitialize
+                DeInit(CallStack, True, False)
+
+                ' Hard exit
+                Environment.Exit(0)
+
+            End If
+
+            ' *****************************
+            ' - Switch: On-demand software library cleanup execution.
+            ' *****************************
+
+            ' Check for sql switches
+            If Globals.AttachedtoConsole AndAlso
+                (Utility.StringArrayContains(Globals.CommandLineArgs, "checklibrary", True) OrElse
+                Utility.StringArrayContains(Globals.CommandLineArgs, "cleanlibrary", True)) Then
+
+                ' Encacpsulate express initialization
+                Try
+
+                    ' Check if ITCM is installed
+                    If Not Utility.IsITCMInstalled Then Throw New Exception("ITCM is not installed.")
+
+                    ' Express initialization
+                    InitProcess(CallStack)
+                    InitEnvironment(CallStack)
+                    InitRegistry(CallStack)
+                    InitComstore(CallStack)
+                    Logger.InitDebugLog(CallStack)
+                    InitStartupSwitches(CallStack)
+
+                Catch ex As Exception
+
+                    ' Verify we're not running as SYSTEM
+                    If Not WindowsIdentity.GetCurrent.IsSystem Then
+
+                        ' Check if attached to console
+                        If Globals.AttachedtoConsole Then
+
+                            ' Write debug
+                            Logger.WriteDebug(CallStack, ex.Message)
+
+                        Else
+
+                            ' Report initialization exception
+                            AlertBox.CreateUserAlert(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace, 20)
+
+                        End If
+
+                    End If
+
+                    ' Detach from console
+                    WindowsAPI.DetachConsole()
+
+                    ' Hard exit
+                    Environment.Exit(0)
+
+                End Try
+
+                ' Cleanup library
+                LibraryManager.RepairLibrary(CallStack)
+
+                ' Deinitialize
+                DeInit(CallStack, True, True)
+
+                ' Hard exit
+                Environment.Exit(0)
 
             End If
 
@@ -266,9 +360,8 @@ Partial Public Class WinOffline
                 Logger.WriteDebug(CallStack, Globals.ProcessFriendlyName + ": Exit code 1.")
 
                 ' Check if user prompt is appropriate
-                If Not (SilentSwitch OrElse
-                    Globals.RunningAsSystemIdentity OrElse
-                    Globals.ParentProcessName.ToLower.Equals("sd_jexec") OrElse
+                If Not (Globals.RunningAsSystemIdentity OrElse
+                    Globals.ParentProcessTree.Contains("sd_jexec") OrElse
                     Globals.AttachedtoConsole) Then
 
                     ' Prompt user with timeout
@@ -310,9 +403,8 @@ Partial Public Class WinOffline
                 Logger.WriteDebug(CallStack, Globals.ProcessFriendlyName + ": Exit code 3.")
 
                 ' Check if user prompt is appropriate
-                If Not (SilentSwitch OrElse
-                    Globals.RunningAsSystemIdentity OrElse
-                    Globals.ParentProcessName.ToLower.Equals("sd_jexec") OrElse
+                If Not (Globals.RunningAsSystemIdentity OrElse
+                    Globals.ParentProcessTree.Contains("sd_jexec") OrElse
                     Globals.AttachedtoConsole) Then
 
                     ' Prompt user with timeout
@@ -346,9 +438,8 @@ Partial Public Class WinOffline
                 Logger.WriteDebug(CallStack, Globals.ProcessFriendlyName + ": Exit code 4.")
 
                 ' Check if user prompt is appropriate
-                If Not (SilentSwitch OrElse
-                    Globals.RunningAsSystemIdentity OrElse
-                    Globals.ParentProcessName.ToLower.Equals("sd_jexec") OrElse
+                If Not (Globals.RunningAsSystemIdentity OrElse
+                    Globals.ParentProcessTree.Contains("sd_jexec") OrElse
                     Globals.AttachedtoConsole) Then
 
                     ' Prompt user with timeout
@@ -382,9 +473,8 @@ Partial Public Class WinOffline
                 Logger.WriteDebug(CallStack, Globals.ProcessFriendlyName + ": Exit code 5.")
 
                 ' Check if user prompt is appropriate
-                If Not (SilentSwitch OrElse
-                    Globals.RunningAsSystemIdentity OrElse
-                    Globals.ParentProcessName.ToLower.Equals("sd_jexec") OrElse
+                If Not (Globals.RunningAsSystemIdentity OrElse
+                    Globals.ParentProcessTree.Contains("sd_jexec") OrElse
                     Globals.AttachedtoConsole) Then
 
                     ' Prompt user with timeout
@@ -413,9 +503,8 @@ Partial Public Class WinOffline
                 Logger.WriteDebug(CallStack, Globals.ProcessFriendlyName + ": Exit code 6.")
 
                 ' Check if user prompt is appropriate
-                If Not (SilentSwitch OrElse
-                    Globals.RunningAsSystemIdentity OrElse
-                    Globals.ParentProcessName.ToLower.Equals("sd_jexec") OrElse
+                If Not (Globals.RunningAsSystemIdentity OrElse
+                    Globals.ParentProcessTree.Contains("sd_jexec") OrElse
                     Globals.AttachedtoConsole) Then
 
                     ' Prompt user with timeout
@@ -444,9 +533,8 @@ Partial Public Class WinOffline
                 Logger.WriteDebug(CallStack, Globals.ProcessFriendlyName + ": Exit code 7.")
 
                 ' Check if user prompt is appropriate
-                If Not (SilentSwitch OrElse
-                    Globals.RunningAsSystemIdentity OrElse
-                    Globals.ParentProcessName.ToLower.Equals("sd_jexec") OrElse
+                If Not (Globals.RunningAsSystemIdentity OrElse
+                    Globals.ParentProcessTree.Contains("sd_jexec") OrElse
                     Globals.AttachedtoConsole) Then
 
                     ' Prompt user with timeout
@@ -475,9 +563,8 @@ Partial Public Class WinOffline
                 Logger.WriteDebug(CallStack, Globals.ProcessFriendlyName + ": Exit code 8.")
 
                 ' Check if user prompt is appropriate
-                If Not (SilentSwitch OrElse
-                    Globals.RunningAsSystemIdentity OrElse
-                    Globals.ParentProcessName.ToLower.Equals("sd_jexec") OrElse
+                If Not (Globals.RunningAsSystemIdentity OrElse
+                    Globals.ParentProcessTree.Contains("sd_jexec") OrElse
                     Globals.AttachedtoConsole) Then
 
                     ' Prompt user with timeout
@@ -506,9 +593,8 @@ Partial Public Class WinOffline
                 Logger.WriteDebug(CallStack, Globals.ProcessFriendlyName + ": Exit code 10.")
 
                 ' Check if user prompt is appropriate
-                If Not (SilentSwitch OrElse
-                    Globals.RunningAsSystemIdentity OrElse
-                    Globals.ParentProcessName.ToLower.Equals("sd_jexec") OrElse
+                If Not (Globals.RunningAsSystemIdentity OrElse
+                    Globals.ParentProcessTree.Contains("sd_jexec") OrElse
                     Globals.AttachedtoConsole) Then
 
                     ' Prompt user with timeout
@@ -532,6 +618,12 @@ Partial Public Class WinOffline
         ' Initialize process
         Public Shared Sub InitProcess(ByVal CallStack As String)
 
+            ' Local variables
+            Dim ProcessWMI As ManagementObject = Nothing
+            Dim CurrentID As Integer = Nothing
+            Dim ParentID As Integer = Nothing
+            Dim ParentName As String = Nothing
+
             ' Update call stack
             CallStack += "InitProcess|"
 
@@ -548,42 +640,49 @@ Partial Public Class WinOffline
 
             ' Read process identity
             Globals.ProcessIdentity = WindowsIdentity.GetCurrent
-
-            ' Set identity flag
             Globals.RunningAsSystemIdentity = WindowsIdentity.GetCurrent.IsSystem
 
             ' Write debug
-            Logger.WriteDebug(CallStack, "Identity: " + Globals.ProcessIdentity.Name)
+            Logger.WriteDebug(CallStack, "Running as: " + Globals.ProcessIdentity.Name)
 
             ' Get the PID
             Globals.ProcessID = Process.GetCurrentProcess.Id
 
             ' Write debug
-            Logger.WriteDebug(CallStack, "Process ID: " + Globals.ProcessID.ToString)
+            Logger.WriteDebug(CallStack, "PID: " + Globals.ProcessID.ToString)
 
             ' Query WMI
             Try
 
-                ' Query WMI for process info
-                Globals.ProcessWMI = New ManagementObject("Win32_Process.Handle='" & Globals.ProcessID & "'")
-                Globals.ParentProcessID = Globals.ProcessWMI("ParentProcessID")
+                ' Stub first process id
+                CurrentID = Globals.ProcessID
 
-                ' Write debug
-                Logger.WriteDebug(CallStack, "Parent PID: " + Globals.ParentProcessID.ToString)
+                ' Loop dangerously
+                While True
 
-                ' Get friendly parent process name
-                Globals.ParentProcessName = System.Diagnostics.Process.GetProcessById(Globals.ParentProcessID).ProcessName.ToString
+                    ' Query WMI for parent process info
+                    ProcessWMI = New ManagementObject("Win32_Process.Handle='" & CurrentID & "'")
+                    ParentID = ProcessWMI("ParentProcessID")
+                    ParentName = Process.GetProcessById(ParentID).ProcessName.ToString
 
-                ' Write debug
-                Logger.WriteDebug(CallStack, "Parent name: " + Globals.ParentProcessName)
+                    ' Write debug
+                    Logger.WriteDebug(CallStack, "Parent: " + ParentID.ToString + "/" + ParentName)
+
+                    ' Store immediate parent for reference
+                    If Globals.ParentProcessName Is Nothing Then Globals.ParentProcessName = ParentName.ToLower
+
+                    ' Add to list
+                    Globals.ParentProcessTree.Add(ParentName.ToLower)
+
+                    ' Reload parent id for next iteration
+                    CurrentID = ParentID
+
+                End While
 
             Catch ex As Exception
 
-                ' Write debug
-                Logger.WriteDebug(CallStack, "Parent process has terminated.")
-
-                ' Manually set parent process
-                Globals.ParentProcessName = "NoParent"
+                ' Check if immediate parent has terminated
+                If Globals.ParentProcessName Is Nothing Then Globals.ParentProcessName = "noparent"
 
             End Try
 
@@ -1240,45 +1339,6 @@ Partial Public Class WinOffline
             CallStack += "InitComstore|"
 
             ' *****************************
-            ' - Get systray visibility parameter.
-            ' *****************************
-
-            ' Retrieve systray visibility from comstore
-            ComstoreString = ComstoreAPI.GetParameterValue("itrm/common/caf/systray", "hidden")
-
-            ' Verify output is a number
-            If IsNumeric(ComstoreString) Then
-
-                ' Parse standard output
-                If Integer.Parse(ComstoreString) = 0 Then
-
-                    ' Write debug
-                    Logger.WriteDebug(CallStack, "Tray icon is visible.")
-
-                    ' Update global
-                    Globals.TrayIconVisible = True
-
-                Else
-
-                    ' Write debug
-                    Logger.WriteDebug(CallStack, "Tray icon is hidden.")
-
-                    ' Update global
-                    Globals.TrayIconVisible = False
-
-                End If
-
-            Else
-
-                ' Write debug
-                Logger.WriteDebug(CallStack, "Tray icon visibility is unknown.")
-
-                ' Update global
-                Globals.TrayIconVisible = False
-
-            End If
-
-            ' *****************************
             ' - Get Software Delivery library location.
             ' *****************************
 
@@ -1561,7 +1621,7 @@ Partial Public Class WinOffline
                 ' *****************************
 
                 ' Check the parent process
-                If Globals.ParentProcessName.ToLower.Equals("sd_jexec") Then
+                If Globals.ParentProcessTree.Contains("sd_jexec") Then
 
                     ' *****************************
                     ' Scenario #1: Duplicate process, our parent is software delivery.
@@ -2364,7 +2424,7 @@ Partial Public Class WinOffline
                         ' Perform cleanup
                         DeInit(CallStack, True, False)
 
-                        ' Return
+                        ' Hard exit
                         Environment.Exit(0)
 
                     End If
@@ -2593,10 +2653,10 @@ Partial Public Class WinOffline
                 ' Check for resource dump execution
                 If Globals.DumpCazipxpSwitch Then
 
-                    ' Perform cleanup
+                    ' Deinitialize
                     DeInit(CallStack, True, False)
 
-                    ' Return
+                    ' Hard exit
                     Environment.Exit(0)
 
                 End If

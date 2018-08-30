@@ -30,17 +30,18 @@ Partial Public Class WinOfflineUI
             rtbOptions.AppendText(line + Environment.NewLine)
 
             ' Check for special formatting
-            If line.Contains("Purpose:") Or
-                line.Contains("Requirements:") Or
-                line.Contains("Multi-Purpose Application:") Or
-                line.Contains("WinOffline Debug Log:") Or
-                line.Contains("WinOffline Exit Codes:") Or
-                line.Contains("Deviations from ApplyPTF functionality:") Or
-                line.Contains("Custom Supported JCL tags:") Or
-                line.Contains("JCL file requirements and formatting:") Or
-                line.Contains("WinOffline Command Line Switches:") Or
-                line.Contains("WinOffline Software Delivery and Scripting Switches:") Or
-                line.Contains("WinOffline Database Maintenance Switches:") Then
+            If line.Contains("Purpose") Or
+                line.Contains("License") Or
+                line.Contains("Requirements") Or
+                line.Contains("Multi-Purpose Application") Or
+                line.Contains("WinOffline Debug Log") Or
+                line.Contains("WinOffline Exit Codes") Or
+                line.Contains("Deviations from ApplyPTF functionality") Or
+                line.Contains("Custom Supported JCL tags") Or
+                line.Contains("JCL file requirements and formatting") Or
+                line.Contains("WinOffline Command Line Switches") Or
+                line.Contains("WinOffline Software Delivery and Scripting Switches") Or
+                line.Contains("WinOffline Database Maintenance Switches") Then
 
                 ' Select the text
                 rtbOptions.SelectionStart = rtbOptions.Text.LastIndexOf(line)

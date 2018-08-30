@@ -4,7 +4,7 @@ Public Class Globals
 
     ' WinOffline and System Globals
     Public Shared CommandLineArgs As String() = Nothing                         ' Command line arguments passed to the application.
-    Public Shared AppVersion As String = "2018.08.27"                           ' Version string of the current build.
+    Public Shared AppVersion As String = "2018.08.30"                           ' Version string of the current build.
     Public Shared ProcessName As String = Nothing                               ' Fullpath including filename of the application process.
     Public Shared ProcessShortName As String = Nothing                          ' Filename of the application process.
     Public Shared ProcessFriendlyName As String = Nothing                       ' Friendly name of the application process.
@@ -12,14 +12,10 @@ Public Class Globals
     Public Shared ProcessFilePath As String = Nothing                           ' Directory of the process. (e.g. C:\SomeDirectory)
     Public Shared AttachedtoConsole As Boolean = False                          ' Flag: Attached to console.
     Public Shared HostName As String = Nothing                                  ' Hostname of computer executing the application.
-    Public Shared ProcessWMI As ManagementObject = Nothing                      ' A management object for querying the system WMI.
     Public Shared ProcessID As Integer = Nothing                                ' The process ID (PID) of the application process.
-    Public Shared ParentProcessID As Integer = Nothing                          ' The parent process ID (PPID) of the application process.
-    Public Shared ParentProcessName As String = Nothing                         ' Friendly name of the parent process.
+    Public Shared ParentProcessName As String = Nothing                         ' Friendly name of the immediate parent process.
+    Public Shared ParentProcessTree As New List(Of String)                      ' List of all parent process names.
     Public Shared ProcessIdentity As Security.Principal.WindowsIdentity         ' The identity currently executing the process.
-    Public Shared IPv4list As New ArrayList                                     ' Array for IPv4 addresses.
-    Public Shared IPv6list As New ArrayList                                     ' Array for IPv6 addresses.
-    Public Shared PipeClientExecution As Boolean = False                        ' Flag: Process is a pipe client execution.
     Public Shared DispatcherReturnCode As Integer = 0                           ' Return code from dispatcher.
     Public Const THREAD_REST_INTERVAL As Integer = 50                           ' Default rest interval for threads.
 
@@ -59,7 +55,6 @@ Public Class Globals
     Public Shared CachedJobOutputID As String = Nothing                         ' File: Cached software delivery job output ID.
     Public Shared JobOutputFolder As String = Nothing                           ' File: Software delivery job output folder.
     Public Shared JobOutputFile As String = Nothing                             ' File: Software delivery job output file.
-    Public Shared TrayIconVisible As Boolean = Nothing                          ' Comstore: Tray icon visibility policy.
     Public Shared SDLibraryFolder As String = Nothing                           ' Comstore: Path to the SD library.
     Public Shared ENCFunction As String = Nothing                               ' Comstore: ENC functionality description.
     Public Shared ENCGatewayServer As String = Nothing                          ' Comstore: ENC gateway server.

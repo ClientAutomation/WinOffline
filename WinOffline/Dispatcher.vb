@@ -64,7 +64,7 @@
                     Logger.WriteDebug(CallStack, "Execution marker: StageI completed.")
 
                     ' Verify offline execution mode
-                    If Globals.ParentProcessName.ToLower.Equals("sd_jexec") Then
+                    If Globals.ParentProcessTree.Contains("sd_jexec") Then
 
                         ' *****************************
                         ' - StageII dispatched incorrectly in ONLINE mode.

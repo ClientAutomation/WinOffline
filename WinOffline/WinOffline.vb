@@ -39,116 +39,14 @@
         End If
 
         ' *****************************
-        ' - Check for removal tool execution.
-        ' *****************************
-
-        ' Check removal tool switches
-        If Globals.RemoveITCM OrElse Globals.UninstallITCM Then
-
-            ' Remove ITCM
-            RunLevel = RemoveITCM(CallStack)
-
-            ' Deinitialize
-            Init.DeInit(CallStack, True, False)
-
-            ' Return
-            Return RunLevel
-
-        End If
-
-        ' *****************************
-        ' - Check for caf on-demand switches.
-        ' *****************************
-
-        ' Check for caf on-demand switches
-        If Globals.StopCAFSwitch Then
-
-            ' Remove ITCM
-            RunLevel = StopCAFOnDemand(CallStack)
-
-            ' Deinitialize
-            Init.DeInit(CallStack, True, False)
-
-            ' Return
-            Return RunLevel
-
-        ElseIf Globals.StartCAFSwitch Then
-
-            ' Remove ITCM
-            RunLevel = StartCAFOnDemand(CallStack)
-
-            ' Deinitialize
-            Init.DeInit(CallStack, True, False)
-
-            ' Return
-            Return RunLevel
-
-        End If
-
-        ' *****************************
-        ' - Check for SQL execution switches.
-        ' *****************************
-
-        ' Check for SQL execution switches
-        If Globals.AttachedtoConsole AndAlso (Globals.DbTestConnectionSwitch OrElse Globals.MdbOverviewSwitch OrElse Globals.MdbCleanAppsSwitch) Then
-
-            ' Call SQL function dispatcher
-            RunLevel = DatabaseAPI.SQLFunctionDispatch(CallStack)
-
-            ' Deinitialize (keep debug log)
-            Init.DeInit(CallStack, True, True)
-
-            ' Return
-            Return RunLevel
-
-        End If
-
-        ' *****************************
-        ' - Check for launch app switch.
-        ' *****************************
-
-        ' Check for launch app switch
-        If Globals.LaunchAppSwitch Then
-
-            ' Laumch app
-            RunLevel = LaunchPad(CallStack, Globals.LaunchAppContext, Globals.LaunchAppFileName, FileVector.GetFilePath(Globals.LaunchAppFileName), Globals.LaunchAppArguments)
-
-            ' Deinitialize
-            Init.DeInit(CallStack, True, False)
-
-            ' Return
-            Return RunLevel
-
-        End If
-
-        ' *****************************
-        ' - Check for software library cleanup execution.
-        ' *****************************
-
-        ' Check for libray analysis or cleanup switches
-        If Globals.AttachedtoConsole AndAlso (Globals.CheckSDLibrarySwitch OrElse Globals.CleanupSDLibrarySwitch) Then
-
-            ' Cleanup library
-            LibraryManager.RepairLibrary(CallStack)
-
-            ' Deinitialize
-            Init.DeInit(CallStack, True, True)
-
-            ' Return
-            Return RunLevel
-
-        End If
-
-        ' *****************************
         ' - Determine entry point.
         ' *****************************
 
         ' Entry point check
-        If Globals.ParentProcessName.ToLower.Equals("sd_jexec") Then
+        If Globals.ParentProcessTree.Contains("sd_jexec") Then
 
             ' Write debug
             Logger.WriteDebug(CallStack, "Entry point: Software Delivery")
-            Logger.WriteDebug(CallStack, "User identity: " + Globals.ProcessIdentity.Name)
 
             ' Set execution mode flag
             Globals.SDBasedMode = True
@@ -161,19 +59,10 @@
             RunLevel = JobContainer(CallStack)
 
             ' Verify job output file availability
-            If RunLevel <> 0 Or Globals.JobOutputFile Is Nothing Or Globals.JobOutputFile.Equals("") Then
-
-                ' Write debug
-                Logger.WriteDebug(CallStack, "Warning: Software delivery job output will be unavailable.")
+            If RunLevel <> 0 OrElse Globals.JobOutputFile Is Nothing OrElse Globals.JobOutputFile.Equals("") Then
 
                 ' Set job output flag
                 Globals.WriteSDJobOutput = False
-
-                ' Create exception
-                Manifest.UpdateManifest(CallStack,
-                                        Manifest.EXCEPTION_MANIFEST,
-                                        {"Error: Exception caught processing software delivery container file.",
-                                        "Reason: Please analyze the debug log for more information."})
 
             Else
 
@@ -192,7 +81,6 @@
 
             ' Write debug
             Logger.WriteDebug(CallStack, "Entry point: Non-Software Delivery")
-            Logger.WriteDebug(CallStack, "User identity: " + Globals.ProcessIdentity.Name)
 
             ' Set execution mode flag
             Globals.SDBasedMode = False
@@ -256,13 +144,8 @@
                     Globals.ProgressUIThread = New System.Threading.Thread(AddressOf Globals.ProgressGUI.ShowDialog)
                     Globals.ProgressUIThread.Start()
 
-                    ' Check tray icon policy
-                    If Globals.TrayIconVisible Then
-
-                        ' Enable debug gui notification icon
-                        Globals.ProgressGUI.TrayIcon.Visible = True
-
-                    End If
+                    ' Enable debug gui notification icon
+                    Globals.ProgressGUI.TrayIcon.Visible = True
 
                 End If
 
@@ -291,7 +174,7 @@
             RunLevel = JobContainer(CallStack)
 
             ' Check the run level
-            If RunLevel <> 0 Or Globals.JobOutputFile Is Nothing Or Globals.JobOutputFile.Equals("") Then
+            If RunLevel <> 0 OrElse Globals.JobOutputFile Is Nothing OrElse Globals.JobOutputFile.Equals("") Then
 
                 ' Write debug
                 Logger.WriteDebug(CallStack, "Error: Exception caught processing software delivery container file.")
@@ -348,7 +231,7 @@
         ' *****************************
 
         ' Check the dispatcher return
-        If RunLevel <> 0 Then
+        If Globals.DispatcherReturnCode <> 0 Then
 
             ' Write debug
             Logger.WriteDebug(CallStack, Globals.ProcessFriendlyName + " completed with an error.")
