@@ -6,30 +6,17 @@ Partial Public Class WinOfflineUI
 
     Private Sub InitCLISwitchPanel()
 
-        ' Local variables
         Dim rtbText As New ArrayList
-
-        ' Replace WinOffline references with process name
         rtbOptions.Text = WinOffline.Utility.ReplaceWord(rtbOptions.Text, "WinOffline", Globals.ProcessFriendlyName)
 
-        ' Iterate text from command line switches text box
         For Each line As String In rtbOptions.Lines
-
-            ' Add each line to an array for processing
             rtbText.Add(line)
-
         Next
 
-        ' Clear the text box
         rtbOptions.Text = ""
 
-        ' Iterate the array
         For Each line As String In rtbText
-
-            ' Append a line of text, from the array, to the text box
             rtbOptions.AppendText(line + Environment.NewLine)
-
-            ' Check for special formatting
             If line.Contains("Purpose") Or
                 line.Contains("License") Or
                 line.Contains("Requirements") Or
@@ -42,19 +29,12 @@ Partial Public Class WinOfflineUI
                 line.Contains("WinOffline Command Line Switches") Or
                 line.Contains("WinOffline Software Delivery and Scripting Switches") Or
                 line.Contains("WinOffline Database Maintenance Switches") Then
-
-                ' Select the text
                 rtbOptions.SelectionStart = rtbOptions.Text.LastIndexOf(line)
                 rtbOptions.SelectionLength = line.Length
-
-                ' Update formatting
                 rtbOptions.SelectionFont = New Drawing.Font("Calibri", 12, Drawing.FontStyle.Underline Or Drawing.FontStyle.Bold)
-
             End If
-
         Next
 
-        ' Deselect text
         rtbOptions.SelectionStart = 0
         rtbOptions.SelectionLength = 0
 
@@ -62,28 +42,18 @@ Partial Public Class WinOfflineUI
 
     Private Sub btnWinOfflineSDHelpPrevious_Click(sender As Object, e As EventArgs) Handles btnWinOfflineSDHelpPrevious.Click
 
-        ' Local variables
         Dim myAssembly As System.Reflection.Assembly = System.Reflection.Assembly.GetExecutingAssembly()
         Dim myStream As Stream
         Dim image As Bitmap
 
-        ' Decrement the step counter
         SDHelpStepCounter -= 1
-
-        ' Load coresponding image for step
         myStream = myAssembly.GetManifestResourceStream("WinOffline.Step" + SDHelpStepCounter.ToString + ".png")
         image = New Bitmap(myStream)
         ScaleImageToPictureBox(picSteps, image)
         picSteps.Image = image
         picSteps.SizeMode = PictureBoxSizeMode.CenterImage
-
-        ' Check for first step, disable previous button
         If SDHelpStepCounter = 1 Then btnWinOfflineSDHelpPrevious.Enabled = False
-
-        ' Enable the next step button
         btnWinOfflineSDHelpNext.Enabled = True
-
-        ' Load corresponding help text
         SetStepText(SDHelpStepCounter)
 
         ' Enable command line switches button, if applicable to the step
@@ -97,28 +67,19 @@ Partial Public Class WinOfflineUI
 
     Private Sub btnWinOfflineSDHelpNext_Click(sender As Object, e As EventArgs) Handles btnWinOfflineSDHelpNext.Click
 
-        ' Local variables
         Dim myAssembly As System.Reflection.Assembly = System.Reflection.Assembly.GetExecutingAssembly()
         Dim myStream As Stream
         Dim image As Bitmap
 
-        ' Increment the step counter
         SDHelpStepCounter += 1
-
-        ' Load corresponding image for step
         myStream = myAssembly.GetManifestResourceStream("WinOffline.Step" + SDHelpStepCounter.ToString + ".png")
         image = New Bitmap(myStream)
         ScaleImageToPictureBox(picSteps, image)
         picSteps.Image = image
         picSteps.SizeMode = PictureBoxSizeMode.CenterImage
 
-        ' Check for last step, disable the next button
         If SDHelpStepCounter = 15 Then btnWinOfflineSDHelpNext.Enabled = False
-
-        ' Enable the previous button
         btnWinOfflineSDHelpPrevious.Enabled = True
-
-        ' Load corresponding help text
         SetStepText(SDHelpStepCounter)
 
         ' Enable command line switches button, if applicable to the step
@@ -157,20 +118,15 @@ Partial Public Class WinOfflineUI
     End Sub
 
     Private Sub ResizeHelpImage(sender As Object, e As EventArgs) Handles picSteps.SizeChanged
-
-        ' Local variables
         Dim myAssembly As System.Reflection.Assembly = System.Reflection.Assembly.GetExecutingAssembly()
         Dim myStream As Stream
         Dim image As Bitmap
-
-        ' Reload image
         If picSteps.Image IsNot Nothing Then
             myStream = myAssembly.GetManifestResourceStream("WinOffline.Step" + SDHelpStepCounter.ToString + ".png")
             image = New Bitmap(myStream)
             ScaleImageToPictureBox(picSteps, image)
             picSteps.Image = image
         End If
-
     End Sub
 
     Public Sub SetStepText(ByVal StepNumber As Integer)
@@ -208,7 +164,6 @@ Partial Public Class WinOfflineUI
             Case Else
                 lblStepx.Text = "This isn't right :-/"
         End Select
-
     End Sub
 
 End Class

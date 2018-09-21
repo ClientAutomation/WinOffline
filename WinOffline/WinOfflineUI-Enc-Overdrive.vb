@@ -10,7 +10,6 @@ Partial Public Class WinOfflineUI
 
     Private Sub InitEncOverdrive()
 
-        ' Local variables
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
 
@@ -77,7 +76,6 @@ Partial Public Class WinOfflineUI
 
     Private Sub PingWorker(ByVal Victim As String)
 
-        ' Local variables
         Dim ClientIndex As Integer
         Dim NumPings As Integer
         Dim MsgSize As Integer
@@ -123,8 +121,7 @@ Partial Public Class WinOfflineUI
                                           " -s " + MsgSize.ToString +
                                           " -w " + WaitTime.ToString +
                                           " -t " + ReplyTimeout.ToString,
-                                          ,
-                                          Output)
+                                          , Output)
 
             ' Tokenize the output
             TokenizedOutput = Output.Split(New String() {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
@@ -140,10 +137,10 @@ Partial Public Class WinOfflineUI
         Else
 
             ' Run caf ping and read output
-            WinOffline.Utility.RunCommand(Globals.DSMFolder + "bin\caf.exe", "ping " + Victim +
-                                          " timeout " + ReplyTimeout.ToString +
-                                          " repeat " + NumPings.ToString,
-                                          Output)
+            WinOffline.Utility.RunCommand(Globals.DSMFolder +
+                                          "bin\caf.exe",
+                                          "ping " + Victim + " timeout " + ReplyTimeout.ToString + " repeat " + NumPings.ToString,
+                                          , Output)
 
             ' Tokenize the output
             TokenizedOutput = Output.Split(New String() {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
@@ -200,60 +197,35 @@ Partial Public Class WinOfflineUI
 
     Private Sub TargetWorker(ByVal Victim As String)
 
-        ' Local variables
         Dim LocalThreadList As New ArrayList
         Dim PingThread As Thread
 
-        ' Iterate based on user setting for number of threads to create
         For i = 0 To Integer.Parse(txtEncStressNumPingThreads.Text) - 1
-
-            ' Create a new ping thread
             PingThread = New Thread(Sub() PingWorker(Victim))
-
-            ' Add it to the local list
             LocalThreadList.Add(PingThread)
-
-            ' Start the thread
             PingThread.Start()
-
-            ' Rest this thread
             Thread.Sleep(Globals.THREAD_REST_INTERVAL)
-
         Next
 
-        ' Loop until all ping threads have completed
         While LocalThreadList.Count > 0
-
-            ' Iterate the local list
             For x As Integer = LocalThreadList.Count - 1 To 0 Step -1
-
-                ' Check if the thread is alive or dead
                 If Not DirectCast(LocalThreadList.Item(x), Thread).IsAlive Then
-
-                    ' Remove the thread from the local list
                     LocalThreadList.RemoveAt(x)
-
                 End If
-
             Next
-
-            ' Rest this thread
             Thread.Sleep(Globals.THREAD_REST_INTERVAL)
-
         End While
 
     End Sub
 
     Private Sub EncOverdriveWorker()
 
-        ' Local variables
         Dim LocalThreadList As New ArrayList
         Dim RandomGenerator As New Random
         Dim Victim As String
         Dim TargetThread As Thread
 
-        ' Loop dangerously
-        While True
+        While True ' Loop dangerously
 
             ' Check for conditions to create new target threads
             If LocalThreadList.Count / 2 < Integer.Parse(txtEncStressNumTargetThreads.Text) AndAlso
@@ -261,198 +233,100 @@ Partial Public Class WinOfflineUI
                 GetEncClientList.Count > 0 AndAlso
                 Not (TerminateSignal Or InternalTermSignal) Then
 
-                ' Loop dangerously for a new victim (enc client)
-                Do
-                    ' Randomly choose a victim
-                    Victim = GetEncClientList.Item(RandomGenerator.Next(0, GetEncClientList.Count))
 
-                    ' Verify the victim is not already a victim of another thread
-                    If Not LocalThreadList.Contains(Victim) Or (TerminateSignal Or InternalTermSignal) Then Exit Do
-
+                Do ' Loop dangerously for a new victim (enc client)
+                    Victim = GetEncClientList.Item(RandomGenerator.Next(0, GetEncClientList.Count)) ' Randomly choose a victim
+                    If Not LocalThreadList.Contains(Victim) Or (TerminateSignal Or InternalTermSignal) Then Exit Do ' Verify the victim is not already a victim of another thread
                 Loop
 
-                ' Check for termination signal (could have occurred while looping for a new victim)
                 If Not (TerminateSignal Or InternalTermSignal) Then
-
-                    ' Create a new target thread
                     TargetThread = New Thread(Sub() TargetWorker(Victim))
-
-                    ' Add the thread and victim to the local list
                     LocalThreadList.Add(TargetThread)
                     LocalThreadList.Add(Victim)
-
-                    ' Start the thread
                     TargetThread.Start()
                 End If
 
             ElseIf TerminateSignal Or InternalTermSignal Then
-
-                ' Loop until all target threads have completed
                 While LocalThreadList.Count > 0
-
-                    ' Iterate backwards through the local list (checking threads and skipping victims)
-                    For x As Integer = LocalThreadList.Count - 2 To 0 Step -2
-
-                        ' Check if the thread is alive or dead
+                    For x As Integer = LocalThreadList.Count - 2 To 0 Step -2 ' Iterate backwards through the local list (checking threads and skipping victims)
                         If Not DirectCast(LocalThreadList.Item(x), Thread).IsAlive Then
-
-                            ' Remove the thread and victim from the list
                             LocalThreadList.RemoveAt(x)
                             LocalThreadList.RemoveAt(x)
-
                         End If
-
                     Next
-
-                    ' Rest the thread
                     Thread.Sleep(Globals.THREAD_REST_INTERVAL)
-
                 End While
-
-                ' Stop condition -- all target threads have finished
-                Exit While
-
+                Exit While ' Stop condition -- all target threads have finished
             Else
-
-                ' Iterate backwards through the local list (checking threads and skipping victims)
-                For x As Integer = LocalThreadList.Count - 2 To 0 Step -2
-
-                    ' Check if the thread is alive or dead
+                For x As Integer = LocalThreadList.Count - 2 To 0 Step -2 ' Iterate backwards through the local list (checking threads and skipping victims)
                     If Not DirectCast(LocalThreadList.Item(x), Thread).IsAlive Then
-
-                        ' Remove the thread and victim from the list
                         LocalThreadList.RemoveAt(x)
                         LocalThreadList.RemoveAt(x)
-
                     End If
-
                 Next
-
             End If
-
-            ' Rest the thread
             Thread.Sleep(Globals.THREAD_REST_INTERVAL)
-
         End While
 
-        ' Enable the start button
         Delegate_Sub_Enable_Blue_Button(btnEncStressStart, True)
-
-        ' Re-enable ping type setting
         Delegate_Sub_Enable_Control(grpEncStressPingType, True)
 
     End Sub
 
     Private Sub EncClientMonitorWorker()
 
-        ' Local variables
         Dim Output As String = ""
         Dim TokenizedOutput As String()
         Dim LocalClientList As New ArrayList
         Dim DataGridClientList As New ArrayList
         Dim CheckClient As String
 
-        ' Loop until termination signal
         While Not TerminateSignal And Not InternalTermSignal
-
-            ' Clear the local client list
             LocalClientList.Clear()
+            WinOffline.Utility.RunCommand(Globals.DSMFolder + "bin\encUtilCmd.exe", "server -client -port " + Globals.ENCServerTCPPort,, Output) ' Run encUtilCmd to retrieve the client list and capture the output
+            TokenizedOutput = Output.Split(New String() {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries) ' Tokenize the output
 
-            ' Run encUtilCmd to retrieve the client list and capture the output
-            WinOffline.Utility.RunCommand(Globals.DSMFolder + "bin\encUtilCmd.exe", "server -client -port " + Globals.ENCServerTCPPort,, Output)
-
-            ' Tokenize the output
-            TokenizedOutput = Output.Split(New String() {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
-
-            ' Iterate the output
             For Each strLine As String In TokenizedOutput
-
-                ' Check for a client listing
                 If strLine.ToLower.Contains("enc gateway client :") Then
-
-                    ' Add the client to the local client list
                     LocalClientList.Add(strLine.Substring(strLine.IndexOf(":") + 2))
-
                 End If
-
             Next
 
-            ' Check for an empty client list
             If LocalClientList.Count = 0 Then
-
-                ' Signal internal termination
                 InternalTermSignal = True
-
-                ' Push a user alert message
                 AlertBox.CreateUserAlert("The ENC gateway server is configured, but the client list is empty.")
-
-                ' Change button availability
                 Delegate_Sub_Enable_Blue_Button(btnEncStressStop, False)
                 Delegate_Sub_Enable_Control(grpEncStressPingType, True)
-
             End If
 
-            ' Iterate the client list
             For Each client In LocalClientList
-
-                ' Check if the client is new to the data grid
                 If Not GetEncClientList().Contains(client) Then
-
-                    ' Grab the mutex for accessing the data grid
-                    dgvEncStressTable_mutex.WaitOne()
-
-                    ' Add the new client
-                    Delegate_Sub_Add_DataGridView_Row(dgvEncStressTable, {client, 0, 0, 0, 0})
-
-                    ' Release the data grid mutex
-                    dgvEncStressTable_mutex.ReleaseMutex()
-
+                    dgvEncStressTable_mutex.WaitOne() ' Grab the mutex for accessing the data grid
+                    Delegate_Sub_Add_DataGridView_Row(dgvEncStressTable, {client, 0, 0, 0, 0}) ' Add the new client
+                    dgvEncStressTable_mutex.ReleaseMutex() ' Release the data grid mutex
                 End If
-
             Next
 
-            ' Grab the current client list from the data grid
             DataGridClientList = GetEncClientList.Clone
 
-            ' Iterate the data grid client list
             For x = DataGridClientList.Count - 1 To 0 Step -1
-
-                ' Pop a client
                 CheckClient = DataGridClientList.Item(x)
-
-                ' Verify the client is also on the local client list
                 If Not LocalClientList.Contains(CheckClient) Then
-
-                    ' Grab the data grid mutex
-                    dgvEncStressTable_mutex.WaitOne()
-
-                    ' Remove the dead client
-                    Delegate_Sub_Remove_DataGridView_Row(dgvEncStressTable, x)
-
-                    ' Release the data grid mutex
-                    dgvEncStressTable_mutex.ReleaseMutex()
-
+                    dgvEncStressTable_mutex.WaitOne() ' Grab the data grid mutex
+                    Delegate_Sub_Remove_DataGridView_Row(dgvEncStressTable, x) ' Remove the dead client
+                    dgvEncStressTable_mutex.ReleaseMutex() ' Release the data grid mutex
                 End If
-
             Next
 
-            ' Update the status table text
             Delegate_Sub_Set_Text(grpEncStressStatus, "Status Table (" + LocalClientList.Count.ToString + " clients)")
 
             ' Rest with frequent checks for the terminate signal
             For i = 0 To 599
-
-                ' Rest the thread
                 Thread.Sleep(Globals.THREAD_REST_INTERVAL)
-
-                ' Check for termination signal
                 If TerminateSignal Then Exit While
-
             Next
-
         End While
 
-        ' Reset status table text
         Delegate_Sub_Set_Text(grpEncStressStatus, "Status Table")
 
     End Sub
@@ -477,70 +351,40 @@ Partial Public Class WinOfflineUI
 
     Private Sub btnEncStressStart_Click(sender As Object, e As EventArgs) Handles btnEncStressStart.Click
 
-        ' Verify the encClient process is running
         If Not WinOffline.Utility.IsProcessRunning("encClient") Then
-
-            ' Push user alert
             AlertBox.CreateUserAlert("The ENC gateway client plugin (encClient.exe) is not running.")
-
-            ' Return
             Return
-
         End If
 
-        ' Verify an enc gateway server is configured
         If Not Globals.ENCGatewayServer.Length > 0 Then
-
-            ' Push user alert
             AlertBox.CreateUserAlert("The ENC gateway server address is not configured.")
-
-            ' Return
             Return
-
         End If
 
-        ' Disable the ping type setting
         grpEncStressPingType.Enabled = False
 
-        ' Check ping type user setting
         If rbnEncStressCafPing.Checked Then
-
-            ' For caf ping, disable the total bytes column, as caf pings vary in size
-            dgvEncStressTable.Columns(5).Visible = False
-
-            ' Set autosize for the enc client to fill the extra space
+            dgvEncStressTable.Columns(5).Visible = False ' For caf ping, disable the total bytes column, as caf pings vary in size
             dgvEncStressTable.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             dgvEncStressTable.Columns(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             dgvEncStressTable.Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             dgvEncStressTable.Columns(3).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             dgvEncStressTable.Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-
         Else
-
-            ' For camping, enable the total bytes column, as cam pings are specific sizes
-            dgvEncStressTable.Columns(5).Visible = True
-
-            ' Set autosize for the number of bytes to fill the extra space
+            dgvEncStressTable.Columns(5).Visible = True ' For camping, enable the total bytes column, as cam pings are specific sizes
             dgvEncStressTable.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             dgvEncStressTable.Columns(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             dgvEncStressTable.Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             dgvEncStressTable.Columns(3).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             dgvEncStressTable.Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             dgvEncStressTable.Columns(5).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-
         End If
 
-        ' Reset internal terminate signal
         InternalTermSignal = False
-
-        ' Clear the current data grid
         Delegate_Sub_Clear_DataGridView_Rows(dgvEncStressTable)
-
-        ' Set button availability
         Delegate_Sub_Enable_Blue_Button(btnEncStressStart, False)
         Delegate_Sub_Enable_Blue_Button(btnEncStressStop, True)
 
-        ' Initialize and start the threads
         EncClientMonitorThread = New Thread(AddressOf EncClientMonitorWorker)
         EncOverdriveThread = New Thread(AddressOf EncOverdriveWorker)
         EncClientMonitorThread.Start()
@@ -549,13 +393,8 @@ Partial Public Class WinOfflineUI
     End Sub
 
     Private Sub btnEncStressStop_Click(sender As Object, e As EventArgs) Handles btnEncStressStop.Click
-
-        ' Disable the stop button
         Delegate_Sub_Enable_Blue_Button(btnEncStressStop, False)
-
-        ' Set internal termination signal
         InternalTermSignal = True
-
     End Sub
 
     Private Sub btnEncStressTargetThreadMinus_Click(sender As Object, e As EventArgs) Handles btnEncStressTargetThreadMinus.Click

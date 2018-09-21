@@ -9,12 +9,10 @@ Partial Public Class WinOfflineUI
 
     Private Sub InitSqlUnUsedSoftGrid()
 
-        ' Disable buttons
         Delegate_Sub_Enable_Red_Button(btnSqlDisconnectUnUsedSoftGrid, False)
         Delegate_Sub_Enable_Blue_Button(btnSqlRefreshUnUsedSoftGrid, False)
         Delegate_Sub_Enable_Blue_Button(btnSqlExportUnUsedSoftGrid, False)
 
-        ' Set grid properties
         dgvSwNotUsed.AllowUserToAddRows = False
         dgvSwNotUsed.AllowUserToDeleteRows = False
         dgvSwNotUsed.AllowUserToResizeRows = False
@@ -37,7 +35,6 @@ Partial Public Class WinOfflineUI
         dgvSwNotUsed.ShowEditingIcon = False
         dgvSwNotUsed.ShowRowErrors = False
 
-        ' Set grid properties
         dgvSwNotInst.AllowUserToAddRows = False
         dgvSwNotInst.AllowUserToDeleteRows = False
         dgvSwNotInst.AllowUserToResizeRows = False
@@ -60,7 +57,6 @@ Partial Public Class WinOfflineUI
         dgvSwNotInst.ShowEditingIcon = False
         dgvSwNotInst.ShowRowErrors = False
 
-        ' Set grid properties
         dgvSwNotStaged.AllowUserToAddRows = False
         dgvSwNotStaged.AllowUserToDeleteRows = False
         dgvSwNotStaged.AllowUserToResizeRows = False
@@ -92,21 +88,14 @@ Partial Public Class WinOfflineUI
 
     Private Sub UnUsedSoftGridWorker(ByVal ConnectionString As String)
 
-        ' Local variables
         Dim DbConnection As SqlConnection = New SqlConnection(ConnectionString)
         Dim RecordCount As Integer = 0
         Dim CallStack As String = "UnUsedSoftGridWorker --> "
 
-        ' Encapsulate grid worker
         Try
-
-            ' Open sql connection
             DbConnection.Open()
-
-            ' Write debug
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Connected successful: " + SqlServer)
 
-            ' Reveal progress bar
             tabCtrlSwNotUsed.Invoke(Sub() tabCtrlSwNotUsed.Height = tabCtrlSwNotUsed.Height - prgUnUsedSoftGrid.Height - 4)
 
             ' Query software not used
@@ -142,193 +131,102 @@ Partial Public Class WinOfflineUI
                                           prgUnUsedSoftGrid,
                                           tabSwNotStaged)
 
-            ' Hide progress bar
             tabCtrlSwNotUsed.Invoke(Sub() tabCtrlSwNotUsed.Height = pnlSqlUnUsedSoftGrid.Height - pnlSqlUnUsedSoftGridButtons.Height - 3)
 
         Catch ex As Exception
-
-            ' Write debug
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Exception:" + Environment.NewLine + ex.Message)
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Stack trace: " + Environment.NewLine + ex.StackTrace)
-
         Finally
-
-            ' Check if database connection is open
             If Not DbConnection.State = ConnectionState.Closed Then
-
-                ' Close the database connection
                 DbConnection.Close()
-
-                ' Write debug
                 Delegate_Sub_Append_Text(rtbDebug, CallStack + "Database connection closed.")
-
             End If
-
-            ' Enable buttons
             Delegate_Sub_Enable_Yellow_Button(btnSqlRefreshUnUsedSoftGrid, True)
             Delegate_Sub_Enable_Tan_Button(btnSqlExportUnUsedSoftGrid, True)
-
         End Try
 
     End Sub
 
     Private Sub btnSqlConnectUnUsedSoftGrid_Click(sender As Object, e As EventArgs) Handles btnSqlConnectUnUsedSoftGrid.Click
-
-        ' Perform SQL connection
         SqlConnect()
-
     End Sub
 
     Private Sub btnSqlDisconnectUnUsedSoftGrid_Click(sender As Object, e As EventArgs) Handles btnSqlDisconnectUnUsedSoftGrid.Click
-
-        ' Perform disconnect method
         SqlDisconnect()
-
     End Sub
 
     Private Sub btnSqlRefreshUnUsedSoftGrid_Click(sender As Object, e As EventArgs) Handles btnSqlRefreshUnUsedSoftGrid.Click
-
-        ' Disable buttons
         Delegate_Sub_Enable_Yellow_Button(btnSqlRefreshUnUsedSoftGrid, False)
         Delegate_Sub_Enable_Tan_Button(btnSqlExportUnUsedSoftGrid, False)
-
-        ' Reset tab text
         If tabSwNotUsed.Text.Contains("(") Then Delegate_Sub_Set_Text(tabSwNotUsed, tabSwNotUsed.Text.Substring(0, tabSwNotUsed.Text.IndexOf("(") - 1))
         If tabSwNotInst.Text.Contains("(") Then Delegate_Sub_Set_Text(tabSwNotInst, tabSwNotInst.Text.Substring(0, tabSwNotInst.Text.IndexOf("(") - 1))
         If tabSwNotStaged.Text.Contains("(") Then Delegate_Sub_Set_Text(tabSwNotStaged, tabSwNotStaged.Text.Substring(0, tabSwNotStaged.Text.IndexOf("(") - 1))
-
-        ' Restart thread
         UnUsedSoftGridThread = New Thread(Sub() UnUsedSoftGridWorker(ConnectionString))
         UnUsedSoftGridThread.Start()
-
     End Sub
 
     Private Sub btnSqlExportUnUsedSoftGrid_Click(sender As Object, e As EventArgs) Handles btnSqlExportUnUsedSoftGrid.Click
 
-        ' Local variables
         Dim saveFileDialog1 As New SaveFileDialog()
         Dim StateStreamWriter As System.IO.StreamWriter
 
-        ' Set dialog properties
         saveFileDialog1.Filter = "CSV (Comma delimited)|*.csv"
         saveFileDialog1.Title = "Save a CSV File"
 
-        ' Launch dialog and check result
         If saveFileDialog1.ShowDialog() = DialogResult.Cancel Then Return
 
-        ' Encapsulate file operation
         Try
-
-            ' Open output stream
             StateStreamWriter = New System.IO.StreamWriter(saveFileDialog1.FileName, False)
 
-            ' Check selected tab
             If tabCtrlSwNotUsed.SelectedTab.Equals(tabSwNotUsed) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvSwNotUsed.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvSwNotUsed.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString.Replace(",", "+") + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
 
             ElseIf tabCtrlSwNotUsed.SelectedTab.Equals(tabSwNotInst) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvSwNotInst.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvSwNotInst.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString.Replace(",", "+") + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
 
             ElseIf tabCtrlSwNotUsed.SelectedTab.Equals(tabSwNotStaged) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvSwNotStaged.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvSwNotStaged.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString.Replace(",", "+") + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
-
             End If
 
-            ' Close output stream
             StateStreamWriter.Close()
-
         Catch ex As Exception
-
-            ' Push user alert
             AlertBox.CreateUserAlert("Export failed." + Environment.NewLine + Environment.NewLine + "Exception: " + ex.Message)
-
         End Try
 
     End Sub
 
     Private Sub btnSqlExitUnUsedSoftGrid_Click(sender As Object, e As EventArgs) Handles btnSqlExitUnUsedSoftGrid.Click
-
-        ' Close the dialog
         Close()
-
     End Sub
 
 End Class

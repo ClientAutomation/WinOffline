@@ -9,12 +9,10 @@ Partial Public Class WinOfflineUI
 
     Private Sub InitSqlServerGrid()
 
-        ' Disable buttons
         Delegate_Sub_Enable_Red_Button(btnSqlDisconnectServerGrid, False)
         Delegate_Sub_Enable_Blue_Button(btnSqlRefreshServerGrid, False)
         Delegate_Sub_Enable_Blue_Button(btnSqlExportServerGrid, False)
 
-        ' Set grid properties
         dgvServerGrid.AllowUserToAddRows = False
         dgvServerGrid.AllowUserToDeleteRows = False
         dgvServerGrid.AllowUserToResizeRows = False
@@ -38,7 +36,6 @@ Partial Public Class WinOfflineUI
         dgvServerGrid.ShowEditingIcon = False
         dgvServerGrid.ShowRowErrors = False
 
-        ' Set grid properties
         dgvServerLastCollected24.AllowUserToAddRows = False
         dgvServerLastCollected24.AllowUserToDeleteRows = False
         dgvServerLastCollected24.AllowUserToResizeRows = False
@@ -62,7 +59,6 @@ Partial Public Class WinOfflineUI
         dgvServerLastCollected24.ShowEditingIcon = False
         dgvServerLastCollected24.ShowRowErrors = False
 
-        ' Set grid properties
         dgvServerSignature30.AllowUserToAddRows = False
         dgvServerSignature30.AllowUserToDeleteRows = False
         dgvServerSignature30.AllowUserToResizeRows = False
@@ -95,24 +91,16 @@ Partial Public Class WinOfflineUI
 
     Private Sub ServerGridWorker(ByVal ConnectionString As String)
 
-        ' Local variables
         Dim DbConnection As SqlConnection = New SqlConnection(ConnectionString)
         Dim RecordCount As Integer = 0
         Dim CallStack As String = "ServerGridWorker --> "
 
-        ' Encapsulate grid worker
         Try
-
-            ' Open sql connection
             DbConnection.Open()
-
-            ' Write debug
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Connected successful: " + SqlServer)
 
-            ' Reveal progress bar
             tabCtrlServerGrid.Invoke(Sub() tabCtrlServerGrid.Height = tabCtrlServerGrid.Height - prgServerGrid.Height - 4)
 
-            ' Check domain type
             If DomainType.Equals("0") Then
 
                 ' Query scalability summary (domain)
@@ -185,193 +173,102 @@ Partial Public Class WinOfflineUI
 
             End If
 
-            ' Hide progress bar
             tabCtrlServerGrid.Invoke(Sub() tabCtrlServerGrid.Height = pnlSqlServerGrid.Height - pnlSqlServerGridButtons.Height - 3)
 
         Catch ex As Exception
-
-            ' Write debug
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Exception:" + Environment.NewLine + ex.Message)
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Stack trace: " + Environment.NewLine + ex.StackTrace)
-
         Finally
-
-            ' Check if database connection is open
             If Not DbConnection.State = ConnectionState.Closed Then
-
-                ' Close the database connection
                 DbConnection.Close()
-
-                ' Write debug
                 Delegate_Sub_Append_Text(rtbDebug, CallStack + "Database connection closed.")
-
             End If
-
-            ' Enable buttons
             Delegate_Sub_Enable_Yellow_Button(btnSqlRefreshServerGrid, True)
             Delegate_Sub_Enable_Tan_Button(btnSqlExportServerGrid, True)
-
         End Try
 
     End Sub
 
     Private Sub btnSqlConnectServerGrid_Click(sender As Object, e As EventArgs) Handles btnSqlConnectServerGrid.Click
-
-        ' Perform SQL connection
         SqlConnect()
-
     End Sub
 
     Private Sub btnSqlDisconnectServerGrid_Click(sender As Object, e As EventArgs) Handles btnSqlDisconnectServerGrid.Click
-
-        ' Perform disconnect method
         SqlDisconnect()
-
     End Sub
 
     Private Sub btnSqlRefreshServerGrid_Click(sender As Object, e As EventArgs) Handles btnSqlRefreshServerGrid.Click
-
-        ' Disable buttons
         Delegate_Sub_Enable_Yellow_Button(btnSqlRefreshServerGrid, False)
         Delegate_Sub_Enable_Tan_Button(btnSqlExportServerGrid, False)
-
-        ' Reset tab text
         If tabServerSummary.Text.Contains("(") Then Delegate_Sub_Set_Text(tabServerSummary, tabServerSummary.Text.Substring(0, tabServerSummary.Text.IndexOf("(") - 1))
         If tabServerLastCollected24.Text.Contains("(") Then Delegate_Sub_Set_Text(tabServerLastCollected24, tabServerLastCollected24.Text.Substring(0, tabServerLastCollected24.Text.IndexOf("(") - 1))
         If tabServerSignature30.Text.Contains("(") Then Delegate_Sub_Set_Text(tabServerSignature30, tabServerSignature30.Text.Substring(0, tabServerSignature30.Text.IndexOf("(") - 1))
-
-        ' Restart thread
         ServerGridThread = New Thread(Sub() ServerGridWorker(ConnectionString))
         ServerGridThread.Start()
-
     End Sub
 
     Private Sub btnSqlExportServerGrid_Click(sender As Object, e As EventArgs) Handles btnSqlExportServerGrid.Click
 
-        ' Local variables
         Dim saveFileDialog1 As New SaveFileDialog()
         Dim StateStreamWriter As System.IO.StreamWriter
 
-        ' Set dialog properties
         saveFileDialog1.Filter = "CSV (Comma delimited)|*.csv"
         saveFileDialog1.Title = "Save a CSV File"
 
-        ' Launch dialog and check result
         If saveFileDialog1.ShowDialog() = DialogResult.Cancel Then Return
 
-        ' Encapsulate file operation
         Try
-
-            ' Open output stream
             StateStreamWriter = New System.IO.StreamWriter(saveFileDialog1.FileName, False)
 
-            ' Check selected tab
             If tabCtrlServerGrid.SelectedTab.Equals(tabServerSummary) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvServerGrid.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvServerGrid.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
 
             ElseIf tabCtrlServerGrid.SelectedTab.Equals(tabServerLastCollected24) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvServerLastCollected24.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvServerLastCollected24.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
 
             ElseIf tabCtrlServerGrid.SelectedTab.Equals(tabServerSignature30) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvServerSignature30.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvServerSignature30.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
-
             End If
 
-            ' Close output stream
             StateStreamWriter.Close()
-
         Catch ex As Exception
-
-            ' Push user alert
             AlertBox.CreateUserAlert("Export failed." + Environment.NewLine + Environment.NewLine + "Exception: " + ex.Message)
-
         End Try
 
     End Sub
 
     Private Sub btnSqlExitServerGrid_Click(sender As Object, e As EventArgs) Handles btnSqlExitServerGrid.Click
-
-        ' Close the dialog
         Close()
-
     End Sub
 
 End Class

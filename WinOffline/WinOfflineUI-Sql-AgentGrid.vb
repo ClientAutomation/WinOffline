@@ -9,12 +9,10 @@ Partial Public Class WinOfflineUI
 
     Private Sub InitSqlAgentGrid()
 
-        ' Disable buttons
         Delegate_Sub_Enable_Red_Button(btnSqlDisconnectAgentGrid, False)
         Delegate_Sub_Enable_Blue_Button(btnSqlRefreshAgentGrid, False)
         Delegate_Sub_Enable_Blue_Button(btnSqlExportAgentGrid, False)
 
-        ' Set grid properties
         dgvAgentGrid.AllowUserToAddRows = False
         dgvAgentGrid.AllowUserToDeleteRows = False
         dgvAgentGrid.AllowUserToResizeRows = False
@@ -38,7 +36,6 @@ Partial Public Class WinOfflineUI
         dgvAgentGrid.ShowEditingIcon = False
         dgvAgentGrid.ShowRowErrors = False
 
-        ' Set grid properties
         dgvAgentObsolete90.AllowUserToAddRows = False
         dgvAgentObsolete90.AllowUserToDeleteRows = False
         dgvAgentObsolete90.AllowUserToResizeRows = False
@@ -62,7 +59,6 @@ Partial Public Class WinOfflineUI
         dgvAgentObsolete90.ShowEditingIcon = False
         dgvAgentObsolete90.ShowRowErrors = False
 
-        ' Set grid properties
         dgvAgentObsolete365.AllowUserToAddRows = False
         dgvAgentObsolete365.AllowUserToDeleteRows = False
         dgvAgentObsolete365.AllowUserToResizeRows = False
@@ -95,20 +91,13 @@ Partial Public Class WinOfflineUI
 
     Private Sub AgentGridWorker(ByVal ConnectionString As String)
 
-        ' Local variables
         Dim DbConnection As SqlConnection = New SqlConnection(ConnectionString)
         Dim CallStack As String = "AgentGridWorker --> "
 
-        ' Encapsulate grid worker
         Try
-
-            ' Open sql connection
             DbConnection.Open()
-
-            ' Write debug
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Connected successful: " + SqlServer)
 
-            ' Reveal progress bar
             tabCtrlAgentGrid.Invoke(Sub() tabCtrlAgentGrid.Height = tabCtrlAgentGrid.Height - prgAgentGrid.Height - 4)
 
             ' Query agent summary
@@ -148,197 +137,103 @@ Partial Public Class WinOfflineUI
             tabCtrlAgentGrid.Invoke(Sub() tabCtrlAgentGrid.Height = pnlSqlAgentGrid.Height - pnlSqlAgentGridButtons.Height - 3)
 
         Catch ex As Exception
-
-            ' Write debug
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Exception:" + Environment.NewLine + ex.Message)
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Stack trace: " + Environment.NewLine + ex.StackTrace)
-
         Finally
-
-            ' Check if database connection is open
             If Not DbConnection.State = ConnectionState.Closed Then
-
-                ' Close the database connection
                 DbConnection.Close()
-
-                ' Write debug
                 Delegate_Sub_Append_Text(rtbDebug, CallStack + "Database connection closed.")
-
             End If
 
-            ' Enable buttons
             Delegate_Sub_Enable_Yellow_Button(btnSqlRefreshAgentGrid, True)
             Delegate_Sub_Enable_Tan_Button(btnSqlExportAgentGrid, True)
-
         End Try
 
     End Sub
 
     Private Sub btnSqlConnectAgentGrid_Click(sender As Object, e As EventArgs) Handles btnSqlConnectAgentGrid.Click
-
-        ' Perform SQL connection
         SqlConnect()
-
     End Sub
 
     Private Sub btnSqlDisconnectAgentGrid_Click(sender As Object, e As EventArgs) Handles btnSqlDisconnectAgentGrid.Click
-
-        ' Check if progress bar is visible
         If tabCtrlAgentGrid.Height + prgAgentGrid.Height + pnlSqlAgentGridButtons.Height < pnlSqlAgentGrid.Height Then
-
-            ' Hide progress bar
             tabCtrlAgentGrid.Invoke(Sub() tabCtrlAgentGrid.Height = tabCtrlAgentGrid.Height + prgAgentGrid.Height)
-
         End If
-
-        ' Perform disconnect method
         SqlDisconnect()
-
     End Sub
 
     Private Sub btnSqlRefreshAgentGrid_Click(sender As Object, e As EventArgs) Handles btnSqlRefreshAgentGrid.Click
-
-        ' Disable buttons
         Delegate_Sub_Enable_Yellow_Button(btnSqlRefreshAgentGrid, False)
         Delegate_Sub_Enable_Tan_Button(btnSqlExportAgentGrid, False)
-
-        ' Reset tab text
         If tabAgentSummary.Text.Contains("(") Then Delegate_Sub_Set_Text(tabAgentSummary, tabAgentSummary.Text.Substring(0, tabAgentSummary.Text.IndexOf("(") - 1))
         If tabAgentObsolete90.Text.Contains("(") Then Delegate_Sub_Set_Text(tabAgentObsolete90, tabAgentObsolete90.Text.Substring(0, tabAgentObsolete90.Text.IndexOf("(") - 1))
         If tabAgentObsolete365.Text.Contains("(") Then Delegate_Sub_Set_Text(tabAgentObsolete365, tabAgentObsolete365.Text.Substring(0, tabAgentObsolete365.Text.IndexOf("(") - 1))
-
-        ' Restart thread
         AgentGridThread = New Thread(Sub() AgentGridWorker(ConnectionString))
         AgentGridThread.Start()
-
     End Sub
 
     Private Sub btnSqlExportAgentGrid_Click(sender As Object, e As EventArgs) Handles btnSqlExportAgentGrid.Click
 
-        ' Local variables
         Dim saveFileDialog1 As New SaveFileDialog()
         Dim StateStreamWriter As System.IO.StreamWriter
 
-        ' Set dialog properties
         saveFileDialog1.Filter = "CSV (Comma delimited)|*.csv"
         saveFileDialog1.Title = "Save a CSV File"
 
-        ' Launch dialog and check result
         If saveFileDialog1.ShowDialog() = DialogResult.Cancel Then Return
 
-        ' Encapsulate file operation
         Try
-
-            ' Open output stream
             StateStreamWriter = New System.IO.StreamWriter(saveFileDialog1.FileName, False)
 
-            ' Check selected tab
             If tabCtrlAgentGrid.SelectedTab.Equals(tabAgentSummary) Then
 
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvAgentGrid.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvAgentGrid.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
 
             ElseIf tabCtrlAgentGrid.SelectedTab.Equals(tabAgentObsolete90) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvAgentObsolete90.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvAgentObsolete90.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
 
             ElseIf tabCtrlAgentGrid.SelectedTab.Equals(tabAgentObsolete365) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvAgentObsolete365.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvAgentObsolete365.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
-
             End If
-
-            ' Close output stream
             StateStreamWriter.Close()
-
         Catch ex As Exception
-
-            ' Push user alert
             AlertBox.CreateUserAlert("Export failed." + Environment.NewLine + Environment.NewLine + "Exception: " + ex.Message)
-
         End Try
 
     End Sub
 
     Private Sub btnExitSqlAgentGrid_Click(sender As Object, e As EventArgs) Handles btnSqlExitAgentGrid.Click
-
-        ' Close the dialog
         Close()
-
     End Sub
 
 End Class

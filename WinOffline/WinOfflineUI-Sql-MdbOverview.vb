@@ -10,12 +10,10 @@ Partial Public Class WinOfflineUI
 
     Private Sub InitSqlMdbOverview()
 
-        ' Disable buttons
         Delegate_Sub_Enable_Red_Button(btnSqlDisconnectMdbOverview, False)
         Delegate_Sub_Enable_Blue_Button(btnSqlRefreshMdbOverview, False)
         Delegate_Sub_Enable_Blue_Button(btnSqlExportMdbOverview, False)
 
-        ' Set agent version grid properties
         dgvAgentVersion.AllowUserToAddRows = False
         dgvAgentVersion.AllowUserToDeleteRows = False
         dgvAgentVersion.AllowUserToResizeRows = False
@@ -39,7 +37,6 @@ Partial Public Class WinOfflineUI
         dgvAgentVersion.ShowEditingIcon = False
         dgvAgentVersion.ShowRowErrors = False
 
-        ' Set content summary grid properties
         dgvContentSummary.AllowUserToAddRows = False
         dgvContentSummary.AllowUserToDeleteRows = False
         dgvContentSummary.AllowUserToResizeRows = False
@@ -67,17 +64,11 @@ Partial Public Class WinOfflineUI
 
     Private Sub MdbOverviewWorker(ByVal ConnectionString As String)
 
-        ' Local variables
         Dim DbConnection As SqlConnection = New SqlConnection(ConnectionString)
         Dim CallStack As String = "MdbOverviewWorker --> "
 
-        ' Encapsulate mdb overview worker
         Try
-
-            ' Open sql connection
             DbConnection.Open()
-
-            ' Write debug
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Connected successful: " + SqlServer)
 
             ' Populate mdb installation overview
@@ -87,7 +78,6 @@ Partial Public Class WinOfflineUI
             ' Query mdb type
             DomainType = SqlSelectScalar(CallStack, DbConnection, "select domain_type from ca_n_tier where domain_uuid=" + DomainUuid)
 
-            ' Interpret mdb type
             Select Case DomainType
                 Case 0 : Delegate_Sub_Set_Text(txtMdbType, "Domain")
                 Case 1 : Delegate_Sub_Set_Text(txtMdbType, "Enterprise")
@@ -95,26 +85,15 @@ Partial Public Class WinOfflineUI
                 Case Else : Delegate_Sub_Set_Text(txtMdbType, "Unknown")
             End Select
 
-            ' Check if ITCM installed
             If Globals.ITCMInstalled Then
-
-                ' Set ITCM version
                 Delegate_Sub_Set_Text(txtITCMVersion, Globals.ITCMVersion)
-
             Else
-
-                ' Set ITCM version
                 Delegate_Sub_Set_Text(txtITCMVersion, "Not installed locally")
-
             End If
 
-            ' Signal start of an update
             Delegate_Sub_Begin_Update_ListView(lvwITCMSummary)
-
-            ' Clear list view
             Delegate_Sub_Clear_ListView(lvwITCMSummary)
 
-            ' Populate listview
             Delegate_Sub_Append_ListView(lvwITCMSummary, New ArrayList({"Domain Managers", SqlSelectScalar(CallStack, DbConnection, "select count(*) from ca_n_tier with (nolock) where domain_type=0")}))
             Delegate_Sub_Append_ListView(lvwITCMSummary, New ArrayList({"Scalability Servers", SqlSelectScalar(CallStack, DbConnection, "select count(*) from ca_server with (nolock)")}))
             Delegate_Sub_Append_ListView(lvwITCMSummary, New ArrayList({"Registered Agents", SqlSelectScalar(CallStack, DbConnection, "select count(*) from ca_agent with (nolock) where agent_type=1")}))
@@ -142,175 +121,98 @@ Partial Public Class WinOfflineUI
             Delegate_Sub_Append_ListView(lvwITCMSummary, New ArrayList({"Engine Instances", SqlSelectScalar(CallStack, DbConnection, "select count(*) from ca_engine with (nolock)")}))
             Delegate_Sub_Append_ListView(lvwITCMSummary, New ArrayList({"Engine Tasks", SqlSelectScalar(CallStack, DbConnection, "select count(*) from ncjobcfg with (nolock) where jotype<>2 and domainid=" + DomainId)}))
 
-            ' Signal end of an update
             Delegate_Sub_End_Update_ListView(lvwITCMSummary)
 
-            ' Check for domain manager
             If DomainType.Equals("0") Then
-
-                ' Populate agent version grid -- domain managers
                 SqlPopulateGridWorker(CallStack,
                                       DbConnection,
                                       "select distinct ac.agent_component_version 'Agent Version', count(*) as 'Count' from ca_discovered_hardware dh with (nolock) inner join ca_agent_component ac with (nolock) on dh.dis_hw_uuid=ac.object_uuid and ac.agent_comp_id=5 inner join ca_n_tier nt with (nolock) on nt.domain_uuid=dh.domain_uuid inner join ca_manager mgr with (nolock) on nt.domain_uuid=mgr.domain_uuid group by mgr.label, ac.agent_component_version order by ac.agent_component_version",
                                       dgvAgentVersion,
                                       "Agent Version")
-
             Else
-
-                ' Populate agent version grid -- enterprise manager/sql bridge
                 SqlPopulateGridWorker(CallStack,
                                       DbConnection,
                                       "select distinct mgr.label as 'Manager', ac.agent_component_version 'Agent Version', count(*) as 'Count' from ca_discovered_hardware dh with (nolock) inner join ca_agent_component ac with (nolock) on dh.dis_hw_uuid=ac.object_uuid and ac.agent_comp_id=5 inner join ca_n_tier nt with (nolock) on nt.domain_uuid=dh.domain_uuid inner join ca_manager mgr with (nolock) on nt.domain_uuid=mgr.domain_uuid group by mgr.label, ac.agent_component_version order by ac.agent_component_version, mgr.label",
                                       dgvAgentVersion,
                                       "Manager")
-
             End If
 
-            ' Populate content summary grid
             SqlPopulateGridWorker(CallStack, DbConnection, "select t0.source_type_name as 'Source Type', t0.def_count as 'Count' from (select type.source_type_id, type.source_type_name, count(*) as def_count from ca_software_def def with (nolock) inner join ca_source_type type with (nolock) on def.source_type_id=type.source_type_id group by type.source_type_id, type.source_type_name) t0 order by t0.source_type_id", dgvContentSummary, "Source Type")
-
         Catch ex As Exception
-
-            ' Write debug
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Exception:" + Environment.NewLine + ex.Message)
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Stack trace: " + Environment.NewLine + ex.StackTrace)
-
         Finally
-
-            ' Check if database connection is open
             If Not DbConnection.State = ConnectionState.Closed Then
-
-                ' Close the database connection
                 DbConnection.Close()
-
-                ' Write debug
                 Delegate_Sub_Append_Text(rtbDebug, CallStack + "Database connection closed.")
-
             End If
-
-            ' Enable buttons
             Delegate_Sub_Enable_Yellow_Button(btnSqlRefreshMdbOverview, True)
             Delegate_Sub_Enable_Tan_Button(btnSqlExportMdbOverview, True)
-
         End Try
 
     End Sub
 
     Private Sub btnSqlConnectMdbOverview_Click(sender As Object, e As EventArgs) Handles btnSqlConnectMdbOverview.Click
-
-        ' Perform SQL connection
         SqlConnect()
-
     End Sub
 
     Private Sub btnSqlDisconnectMdbOverview_Click(sender As Object, e As EventArgs) Handles btnSqlDisconnectMdbOverview.Click
-
-        ' Perform disconnect method
         SqlDisconnect()
-
     End Sub
 
     Private Sub btnSqlRefreshMdbOverview_Click(sender As Object, e As EventArgs) Handles btnSqlRefreshMdbOverview.Click
-
-        ' Disable buttons
         Delegate_Sub_Enable_Yellow_Button(btnSqlRefreshMdbOverview, False)
         Delegate_Sub_Enable_Tan_Button(btnSqlExportMdbOverview, False)
-
-        ' Restart thread
         MdbOverviewThread = New Thread(Sub() MdbOverviewWorker(ConnectionString))
         MdbOverviewThread.Start()
-
     End Sub
 
     Private Sub btnSqlExportMdbOverview_Click(sender As Object, e As EventArgs) Handles btnSqlExportMdbOverview.Click
 
-        ' Local variables
         Dim saveFileDialog1 As New SaveFileDialog()
         Dim StateStreamWriter As System.IO.StreamWriter
 
-        ' Set dialog properties
         saveFileDialog1.Filter = "CSV (Comma delimited)|*.csv"
         saveFileDialog1.Title = "Save a CSV File"
 
-        ' Launch dialog and check result
         If saveFileDialog1.ShowDialog() = DialogResult.Cancel Then Return
 
-        ' Encapsulate file operation
         Try
-
-            ' Open output stream
             StateStreamWriter = New System.IO.StreamWriter(saveFileDialog1.FileName, False)
-
-            ' Write mdb overview values
             StateStreamWriter.Write("MDB Version," + txtMdbVersion.Text + "," + Environment.NewLine)
             StateStreamWriter.Write("MDB Install Date," + txtMdbInstallDate.Text + "," + Environment.NewLine)
             StateStreamWriter.Write("MDB Type," + txtMdbType.Text + "," + Environment.NewLine)
 
-            ' Iterate listview items
             For Each lviRecord As ListViewItem In lvwITCMSummary.Items
-
-                ' Iterate subitems
                 For Each SubRecord As ListViewSubItem In lviRecord.SubItems
-
-                    ' Write values
                     StateStreamWriter.Write(SubRecord.Text + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
-
             Next
 
-            ' Iterate datagrid rows
             For Each dgvRecord As DataGridViewRow In dgvAgentVersion.Rows
-
-                ' Iterate cells
                 For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                    ' Write values
                     StateStreamWriter.Write(CellItem.Value.ToString + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
-
             Next
 
-            ' Iterate datagrid rows
             For Each dgvRecord As DataGridViewRow In dgvContentSummary.Rows
-
-                ' Iterate cells
                 For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                    ' Write values
                     StateStreamWriter.Write(CellItem.Value.ToString + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
-
             Next
 
-            ' Close output stream
             StateStreamWriter.Close()
-
         Catch ex As Exception
-
-            ' Push user alert
             AlertBox.CreateUserAlert("Export failed." + Environment.NewLine + Environment.NewLine + "Exception: " + ex.Message)
-
         End Try
 
     End Sub
 
     Private Sub btnSqlExitMdbOverview_Click(sender As Object, e As EventArgs) Handles btnSqlExitMdbOverview.Click
-
-        ' Close the dialog
         Close()
-
     End Sub
 
 End Class

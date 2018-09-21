@@ -2,7 +2,6 @@
 
     Public Shared Function RemoveITCM(ByVal CallStack As String) As Integer
 
-        ' Local variables
         Dim ProductInfoKey As Microsoft.Win32.RegistryKey = Nothing
         Dim ExecutionString As String
         Dim ArgumentString As String
@@ -19,205 +18,92 @@
         Dim hexString As String
         Dim Info As New ProcessStartInfo()
 
-        ' Update call stack
         CallStack += "RemoveITCM|"
 
-        ' Write debug
         Logger.SetCurrentTask("Removing ITCM..")
         Logger.WriteDebug(CallStack, "Removing ITCM..")
 
-        ' *****************************
-        ' - Reconcile CA base folder (if unavailable).
-        ' *****************************
-
-        ' Check if CA base folder is empty
+        ' Reconcile CA base folder (if unavailable)
         If CAFolderPersistentVar Is Nothing Then
-
-            ' Check for UnicenterITRM (64-bit system)
             ProductInfoKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\Wow6432Node\ComputerAssociates\Unicenter ITRM", False)
-
-            ' Check for UnicenterITRM (32-bit system)
             If ProductInfoKey Is Nothing Then ProductInfoKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\ComputerAssociates\Unicenter ITRM", False)
-
-            ' If UnicenterITRM is available
             If ProductInfoKey IsNot Nothing Then
-
-                ' Encapsulate
                 Try
-
-                    ' Try reading shared component folder
                     Globals.SharedCompFolder = ProductInfoKey.GetValue("InstallShareDir").ToString()
-
-                    ' Check SC base folder
                     If Globals.SharedCompFolder IsNot Nothing Then
-
-                        ' Check if ends in \
                         If Globals.SharedCompFolder.EndsWith("\") Then
-
-                            ' Trim twice
                             CAFolderPersistentVar = Globals.SharedCompFolder.Substring(0, Globals.SharedCompFolder.LastIndexOf("\") - 1)
                             CAFolderPersistentVar = CAFolderPersistentVar.Substring(0, CAFolderPersistentVar.LastIndexOf("\"))
                             If Not CAFolderPersistentVar.EndsWith("\") Then CAFolderPersistentVar = CAFolderPersistentVar + "\"
-
                         Else
-
-                            ' Trim once
                             CAFolderPersistentVar = Globals.SharedCompFolder.Substring(0, Globals.SharedCompFolder.LastIndexOf("\"))
                             If Not CAFolderPersistentVar.EndsWith("\") Then CAFolderPersistentVar = CAFolderPersistentVar + "\"
-
                         End If
-
                     Else
-
                         ' Assume default folder location (in case there's anything left there)
                         CAFolderPersistentVar = Environment.GetEnvironmentVariable("SystemDrive") + "\Program Files (x86)\CA\"
-
                     End If
-
                 Finally
-
-                    ' Close registry key
                     ProductInfoKey.Close()
-
                 End Try
-
             End If
-
         End If
 
-        ' *****************************
-        ' - Check execution mode.
-        ' *****************************
-
-        ' Entry point check
+        ' Copy WinOffline to temp (SD mode only)
         If Globals.ParentProcessTree.Contains("sd_jexec") Then
-
-            ' *****************************
-            ' - Copy WinOffline to temp.
-            ' *****************************
-
-            ' Copy WinOffline to temp
             Try
-
-                ' Check if WinOffline already exists
                 If Not System.IO.File.Exists(Globals.WindowsTemp + "\" + Globals.ProcessShortName) Then
-
-                    ' Write debug
                     Logger.WriteDebug(CallStack, "Copy File: " + Globals.ProcessName)
                     Logger.WriteDebug(CallStack, "To: " + Globals.WindowsTemp + "\" + Globals.ProcessShortName)
-
-                    ' Copy to temp
                     System.IO.File.Copy(Globals.ProcessName, Globals.WindowsTemp + "\" + Globals.ProcessShortName, True)
-
                 End If
-
             Catch ex As Exception
-
-                ' Write debug
                 Logger.WriteDebug(CallStack, "Error: Exception caught copying " + Globals.ProcessFriendlyName + " to temporary directory.")
                 Logger.WriteDebug(ex.Message)
-
-                ' Return
                 Return 1
-
             End Try
-
-            ' *****************************
-            ' - Create detached offline process.
-            ' *****************************
-
-            ' Build stageII execution string
             ExecutionString = Globals.WindowsTemp + "\" + Globals.ProcessShortName
             ArgumentString = ""
-
-            ' Build stageII argument string
             For Each arg As String In Globals.CommandLineArgs
-
-                ' Add the argument to the list
                 ArgumentString += " " + arg
-
             Next
-
-            ' Create process based on process identity
             If Globals.RunningAsSystemIdentity Then
-
-                ' Write debug
                 Logger.WriteDebug(CallStack, "Detached process: " + ExecutionString + " " + ArgumentString)
-
-                ' Create detached process For stage II execution
                 OfflineProcessStartInfo = New ProcessStartInfo(ExecutionString)
                 OfflineProcessStartInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(ExecutionString)
                 OfflineProcessStartInfo.Arguments = ArgumentString
-
-                ' Start detached process
                 Process.Start(OfflineProcessStartInfo)
-
             Else
-
-                ' Call the launch pad
                 LaunchPad(CallStack, "system", Globals.WindowsTemp + "\" + Globals.ProcessShortName, Globals.WindowsTemp + "\", ArgumentString)
-
             End If
 
-            ' Return
             Return 0
-
         End If
 
-        ' *****************************
-        ' - Disable ITCM services.
-        ' *****************************
-
-        ' Update call stack
+        ' Disable ITCM services
         CallStack = CallStack.Substring(0, CallStack.IndexOf("RemoveITCM|") + 11) + "DisableService|"
-
-        ' Check for full uninstall switch
         If Globals.RemoveITCM Then
-
-            ' Disable CAF service
             ReturnBoolean = Utility.ChangeServiceMode("caf", "Disabled")
             If ReturnBoolean Then Logger.WriteDebug(CallStack, "CAF service: Disabled")
-
-            ' Disable hmAgent service
             ReturnBoolean = Utility.ChangeServiceMode("hmAgent", "Disabled")
             If ReturnBoolean Then Logger.WriteDebug(CallStack, "Health Monitoring Agent service: Disabled")
-
-            ' Disable CA message queuing service
             ReturnBoolean = Utility.ChangeServiceMode("CA-MessageQueuing", "Disabled")
             If ReturnBoolean Then Logger.WriteDebug(CallStack, "CA Message Queuing service: Disabled")
-
-            ' Disable CA connection broker service
             ReturnBoolean = Utility.ChangeServiceMode("CA-SAM-Pmux", "Disabled")
             If ReturnBoolean Then Logger.WriteDebug(CallStack, "CA Connection Broker service: Disabled")
-
-            ' Disable CA performance lite agent service
             ReturnBoolean = Utility.ChangeServiceMode("CASPLiteAgent", "Disabled")
             If ReturnBoolean Then Logger.WriteDebug(CallStack, "CA Performance Lite Agent service: Disabled")
-
         Else
-
-            ' Disable CAF service
             ReturnBoolean = Utility.ChangeServiceMode("caf", "Disabled")
             If ReturnBoolean Then Logger.WriteDebug(CallStack, "CAF service: Disabled")
-
-            ' Disable hmAgent service
             ReturnBoolean = Utility.ChangeServiceMode("hmAgent", "Disabled")
             If ReturnBoolean Then Logger.WriteDebug(CallStack, "Health Monitoring Agent service: Disabled")
-
-            ' Disable CA performance lite agent service
             ReturnBoolean = Utility.ChangeServiceMode("CASPLiteAgent", "Disabled")
             If ReturnBoolean Then Logger.WriteDebug(CallStack, "CA Performance Lite Agent service: Disabled")
-
         End If
 
-        ' *****************************
-        ' - Kill ITCM processes.
-        ' *****************************
-
-        ' Update call stack
+        ' Kill ITCM processes
         CallStack = CallStack.Substring(0, CallStack.IndexOf("RemoveITCM|") + 11) + "KillProcess|"
-
-        ' Kill processes
         ReturnBoolean = Utility.KillProcess("CAF")
         If ReturnBoolean Then Logger.WriteDebug(CallStack, "CAF.exe: Killed")
         ReturnBoolean = Utility.KillProcess("ACServer")
@@ -574,94 +460,47 @@
         If ReturnBoolean Then Logger.WriteDebug(CallStack, "w3wp.exe (DSM_WebService): Killed")
         ReturnBoolean = Utility.KillProcessByCommandLine("w3wp.exe", "ITCM_Application_Pool")
         If ReturnBoolean Then Logger.WriteDebug(CallStack, "w3wp.exe (ITCM_Application_Pool): Killed")
-
-        ' Check for full uninstall switch
         If Globals.RemoveITCM Then
-
-            ' Kill shared services
             ReturnBoolean = Utility.KillProcess("cam")
             If ReturnBoolean Then Logger.WriteDebug(CallStack, "cam.exe: Killed")
             ReturnBoolean = Utility.KillProcess("csampmux")
             If ReturnBoolean Then Logger.WriteDebug(CallStack, "csampmux.exe: Killed")
-
         End If
 
-        ' *****************************
-        ' - Remove RC agent driver.
-        ' *****************************
-
-        ' Encapsulate mirror driver removal
+        ' Remove RC agent driver
         Try
-
-            ' Check environment architecture
-            If Utility.Is64BitOperatingSystem Then
-
-                ' Check if RC mirror driver installer exists
+            If Environment.Is64BitOperatingSystem Then
                 If System.IO.File.Exists(Globals.DSMFolder + "bin\AMD64\rcMirrorInstall.exe") Then
-
-                    ' Update call stack
                     CallStack += CallStack.Substring(0, CallStack.IndexOf("RemoveITCM|") + 11) + "RemoveRC|"
-
-                    ' Uninstall RC smart card reader
                     Logger.WriteDebug(CallStack, "Uninstalling RC smart card driver..")
                     ReturnValue = Utility.RunCommand(Globals.DSMFolder + "bin\AMD64\rcMirrorInstall.exe", "-scremove")
                     Logger.WriteDebug(CallStack, "Return code: " + ReturnValue.ToString)
-
-                    ' Uninstall RC mirror driver
                     Logger.WriteDebug(CallStack, "Uninstalling RC mirror driver..")
                     ReturnValue = Utility.RunCommand(Globals.DSMFolder + "bin\AMD64\rcMirrorInstall.exe", "-remove")
                     Logger.WriteDebug(CallStack, "Return code: " + ReturnValue.ToString)
-
                 End If
-
             Else
-
-                ' Check if RC mirror driver installer exists
                 If System.IO.File.Exists(Globals.DSMFolder + "bin\x86\rcMirrorInstall.exe") Then
-
-                    ' Update call stack
                     CallStack += CallStack.Substring(0, CallStack.IndexOf("RemoveITCM|") + 11) + "RemoveRC|"
-
-                    ' Uninstall RC smart card reader
                     Logger.WriteDebug(CallStack, "Uninstalling RC smart card driver..")
                     ReturnValue = Utility.RunCommand(Globals.DSMFolder + "bin\x86\rcMirrorInstall.exe", "-scremove")
                     Logger.WriteDebug(CallStack, "Return code: " + ReturnValue.ToString)
-
-                    ' Uninstall RC mirror driver
                     Logger.WriteDebug(CallStack, "Uninstalling RC mirror driver..")
                     ReturnValue = Utility.RunCommand(Globals.DSMFolder + "bin\x86\rcMirrorInstall.exe", "-remove")
                     Logger.WriteDebug(CallStack, "Return code: " + ReturnValue.ToString)
-
                 End If
-
             End If
-
         Catch ex As Exception
-
-            ' Write debug
             Logger.WriteDebug(CallStack, "Error: Exception caught uninstalling RC drivers.")
             Logger.WriteDebug(ex.Message)
-
         End Try
 
-        ' *****************************
-        ' - Delete cfsystray (so MSIs don't continually stop/start it).
-        ' *****************************
-
-        ' Update call stack
+        ' Delete cfsystray (so MSIs don't continually stop/start it)
         CallStack = CallStack.Substring(0, CallStack.IndexOf("RemoveITCM|") + 11) + "RemoveTrayIcon|"
-
-        ' Delete cfsystray
         Utility.DeleteFile(CallStack, Globals.DSMFolder + "bin\cfsystray.exe")
-
-        ' Refresh notification area
         WindowsAPI.RefreshNotificationArea()
 
-        ' *****************************
-        ' - Run MSI uninstall procedures.
-        ' *****************************
-
-        ' Update call stack
+        ' Run MSI uninstall procedures
         CallStack = CallStack.Substring(0, CallStack.IndexOf("RemoveITCM|") + 11) + "RemoveMSI|"
 
         ' Uninstall documentation
@@ -841,14 +680,8 @@
             Logger.WriteDebug(CallStack, "MSI return code: " + ReturnValue.ToString)
         End If
 
-        ' *****************************
-        ' - ITCM registry cleanup.
-        ' *****************************
-
-        ' Update call stack
+        ' ITCM registry cleanup
         CallStack = CallStack.Substring(0, CallStack.IndexOf("RemoveITCM|") + 11) + "RemoveRegistry|"
-
-        ' Registry cleanup
         If Utility.DeleteRegistrySubKeyTree("HKLM", "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{A56A74D1-E994-4447-A2C7-678C62457FA5}") Then Logger.WriteDebug(CallStack, "Delete registry: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{A56A74D1-E994-4447-A2C7-678C62457FA5}")
         If Utility.DeleteRegistrySubKeyTree("HKLM", "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{A56A74D1-E994-4447-A2C7-678C62457FA5}") Then Logger.WriteDebug(CallStack, "Delete registry: HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{A56A74D1-E994-4447-A2C7-678C62457FA5}")
         If Utility.DeleteRegistrySubKeyTree("HKLM", "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{E981CCC3-7C44-4D04-BD38-C7A501469B37}") Then Logger.WriteDebug(CallStack, "Delete registry: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{E981CCC3-7C44-4D04-BD38-C7A501469B37}")
@@ -929,53 +762,24 @@
         If Utility.DeleteRegistrySubKeyTree("HKCR", "Installer\Products\C9704569E1AB826448307C72F21FDBE3") Then Logger.WriteDebug(CallStack, "Delete registry: HKCR\Installer\Products\C9704569E1AB826448307C72F21FDBE3")
         If Utility.DeleteRegistrySubKeyTree("HKCR", "Installer\Products\D15189AFEC981424FAAE8CB145D59DD5") Then Logger.WriteDebug(CallStack, "Delete registry: HKCR\Installer\Products\D15189AFEC981424FAAE8CB145D59DD5")
         If Utility.DeleteRegistrySubKeyTree("HKCR", "Installer\Products\EFBFCC521EDB8F340B879CCA982BA12F") Then Logger.WriteDebug(CallStack, "Delete registry: HKCR\Installer\Products\EFBFCC521EDB8F340B879CCA982BA12F")
-
-        ' Check for full uninstall switch
         If Globals.RemoveITCM AndAlso Not Globals.KeepHostUUIDSwitch Then
-
-            ' Delete entire CA registry key
             If Utility.DeleteRegistrySubKeyTree("HKLM", "SOFTWARE\Wow6432Node\ComputerAssociates") Then Logger.WriteDebug(CallStack, "Delete registry: HKLM\SOFTWARE\Wow6432Node\ComputerAssociates")
             If Utility.DeleteRegistrySubKeyTree("HKLM", "SOFTWARE\ComputerAssociates") Then Logger.WriteDebug(CallStack, "Delete registry: HKLM\SOFTWARE\ComputerAssociates")
-
         ElseIf Globals.RemoveITCM AndAlso Globals.KeepHostUUIDSwitch Then
-
-            ' Open 64-bit registry
             TestKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\Wow6432Node\ComputerAssociates", False)
-
-            ' Check 64-bit or try 32-bit registry
             If TestKey Is Nothing Then TestKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\ComputerAssociates", False)
-
-            ' Check registry is valid (32-bit or 64-bit) 
             If TestKey IsNot Nothing Then
-
-                ' Iterate subkeys
                 For Each subkey As String In TestKey.GetSubKeyNames
-
-                    ' Check for hostuuid subkey
                     If Not subkey.ToLower.Equals("hostuuid") Then
-
-                        ' Delete subkey
                         Utility.DeleteRegistrySubKeyTree("HKLM", TestKey.Name.Substring(TestKey.Name.IndexOf("\") + 1) + "\" + subkey)
-
                     End If
-
                 Next
-
             End If
-
-            ' Close registry key
             TestKey.Close()
-
         End If
 
-        ' *****************************
-        ' - ITCM file and folder cleanup.
-        ' *****************************
-
-        ' Update call stack
+        ' ITCM file and folder cleanup
         CallStack = CallStack.Substring(0, CallStack.IndexOf("RemoveITCM|") + 11) + "RemoveFiles|"
-
-        ' Remove common files
         Utility.DeleteFile(CallStack, Environment.SystemDirectory.Substring(0, 3) + "calogfile.txt")
         Utility.DeleteFile(CallStack, Environment.SystemDirectory.Substring(0, 3) + "canpc.dat")
         Utility.DeleteFile(CallStack, Environment.SystemDirectory.Substring(0, 3) + "dmmsi.log")
@@ -991,118 +795,54 @@
         Utility.DeleteFilePattern(CallStack, Globals.WindowsTemp, "DSM_DW")
         Utility.DeleteFilePattern(CallStack, Globals.WindowsTemp, "TRC_")
 
-        ' *****************************
-        ' - Cleanup basic agent temporary files.
-        ' *****************************
-
+        ' Cleanup basic agent temporary files
         Try
-
-            ' Get the directory listing
             FileList = System.IO.Directory.GetFiles(Globals.WindowsTemp)
-
-            ' Check for positive files
             If FileList.Length > 0 Then
-
-                ' Loop the file list
                 For n As Integer = 0 To FileList.Length - 1
-
-                    ' Get a filename
                     strFile = FileList(n).ToString.ToLower
                     strFile = strFile.Substring(strFile.LastIndexOf("\") + 1)
-
                     ' Example of files:
                     ' bhiA.tmp
                     ' bhiA0.tmp
                     ' bhiA01.tmp
                     ' bhiA012.tmp
-
-                    ' Check if filename starts with 'bhi' and ends with '.tmp'
                     If strFile.StartsWith("bhi") AndAlso strFile.EndsWith(".tmp") Then
-
-                        ' Parse the HEX substring
                         hexString = strFile.Substring(3, strFile.Length - 3)
                         hexString = hexString.Substring(0, hexString.IndexOf("."))
-
-                        ' Check if filename only contains HEX
                         If Utility.IsHexString(hexString) Then
-
-                            ' Attempt to delete each file
                             Try
-
-                                ' Unset read-only parameter (in case it's set)
                                 System.IO.File.SetAttributes(FileList(n), IO.FileAttributes.Normal)
-
-                                ' Delete the file
                                 Utility.DeleteFile(CallStack, FileList(n))
-
                             Catch ex2 As Exception
-
-                                ' Write debug
                                 Logger.WriteDebug(CallStack, "Warning: Exception caught deleting file: " + FileList(n).ToString)
                                 Logger.WriteDebug(ex2.Message)
-
                             End Try
-
                         End If
-
                     End If
-
                 Next
-
             End If
-
         Catch ex As Exception
-
-            ' Write debug
             Logger.WriteDebug(CallStack, "Warning: Exception caught cleaning up temporary files.")
             Logger.WriteDebug(ex.Message)
-
         End Try
-
-        ' Remove common folders
         Utility.DeleteFolder(CallStack, Environment.SystemDirectory.Substring(0, 3) + "ca-osim")
         Utility.DeleteFolder(CallStack, Environment.SystemDirectory.Substring(0, 3) + "oeminst")
         Utility.DeleteFolder(CallStack, Environment.SystemDirectory.Substring(0, 3) + "sdagent")
-
-        ' Check for full uninstall switch
         If Globals.RemoveITCM Then
-
-            ' Recursive delete CA folder contents (Utility API will update ACLs)
-            Utility.DeleteFolderContents(CallStack, CAFolderPersistentVar, Nothing)
-
-            ' Delete CA base folder
-            Utility.DeleteFolder(CallStack, CAFolderPersistentVar)
-
-            ' Delete CA roaming profile contents
-            Utility.DeleteFolderContents(CallStack, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\CA", Nothing)
-
-            ' Delete CA roaming profile folder
-            Utility.DeleteFolder(CallStack, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\CA")
-
+            Utility.DeleteFolderContents(CallStack, CAFolderPersistentVar, Nothing) ' Recursive delete CA folder contents (Utility API will update ACLs)
+            Utility.DeleteFolder(CallStack, CAFolderPersistentVar) ' Delete CA base folder
+            Utility.DeleteFolderContents(CallStack, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\CA", Nothing) ' Delete CA roaming profile contents
+            Utility.DeleteFolder(CallStack, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\CA") ' Delete CA roaming profile folder
         Else
-
-            ' Recursive delete CA folder contents (Utility API will update ACLs)
-            Utility.DeleteFolderContents(CallStack, Globals.DSMFolder, Nothing)
-
-            ' Delete CA base folder
-            Utility.DeleteFolder(CallStack, Globals.DSMFolder)
-
+            Utility.DeleteFolderContents(CallStack, Globals.DSMFolder, Nothing) ' Recursive delete CA folder contents (Utility API will update ACLs)
+            Utility.DeleteFolder(CallStack, Globals.DSMFolder) ' Delete CA base folder
         End If
 
-        ' *****************************
-        ' - ITCM environment variable cleanup.
-        ' *****************************
-
-        ' Update call stack
+        ' ITCM environment variable cleanup
         CallStack = CallStack.Substring(0, CallStack.IndexOf("RemoveITCM|") + 11) + "RemoveVariables|"
-
-        ' Encapsulate
         Try
-
-            ' Check for full uninstall switch
             If Globals.RemoveITCM Then
-
-                ' Environment variable cleanup
                 If Utility.DeleteEnvironmentVariable("CA_DSM_ORACLE_JDBC_PATH") Then Logger.WriteDebug(CallStack, "Variable deleted: CA_DSM_ORACLE_JDBC_PATH")
                 If Utility.DeleteEnvironmentVariable("CAI_CAFT") Then Logger.WriteDebug(CallStack, "Variable deleted: CAI_CAFT")
                 If Utility.DeleteEnvironmentVariable("CAI_MSQ") Then Logger.WriteDebug(CallStack, "Variable deleted: CAI_MSQ")
@@ -1113,136 +853,63 @@
                 If Utility.DeleteEnvironmentVariable("R_SHLIB_LD_LIBRARY_PATH") Then Logger.WriteDebug(CallStack, "Variable deleted: R_SHLIB_LD_LIBRARY_PATH")
                 If Utility.DeleteEnvironmentVariable("RALHOME") Then Logger.WriteDebug(CallStack, "Variable deleted: RALHOME")
                 If Utility.DeleteEnvironmentVariable("SDROOT") Then Logger.WriteDebug(CallStack, "Variable deleted: SDROOT")
-
             Else
-
-                ' Environment variable cleanup
                 If Utility.DeleteEnvironmentVariable("CA_DSM_ORACLE_JDBC_PATH") Then Logger.WriteDebug(CallStack, "Variable deleted: CA_DSM_ORACLE_JDBC_PATH")
                 If Utility.DeleteEnvironmentVariable("SDROOT") Then Logger.WriteDebug(CallStack, "Variable deleted: SDROOT")
-
             End If
-
-            ' Open registry key
             TestKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SYSTEM\CurrentControlSet\Control\Session Manager\Environment\", True)
-
-            ' Iterate PATH variable 
             For Each strPath In TestKey.GetValue("PATH", Nothing, Microsoft.Win32.RegistryValueOptions.DoNotExpandEnvironmentNames).ToString.Split(";")
-
-                ' Check for empty string
                 If strPath.Equals("") Then Continue For
-
-                ' Check if path string contains the CA folder
-                If CAFolderPersistentVar IsNot Nothing AndAlso
-                    Environment.ExpandEnvironmentVariables(strPath).ToLower.Contains(CAFolderPersistentVar.ToLower) Then
-
-                    ' Verify expanded path strings
+                If CAFolderPersistentVar IsNot Nothing AndAlso Environment.ExpandEnvironmentVariables(strPath).ToLower.Contains(CAFolderPersistentVar.ToLower) Then
                     If System.IO.Directory.Exists(Environment.ExpandEnvironmentVariables(strPath)) Then
-
-                        ' Add to cleaned path
                         CleanPathVar += strPath + ";"
-
                     Else
-
-                        ' Write debug 
                         Logger.WriteDebug(CallStack, "Remove path: " + strPath)
-
                     End If
-
                 Else
-
-                    ' Add to PATH (essentially don't touch non-CA entries)
-                    CleanPathVar += strPath + ";"
-
+                    CleanPathVar += strPath + ";" ' Add to PATH (essentially don't touch non-CA entries)
                 End If
-
             Next
-
-            ' Ensure PATH is REG_EXPAND_SZ
-            Microsoft.Win32.Registry.SetValue(TestKey.Name, "Path", CleanPathVar, Microsoft.Win32.RegistryValueKind.ExpandString)
-
-            ' Close registry key
+            Microsoft.Win32.Registry.SetValue(TestKey.Name, "Path", CleanPathVar, Microsoft.Win32.RegistryValueKind.ExpandString) ' Ensure PATH is REG_EXPAND_SZ
             TestKey.Close()
-
         Catch ex As Exception
-
-            ' Write debug
             Logger.WriteDebug(CallStack, "Error: Failed to cleanup environment variables.")
             Logger.WriteDebug(ex.Message)
-
         End Try
 
-        ' Update call stack
+        ' Cleanup temp folder
         CallStack = CallStack.Substring(0, CallStack.IndexOf("RemoveITCM|") + 11)
-
-        ' *****************************
-        ' - Cleanup temp folder.
-        ' *****************************
-
         Try
-
-            ' Check if temporary folder exists
             If Globals.WinOfflineTemp IsNot Nothing AndAlso System.IO.Directory.Exists(Globals.WinOfflineTemp) Then
-
-                ' Write debug
                 Logger.WriteDebug(CallStack, "Delete Folder: " + Globals.WinOfflineTemp)
-
-                ' Delete the folder
                 System.IO.Directory.Delete(Globals.WinOfflineTemp, True)
-
             End If
-
         Catch ex As Exception
-
-            ' Write debug
             Logger.WriteDebug(CallStack, "Error: Exception caught deleting temporary folder.")
             Logger.WriteDebug(ex.Message)
             Logger.WriteDebug(CallStack, "Fallback: Delete contents of temporary folder..")
-
-            ' Get the directory listing
             FileList = System.IO.Directory.GetFiles(Globals.WinOfflineTemp)
-
-            ' Loop the file list
             For n As Integer = 0 To FileList.Length - 1
-
-                ' Attempt to delete each file
                 Utility.DeleteFile(CallStack, FileList(n))
-
             Next
-
-            ' Write debug
             Logger.WriteDebug(CallStack, "Fallback: Delete contents of temporary folder completed.")
-
         End Try
 
-        ' *****************************
-        ' - WinOffline executable cleanup.
-        ' *****************************
-
-        ' Check for SD mode
+        ' WinOffline executable cleanup
         If Not Globals.AttachedtoConsole AndAlso Globals.WinOfflineExplorer Is Nothing Then
-
-            ' Write debug
             Logger.WriteDebug(CallStack, "Delete file: " + Globals.ProcessName)
-
-            ' Schedule WinOffline removal
             Info.Arguments = "/C choice /C Y /N /D Y /T 3 & Del " + Globals.ProcessName
             Info.WindowStyle = ProcessWindowStyle.Hidden
             Info.CreateNoWindow = True
             Info.FileName = "cmd.exe"
             Process.Start(Info)
-
         End If
-
-        ' Delete the config file
         Utility.DeleteFile(CallStack, Globals.WindowsTemp + "\" + Globals.ProcessShortName + ".config")
-
-        ' Write debug
         Logger.WriteDebug(CallStack, "Removal completed.")
 
         ' Re-enable remove button on GUI execution
         If Globals.WinOfflineExplorer IsNot Nothing Then Globals.WinOfflineExplorer.btnRemoveITCM.Enabled = True
 
-        ' Return
         Return 0
 
     End Function

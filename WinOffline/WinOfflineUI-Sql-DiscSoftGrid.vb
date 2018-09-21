@@ -9,12 +9,10 @@ Partial Public Class WinOfflineUI
 
     Private Sub InitSqlDiscSoftGrid()
 
-        ' Disable buttons
         Delegate_Sub_Enable_Red_Button(btnSqlDisconnectDiscSoftGrid, False)
         Delegate_Sub_Enable_Blue_Button(btnSqlRefreshDiscSoftGrid, False)
         Delegate_Sub_Enable_Blue_Button(btnSqlExportDiscSoftGrid, False)
 
-        ' Set grid properties
         dgvDiscSignature.AllowUserToAddRows = False
         dgvDiscSignature.AllowUserToDeleteRows = False
         dgvDiscSignature.AllowUserToResizeRows = False
@@ -38,7 +36,6 @@ Partial Public Class WinOfflineUI
         dgvDiscSignature.ShowEditingIcon = False
         dgvDiscSignature.ShowRowErrors = False
 
-        ' Set grid properties
         dgvDiscCustom.AllowUserToAddRows = False
         dgvDiscCustom.AllowUserToDeleteRows = False
         dgvDiscCustom.AllowUserToResizeRows = False
@@ -62,7 +59,6 @@ Partial Public Class WinOfflineUI
         dgvDiscCustom.ShowEditingIcon = False
         dgvDiscCustom.ShowRowErrors = False
 
-        ' Set grid properties
         dgvDiscHeuristic.AllowUserToAddRows = False
         dgvDiscHeuristic.AllowUserToDeleteRows = False
         dgvDiscHeuristic.AllowUserToResizeRows = False
@@ -86,7 +82,6 @@ Partial Public Class WinOfflineUI
         dgvDiscHeuristic.ShowEditingIcon = False
         dgvDiscHeuristic.ShowRowErrors = False
 
-        ' Set grid properties
         dgvDiscIntellisig.AllowUserToAddRows = False
         dgvDiscIntellisig.AllowUserToDeleteRows = False
         dgvDiscIntellisig.AllowUserToResizeRows = False
@@ -110,7 +105,6 @@ Partial Public Class WinOfflineUI
         dgvDiscIntellisig.ShowEditingIcon = False
         dgvDiscIntellisig.ShowRowErrors = False
 
-        ' Set grid properties
         dgvDiscEverything.AllowUserToAddRows = False
         dgvDiscEverything.AllowUserToDeleteRows = False
         dgvDiscEverything.AllowUserToResizeRows = False
@@ -145,43 +139,35 @@ Partial Public Class WinOfflineUI
 
     Private Sub DiscSoftGridWorker(ByVal ConnectionString As String)
 
-        ' Local variables
         Dim DbConnection As SqlConnection = New SqlConnection(ConnectionString)
         Dim RecordCount As Integer = 0
         Dim CallStack As String = "DiscSoftGridWorker --> "
 
-        ' Encapsulate grid worker
         Try
-
-            ' Open sql connection
             DbConnection.Open()
-
-            ' Write debug
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Connected successful: " + SqlServer)
-
-            ' Reveal progress bar
             tabCtrlDiscSoftGrid.Invoke(Sub() tabCtrlDiscSoftGrid.Height = tabCtrlDiscSoftGrid.Height - prgDiscSoftGrid.Height - 4)
 
             ' Query signature report
             SqlPopulateGridWorker(CallStack,
-                                          DbConnection,
-                                          "select distinct def.name as 'Software Name', def.sw_version_label as 'Software Version', count(*) as 'Detected Count' from ca_discovered_software ds inner join ca_software_def def on ds.sw_def_uuid=def.sw_def_uuid and def.source_type_id in (1,2) group by def.name, def.sw_version_label order by def.name, def.sw_version_label",
-                                          dgvDiscSignature,
-                                          "Software Name",
-                                          DataGridViewAutoSizeColumnsMode.DisplayedCells,
-                                          DataGridViewAutoSizeRowsMode.AllCells,
-                                          prgDiscSoftGrid,
-                                          tabDiscSignature)
+                                  DbConnection,
+                                  "select distinct def.name as 'Software Name', def.sw_version_label as 'Software Version', count(*) as 'Detected Count' from ca_discovered_software ds inner join ca_software_def def on ds.sw_def_uuid=def.sw_def_uuid and def.source_type_id in (1,2) group by def.name, def.sw_version_label order by def.name, def.sw_version_label",
+                                  dgvDiscSignature,
+                                  "Software Name",
+                                  DataGridViewAutoSizeColumnsMode.DisplayedCells,
+                                  DataGridViewAutoSizeRowsMode.AllCells,
+                                  prgDiscSoftGrid,
+                                  tabDiscSignature)
 
             ' Query custom signature report
             SqlPopulateGridWorker(CallStack,
-                                          DbConnection,
-                                          "select distinct def.name as 'Software Name', def.sw_version_label as 'Software Version', count(*) as 'Detected Count' from ca_discovered_software ds inner join ca_software_def def on ds.sw_def_uuid=def.sw_def_uuid and def.source_type_id=2 group by def.name, def.sw_version_label order by def.name, def.sw_version_label",
-                                          dgvDiscCustom,
-                                          "Software Name",
-                                          DataGridViewAutoSizeColumnsMode.DisplayedCells,
-                                          DataGridViewAutoSizeRowsMode.AllCells,
-                                          prgDiscSoftGrid, tabDiscCustom)
+                                  DbConnection,
+                                  "select distinct def.name as 'Software Name', def.sw_version_label as 'Software Version', count(*) as 'Detected Count' from ca_discovered_software ds inner join ca_software_def def on ds.sw_def_uuid=def.sw_def_uuid and def.source_type_id=2 group by def.name, def.sw_version_label order by def.name, def.sw_version_label",
+                                  dgvDiscCustom,
+                                  "Software Name",
+                                  DataGridViewAutoSizeColumnsMode.DisplayedCells,
+                                  DataGridViewAutoSizeRowsMode.AllCells,
+                                  prgDiscSoftGrid, tabDiscCustom)
 
             ' Query heuristic report
             SqlPopulateGridWorker(CallStack,
@@ -216,253 +202,130 @@ Partial Public Class WinOfflineUI
                                           prgDiscSoftGrid,
                                           tabDiscEverything)
 
-            ' Hide progress bar
             tabCtrlDiscSoftGrid.Invoke(Sub() tabCtrlDiscSoftGrid.Height = pnlSqlDiscSoftGrid.Height - pnlSqlDiscSoftGridButtons.Height - grpDiscSoftGrid.Height - 3)
-
         Catch ex As Exception
-
-            ' Write debug
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Exception:" + Environment.NewLine + ex.Message)
             Delegate_Sub_Append_Text(rtbDebug, CallStack + "Stack trace: " + Environment.NewLine + ex.StackTrace)
-
         Finally
-
-            ' Check if database connection is open
             If Not DbConnection.State = ConnectionState.Closed Then
-
-                ' Close the database connection
                 DbConnection.Close()
-
-                ' Write debug
                 Delegate_Sub_Append_Text(rtbDebug, CallStack + "Database connection closed.")
-
             End If
-
-            ' Enable buttons
             Delegate_Sub_Enable_Yellow_Button(btnSqlRefreshDiscSoftGrid, True)
             Delegate_Sub_Enable_Tan_Button(btnSqlExportDiscSoftGrid, True)
-
         End Try
 
     End Sub
 
     Private Sub btnSqlConnectDiscSoftGrid_Click(sender As Object, e As EventArgs) Handles btnSqlConnectDiscSoftGrid.Click
-
-        ' Perform SQL connection
         SqlConnect()
-
     End Sub
 
     Private Sub btnSqlDisconnectDiscSoftGrid_Click(sender As Object, e As EventArgs) Handles btnSqlDisconnectDiscSoftGrid.Click
-
-        ' Perform disconnect method
         SqlDisconnect()
-
     End Sub
 
     Private Sub btnSqlRefreshDiscSoftGrid_Click(sender As Object, e As EventArgs) Handles btnSqlRefreshDiscSoftGrid.Click
-
-        ' Disable buttons
         Delegate_Sub_Enable_Yellow_Button(btnSqlRefreshDiscSoftGrid, False)
         Delegate_Sub_Enable_Tan_Button(btnSqlExportDiscSoftGrid, False)
-
-        ' Reset tab text
         If tabDiscSignature.Text.Contains("(") Then Delegate_Sub_Set_Text(tabDiscSignature, tabDiscSignature.Text.Substring(0, tabDiscSignature.Text.IndexOf("(") - 1))
         If tabDiscCustom.Text.Contains("(") Then Delegate_Sub_Set_Text(tabDiscCustom, tabDiscCustom.Text.Substring(0, tabDiscCustom.Text.IndexOf("(") - 1))
         If tabDiscHeuristic.Text.Contains("(") Then Delegate_Sub_Set_Text(tabDiscHeuristic, tabDiscHeuristic.Text.Substring(0, tabDiscHeuristic.Text.IndexOf("(") - 1))
         If tabDiscIntellisig.Text.Contains("(") Then Delegate_Sub_Set_Text(tabDiscIntellisig, tabDiscIntellisig.Text.Substring(0, tabDiscIntellisig.Text.IndexOf("(") - 1))
         If tabDiscEverything.Text.Contains("(") Then Delegate_Sub_Set_Text(tabDiscEverything, tabDiscEverything.Text.Substring(0, tabDiscEverything.Text.IndexOf("(") - 1))
-
-        ' Restart thread
         DiscSoftGridThread = New Thread(Sub() DiscSoftGridWorker(ConnectionString))
         DiscSoftGridThread.Start()
-
     End Sub
 
     Private Sub btnSqlExportDiscSoftGrid_Click(sender As Object, e As EventArgs) Handles btnSqlExportDiscSoftGrid.Click
 
-        ' Local variables
         Dim saveFileDialog1 As New SaveFileDialog()
         Dim StateStreamWriter As System.IO.StreamWriter
 
-        ' Set dialog properties
         saveFileDialog1.Filter = "CSV (Comma delimited)|*.csv"
         saveFileDialog1.Title = "Save a CSV File"
 
-        ' Launch dialog and check result
         If saveFileDialog1.ShowDialog() = DialogResult.Cancel Then Return
 
-        ' Encapsulate file operation
         Try
-
-            ' Open output stream
             StateStreamWriter = New System.IO.StreamWriter(saveFileDialog1.FileName, False)
 
-            ' Check selected tab
             If tabCtrlDiscSoftGrid.SelectedTab.Equals(tabDiscSignature) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvDiscSignature.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvDiscSignature.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString.Replace(",", "+") + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
 
             ElseIf tabCtrlDiscSoftGrid.SelectedTab.Equals(tabDiscCustom) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvDiscCustom.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvDiscCustom.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString.Replace(",", "+") + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
 
             ElseIf tabCtrlDiscSoftGrid.SelectedTab.Equals(tabDiscHeuristic) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvDiscHeuristic.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvDiscHeuristic.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString.Replace(",", "+") + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
 
             ElseIf tabCtrlDiscSoftGrid.SelectedTab.Equals(tabDiscIntellisig) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvDiscIntellisig.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvDiscIntellisig.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString.Replace(",", "+") + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
 
             ElseIf tabCtrlDiscSoftGrid.SelectedTab.Equals(tabDiscEverything) Then
-
-                ' Iterate datagrid column headers
                 For Each dgvColumn As DataGridViewColumn In dgvDiscEverything.Columns
-
-                    ' Write values
                     StateStreamWriter.Write(dgvColumn.HeaderText + ",")
-
                 Next
-
-                ' Write newline
                 StateStreamWriter.Write(Environment.NewLine)
 
-                ' Iterate datagrid rows
                 For Each dgvRecord As DataGridViewRow In dgvDiscEverything.Rows
-
-                    ' Iterate cells
                     For Each CellItem As DataGridViewCell In dgvRecord.Cells
-
-                        ' Write values
                         StateStreamWriter.Write(CellItem.Value.ToString.Replace(",", "+") + ",")
-
                     Next
-
-                    ' Write newline
                     StateStreamWriter.Write(Environment.NewLine)
-
                 Next
 
             End If
 
-            ' Close output stream
             StateStreamWriter.Close()
-
         Catch ex As Exception
-
-            ' Push user alert
             AlertBox.CreateUserAlert("Export failed." + Environment.NewLine + Environment.NewLine + "Exception: " + ex.Message)
-
         End Try
 
     End Sub
 
     Private Sub btnSqlExitDiscSoftGrid_Click(sender As Object, e As EventArgs) Handles btnSqlExitDiscSoftGrid.Click
-
-        ' Close the dialog
         Close()
-
     End Sub
 
 End Class

@@ -7,30 +7,15 @@ Partial Public Class WinOfflineUI
     Private PatchListViewThread As Threading.Thread
 
     Private Sub InitWinOffline()
-
-        ' Init Start panel
         InitStartPanel()
-
-        ' Init Main panel
         InitMainPanel()
-
-        ' Init Remove panel
         InitRemovePanel()
-
-        ' Init SD Help panel
         InitSDHelpPanel()
-
-        ' Init CLI Switch panel
         InitCLISwitchPanel()
-
     End Sub
 
     Private Sub btnWinOfflineNext1_Click(sender As Object, e As EventArgs) Handles btnWinOfflineNext1.Click
-
-        ' Hide all panels
         HideAllPanels()
-
-        ' Show the next appropriate panel
         If rbnApply.Checked Then
             pnlWinOfflineMain.Visible = True
             lvwApplyOptions.Focus()
@@ -42,7 +27,6 @@ Partial Public Class WinOfflineUI
         ElseIf rbnCLIHelp.Checked Then
             pnlWinOfflineCLIHelp.Visible = True
         End If
-
     End Sub
 
     Private Sub btnWinOfflineExit1_Click(sender As Object, e As EventArgs) Handles btnWinOfflineExit1.Click, btnWinOfflineExit2.Click, btnWinOfflineExit3.Click, btnWinOfflineExit4.Click
@@ -76,7 +60,6 @@ Partial Public Class WinOfflineUI
 
     Private Sub btnWinOfflineStart_Click(sender As Object, e As EventArgs) Handles btnWinOfflineStart1.Click, btnWinOfflineStart2.Click
 
-        ' Local variables
         Dim CombinedRemovalList As String = ""
 
         ' Iterate ApplyList for any switch settings
@@ -155,79 +138,37 @@ Partial Public Class WinOfflineUI
         ' Note: The user may have supplied the "-remove" switch via command line,
         '       but chose the Apply action from the GUI menu.
         If sender.Equals(btnWinOfflineStart1) And Globals.RemovePatchSwitch Then
-
-            ' Unset the global
             Globals.RemovePatchSwitch = False
-
-            ' Write debug
             Logger.WriteDebug(Logger.LastCallStack, "Switch: Remove patches --> Unset")
-
-            ' Iterate command line arguments -- Remove backout switch
             For x As Integer = 0 To Globals.CommandLineArgs.Length - 1
-
-                ' Check for removal switch
-                If Globals.CommandLineArgs(x).ToLower.Contains("backout") Or
-                    Globals.CommandLineArgs(x).ToLower.Contains("remove") Then
-
-                    ' Remove "remove" argument
+                If Globals.CommandLineArgs(x).ToLower.Contains("backout") Or Globals.CommandLineArgs(x).ToLower.Contains("remove") Then
                     Utility.RemoveFirstFromExistingArray(Globals.CommandLineArgs, Globals.CommandLineArgs(x))
-
-                    ' Remove next argument (backout list)
                     Utility.RemoveFirstFromExistingArray(Globals.CommandLineArgs, Globals.CommandLineArgs(x))
-
                 End If
-
-                ' Verify index after item removal
                 If x >= Globals.CommandLineArgs.Length - 1 Then Exit For
-
             Next
 
         ElseIf sender.Equals(btnWinOfflineStart2) And Globals.RemovePatchSwitch = False Then
-
-            ' Unset the global
             Globals.RemovePatchSwitch = True
-
-            ' Add "remove" argument
             Utility.AddToExistingArray(Globals.CommandLineArgs, "-remove")
-
-            ' Iterate HistoryListView selections
             For Each ListItem As ListViewItem In lvwHistory.Items
-
-                ' Add checked items to command line arguments
                 If ListItem.Checked Then
-
-                    ' Add item to combined list
                     CombinedRemovalList += ListItem.Text + ","
-
                 End If
-
             Next
-
-            ' Add removal list as an argument
             Utility.AddToExistingArray(Globals.CommandLineArgs, CombinedRemovalList.Substring(0, CombinedRemovalList.Length - 1))
-
-            ' Write debug
             Logger.WriteDebug(Logger.LastCallStack, "Switch: Remove patches --> Set")
-
         End If
 
-        ' Clear the removal manifest
         Manifest.ResetRemovalManifest()
 
         ' Iterate history list view -- Update removal item selection
         For Each item As ListViewItem In lvwHistory.Items
-
-            ' Check for ticked items
             If item.Checked Then
-
-                ' Commit to removal manifest
                 Manifest.UpdateManifest(Logger.LastCallStack, Manifest.REMOVAL_MANIFEST, New RemovalVector(item.Text))
-
             End If
-
         Next
 
-        ' Return control to WinOffline
         DialogResult = Windows.Forms.DialogResult.OK
 
     End Sub

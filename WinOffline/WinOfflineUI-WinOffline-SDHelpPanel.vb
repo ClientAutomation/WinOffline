@@ -6,7 +6,6 @@ Partial Public Class WinOfflineUI
 
     Private Sub InitSDHelpPanel()
 
-        ' Local variables
         Dim myAssembly As System.Reflection.Assembly = System.Reflection.Assembly.GetExecutingAssembly()
         Dim myStream As Stream
         Dim image As Bitmap
