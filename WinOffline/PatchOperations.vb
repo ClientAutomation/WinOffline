@@ -165,7 +165,6 @@
                 ConsoleOutput = RunningProcess.StandardOutput.ReadLine
                 Logger.WriteDebug(ConsoleOutput)
                 StandardOutput += ConsoleOutput + Environment.NewLine
-                Threading.Thread.Sleep(Globals.THREAD_REST_INTERVAL)
             End While
 
             RunningProcess.WaitForExit()
@@ -211,7 +210,6 @@
                 ConsoleOutput = RunningProcess.StandardOutput.ReadLine
                 Logger.WriteDebug(ConsoleOutput)
                 StandardOutput += ConsoleOutput + Environment.NewLine
-                Threading.Thread.Sleep(Globals.THREAD_REST_INTERVAL)
             End While
 
             RunningProcess.WaitForExit()

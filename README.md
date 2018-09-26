@@ -224,6 +224,9 @@ __Note__: These switches are only valid on ITCM managers.
 -dbpassword \<password\> (or -dbpasswd \<password\>)
 > Provide password for provided sql account. Requires the (-dbuser) switch to be provided. If this switch is omitted, the user will be prompted.
 
+-dbserver \<server name\>
+> Provide a server host name, as required for connecting to the database.
+
 -dbinstance \<instance name\>
 > Provide a non-default instance name, as required for connecting to the database.
 

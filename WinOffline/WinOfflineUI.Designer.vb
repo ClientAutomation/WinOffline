@@ -515,7 +515,7 @@ Partial Class WinOfflineUI
         Me.pnlSystemInfo.Controls.Add(Me.grpInfo)
         Me.pnlSystemInfo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSystemInfo.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSystemInfo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSystemInfo.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSystemInfo.Name = "pnlSystemInfo"
         Me.pnlSystemInfo.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSystemInfo.TabIndex = 29
@@ -560,7 +560,7 @@ Partial Class WinOfflineUI
         Me.grpInfo.Location = New System.Drawing.Point(0, 0)
         Me.grpInfo.Margin = New System.Windows.Forms.Padding(0)
         Me.grpInfo.Name = "grpInfo"
-        Me.grpInfo.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpInfo.Padding = New System.Windows.Forms.Padding(4)
         Me.grpInfo.Size = New System.Drawing.Size(1023, 698)
         Me.grpInfo.TabIndex = 22
         Me.grpInfo.TabStop = False
@@ -586,7 +586,7 @@ Partial Class WinOfflineUI
         Me.lstPlugins.FormattingEnabled = True
         Me.lstPlugins.ItemHeight = 23
         Me.lstPlugins.Location = New System.Drawing.Point(715, 525)
-        Me.lstPlugins.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstPlugins.Margin = New System.Windows.Forms.Padding(4)
         Me.lstPlugins.Name = "lstPlugins"
         Me.lstPlugins.SelectionMode = System.Windows.Forms.SelectionMode.None
         Me.lstPlugins.Size = New System.Drawing.Size(303, 119)
@@ -602,7 +602,7 @@ Partial Class WinOfflineUI
         Me.btnBrowseSSA.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnBrowseSSA.ForeColor = System.Drawing.Color.White
         Me.btnBrowseSSA.Location = New System.Drawing.Point(903, 486)
-        Me.btnBrowseSSA.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnBrowseSSA.Margin = New System.Windows.Forms.Padding(4)
         Me.btnBrowseSSA.Name = "btnBrowseSSA"
         Me.btnBrowseSSA.Size = New System.Drawing.Size(115, 34)
         Me.btnBrowseSSA.TabIndex = 15
@@ -618,7 +618,7 @@ Partial Class WinOfflineUI
         Me.btnBrowseDSM.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnBrowseDSM.ForeColor = System.Drawing.Color.White
         Me.btnBrowseDSM.Location = New System.Drawing.Point(903, 411)
-        Me.btnBrowseDSM.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnBrowseDSM.Margin = New System.Windows.Forms.Padding(4)
         Me.btnBrowseDSM.Name = "btnBrowseDSM"
         Me.btnBrowseDSM.Size = New System.Drawing.Size(115, 34)
         Me.btnBrowseDSM.TabIndex = 11
@@ -644,7 +644,7 @@ Partial Class WinOfflineUI
         Me.txtSSAFolder.BackColor = System.Drawing.Color.Beige
         Me.txtSSAFolder.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSSAFolder.Location = New System.Drawing.Point(272, 485)
-        Me.txtSSAFolder.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtSSAFolder.Margin = New System.Windows.Forms.Padding(4)
         Me.txtSSAFolder.Name = "txtSSAFolder"
         Me.txtSSAFolder.ReadOnly = True
         Me.txtSSAFolder.Size = New System.Drawing.Size(622, 30)
@@ -660,7 +660,7 @@ Partial Class WinOfflineUI
         Me.btnBrowseCAM.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnBrowseCAM.ForeColor = System.Drawing.Color.White
         Me.btnBrowseCAM.Location = New System.Drawing.Point(903, 449)
-        Me.btnBrowseCAM.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnBrowseCAM.Margin = New System.Windows.Forms.Padding(4)
         Me.btnBrowseCAM.Name = "btnBrowseCAM"
         Me.btnBrowseCAM.Size = New System.Drawing.Size(115, 34)
         Me.btnBrowseCAM.TabIndex = 13
@@ -686,7 +686,7 @@ Partial Class WinOfflineUI
         Me.txtCAMFolder.BackColor = System.Drawing.Color.Beige
         Me.txtCAMFolder.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCAMFolder.Location = New System.Drawing.Point(272, 448)
-        Me.txtCAMFolder.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtCAMFolder.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCAMFolder.Name = "txtCAMFolder"
         Me.txtCAMFolder.ReadOnly = True
         Me.txtCAMFolder.Size = New System.Drawing.Size(622, 30)
@@ -724,7 +724,7 @@ Partial Class WinOfflineUI
         Me.txtDomainMgr.BackColor = System.Drawing.Color.Beige
         Me.txtDomainMgr.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDomainMgr.Location = New System.Drawing.Point(272, 335)
-        Me.txtDomainMgr.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtDomainMgr.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDomainMgr.Name = "txtDomainMgr"
         Me.txtDomainMgr.ReadOnly = True
         Me.txtDomainMgr.Size = New System.Drawing.Size(744, 30)
@@ -738,7 +738,7 @@ Partial Class WinOfflineUI
         Me.txtScalabilityServer.BackColor = System.Drawing.Color.Beige
         Me.txtScalabilityServer.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtScalabilityServer.Location = New System.Drawing.Point(272, 372)
-        Me.txtScalabilityServer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtScalabilityServer.Margin = New System.Windows.Forms.Padding(4)
         Me.txtScalabilityServer.Name = "txtScalabilityServer"
         Me.txtScalabilityServer.ReadOnly = True
         Me.txtScalabilityServer.Size = New System.Drawing.Size(744, 30)
@@ -752,7 +752,7 @@ Partial Class WinOfflineUI
         Me.txtHostUUID.BackColor = System.Drawing.Color.Beige
         Me.txtHostUUID.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtHostUUID.Location = New System.Drawing.Point(272, 298)
-        Me.txtHostUUID.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtHostUUID.Margin = New System.Windows.Forms.Padding(4)
         Me.txtHostUUID.Name = "txtHostUUID"
         Me.txtHostUUID.ReadOnly = True
         Me.txtHostUUID.Size = New System.Drawing.Size(744, 30)
@@ -779,7 +779,7 @@ Partial Class WinOfflineUI
         Me.txtFunction.BackColor = System.Drawing.Color.Beige
         Me.txtFunction.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFunction.Location = New System.Drawing.Point(272, 222)
-        Me.txtFunction.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtFunction.Margin = New System.Windows.Forms.Padding(4)
         Me.txtFunction.Name = "txtFunction"
         Me.txtFunction.ReadOnly = True
         Me.txtFunction.Size = New System.Drawing.Size(744, 30)
@@ -794,7 +794,7 @@ Partial Class WinOfflineUI
         Me.txtDSMFolder.BackColor = System.Drawing.Color.Beige
         Me.txtDSMFolder.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDSMFolder.Location = New System.Drawing.Point(272, 410)
-        Me.txtDSMFolder.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtDSMFolder.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDSMFolder.Name = "txtDSMFolder"
         Me.txtDSMFolder.ReadOnly = True
         Me.txtDSMFolder.Size = New System.Drawing.Size(622, 30)
@@ -809,7 +809,7 @@ Partial Class WinOfflineUI
         Me.txtVersion.BackColor = System.Drawing.Color.Beige
         Me.txtVersion.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtVersion.Location = New System.Drawing.Point(272, 260)
-        Me.txtVersion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtVersion.Margin = New System.Windows.Forms.Padding(4)
         Me.txtVersion.Name = "txtVersion"
         Me.txtVersion.ReadOnly = True
         Me.txtVersion.Size = New System.Drawing.Size(744, 30)
@@ -861,7 +861,7 @@ Partial Class WinOfflineUI
         Me.txtModel.BackColor = System.Drawing.Color.Beige
         Me.txtModel.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtModel.Location = New System.Drawing.Point(272, 148)
-        Me.txtModel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtModel.Margin = New System.Windows.Forms.Padding(4)
         Me.txtModel.Name = "txtModel"
         Me.txtModel.ReadOnly = True
         Me.txtModel.Size = New System.Drawing.Size(744, 30)
@@ -887,7 +887,7 @@ Partial Class WinOfflineUI
         Me.txtManufacturer.BackColor = System.Drawing.Color.Beige
         Me.txtManufacturer.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtManufacturer.Location = New System.Drawing.Point(272, 110)
-        Me.txtManufacturer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtManufacturer.Margin = New System.Windows.Forms.Padding(4)
         Me.txtManufacturer.Name = "txtManufacturer"
         Me.txtManufacturer.ReadOnly = True
         Me.txtManufacturer.Size = New System.Drawing.Size(744, 30)
@@ -913,7 +913,7 @@ Partial Class WinOfflineUI
         Me.txtPlatform.BackColor = System.Drawing.Color.Beige
         Me.txtPlatform.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPlatform.Location = New System.Drawing.Point(272, 185)
-        Me.txtPlatform.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtPlatform.Margin = New System.Windows.Forms.Padding(4)
         Me.txtPlatform.Name = "txtPlatform"
         Me.txtPlatform.ReadOnly = True
         Me.txtPlatform.Size = New System.Drawing.Size(744, 30)
@@ -927,7 +927,7 @@ Partial Class WinOfflineUI
         Me.txtSerial.BackColor = System.Drawing.Color.Beige
         Me.txtSerial.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSerial.Location = New System.Drawing.Point(272, 72)
-        Me.txtSerial.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtSerial.Margin = New System.Windows.Forms.Padding(4)
         Me.txtSerial.Name = "txtSerial"
         Me.txtSerial.ReadOnly = True
         Me.txtSerial.Size = New System.Drawing.Size(744, 30)
@@ -965,7 +965,7 @@ Partial Class WinOfflineUI
         Me.txtHostname.BackColor = System.Drawing.Color.Beige
         Me.txtHostname.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtHostname.Location = New System.Drawing.Point(272, 35)
-        Me.txtHostname.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtHostname.Margin = New System.Windows.Forms.Padding(4)
         Me.txtHostname.Name = "txtHostname"
         Me.txtHostname.ReadOnly = True
         Me.txtHostname.Size = New System.Drawing.Size(744, 30)
@@ -1007,7 +1007,7 @@ Partial Class WinOfflineUI
         Me.lstNetAddr.FormattingEnabled = True
         Me.lstNetAddr.ItemHeight = 23
         Me.lstNetAddr.Location = New System.Drawing.Point(272, 525)
-        Me.lstNetAddr.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstNetAddr.Margin = New System.Windows.Forms.Padding(4)
         Me.lstNetAddr.Name = "lstNetAddr"
         Me.lstNetAddr.Size = New System.Drawing.Size(349, 119)
         Me.lstNetAddr.TabIndex = 16
@@ -1021,7 +1021,7 @@ Partial Class WinOfflineUI
         Me.pnlWinOfflineMain.Controls.Add(Me.pnlWinOfflineButton1)
         Me.pnlWinOfflineMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlWinOfflineMain.Location = New System.Drawing.Point(0, 0)
-        Me.pnlWinOfflineMain.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlWinOfflineMain.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlWinOfflineMain.Name = "pnlWinOfflineMain"
         Me.pnlWinOfflineMain.Size = New System.Drawing.Size(1023, 698)
         Me.pnlWinOfflineMain.TabIndex = 27
@@ -1036,7 +1036,7 @@ Partial Class WinOfflineUI
         Me.lvwApplyOptions.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lvwApplyOptions.GridLines = True
         Me.lvwApplyOptions.Location = New System.Drawing.Point(0, 0)
-        Me.lvwApplyOptions.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lvwApplyOptions.Margin = New System.Windows.Forms.Padding(4)
         Me.lvwApplyOptions.Name = "lvwApplyOptions"
         Me.lvwApplyOptions.Size = New System.Drawing.Size(969, 394)
         Me.lvwApplyOptions.TabIndex = 28
@@ -1056,9 +1056,9 @@ Partial Class WinOfflineUI
         Me.grpPatchView.Controls.Add(Me.lvwPatchList)
         Me.grpPatchView.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpPatchView.Location = New System.Drawing.Point(0, 394)
-        Me.grpPatchView.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpPatchView.Margin = New System.Windows.Forms.Padding(4)
         Me.grpPatchView.Name = "grpPatchView"
-        Me.grpPatchView.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpPatchView.Padding = New System.Windows.Forms.Padding(4)
         Me.grpPatchView.Size = New System.Drawing.Size(973, 195)
         Me.grpPatchView.TabIndex = 30
         Me.grpPatchView.TabStop = False
@@ -1071,7 +1071,7 @@ Partial Class WinOfflineUI
         Me.lvwPatchList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lvwPatchList.GridLines = True
         Me.lvwPatchList.Location = New System.Drawing.Point(4, 27)
-        Me.lvwPatchList.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lvwPatchList.Margin = New System.Windows.Forms.Padding(4)
         Me.lvwPatchList.Name = "lvwPatchList"
         Me.lvwPatchList.Size = New System.Drawing.Size(965, 164)
         Me.lvwPatchList.TabIndex = 32
@@ -1100,7 +1100,7 @@ Partial Class WinOfflineUI
         Me.pnlWinOfflineButton1.Controls.Add(Me.btnWinOfflineExit3)
         Me.pnlWinOfflineButton1.Controls.Add(Me.btnWinOfflineBack3)
         Me.pnlWinOfflineButton1.Location = New System.Drawing.Point(149, 605)
-        Me.pnlWinOfflineButton1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlWinOfflineButton1.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlWinOfflineButton1.Name = "pnlWinOfflineButton1"
         Me.pnlWinOfflineButton1.Size = New System.Drawing.Size(674, 75)
         Me.pnlWinOfflineButton1.TabIndex = 31
@@ -1113,7 +1113,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineStart1.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWinOfflineStart1.ForeColor = System.Drawing.SystemColors.Window
         Me.btnWinOfflineStart1.Location = New System.Drawing.Point(228, 15)
-        Me.btnWinOfflineStart1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineStart1.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineStart1.Name = "btnWinOfflineStart1"
         Me.btnWinOfflineStart1.Size = New System.Drawing.Size(219, 48)
         Me.btnWinOfflineStart1.TabIndex = 0
@@ -1128,7 +1128,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineExit3.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWinOfflineExit3.ForeColor = System.Drawing.Color.White
         Me.btnWinOfflineExit3.Location = New System.Drawing.Point(509, 20)
-        Me.btnWinOfflineExit3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineExit3.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineExit3.Name = "btnWinOfflineExit3"
         Me.btnWinOfflineExit3.Size = New System.Drawing.Size(158, 35)
         Me.btnWinOfflineExit3.TabIndex = 1
@@ -1143,7 +1143,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineBack3.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWinOfflineBack3.ForeColor = System.Drawing.Color.White
         Me.btnWinOfflineBack3.Location = New System.Drawing.Point(8, 21)
-        Me.btnWinOfflineBack3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineBack3.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineBack3.Name = "btnWinOfflineBack3"
         Me.btnWinOfflineBack3.Size = New System.Drawing.Size(158, 35)
         Me.btnWinOfflineBack3.TabIndex = 2
@@ -1157,7 +1157,7 @@ Partial Class WinOfflineUI
         Me.ExplorerTree.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ExplorerTree.HideSelection = False
         Me.ExplorerTree.Location = New System.Drawing.Point(0, 0)
-        Me.ExplorerTree.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ExplorerTree.Margin = New System.Windows.Forms.Padding(4)
         Me.ExplorerTree.Name = "ExplorerTree"
         TreeNode1.Name = "WinOfflineNode"
         TreeNode1.Text = "Patch Maintenance"
@@ -1211,7 +1211,7 @@ Partial Class WinOfflineUI
         Me.SplitWinOfflineUI.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitWinOfflineUI.IsSplitterFixed = True
         Me.SplitWinOfflineUI.Location = New System.Drawing.Point(0, 0)
-        Me.SplitWinOfflineUI.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SplitWinOfflineUI.Margin = New System.Windows.Forms.Padding(4)
         Me.SplitWinOfflineUI.Name = "SplitWinOfflineUI"
         '
         'SplitWinOfflineUI.Panel1
@@ -1255,7 +1255,7 @@ Partial Class WinOfflineUI
         Me.pnlWinOfflineStart.Controls.Add(Me.grpHistory)
         Me.pnlWinOfflineStart.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlWinOfflineStart.Location = New System.Drawing.Point(0, 0)
-        Me.pnlWinOfflineStart.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlWinOfflineStart.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlWinOfflineStart.Name = "pnlWinOfflineStart"
         Me.pnlWinOfflineStart.Size = New System.Drawing.Size(1023, 698)
         Me.pnlWinOfflineStart.TabIndex = 30
@@ -1272,7 +1272,7 @@ Partial Class WinOfflineUI
         Me.grpWinOfflineWelcome.Location = New System.Drawing.Point(0, 0)
         Me.grpWinOfflineWelcome.Margin = New System.Windows.Forms.Padding(0)
         Me.grpWinOfflineWelcome.Name = "grpWinOfflineWelcome"
-        Me.grpWinOfflineWelcome.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpWinOfflineWelcome.Padding = New System.Windows.Forms.Padding(4)
         Me.grpWinOfflineWelcome.Size = New System.Drawing.Size(1023, 292)
         Me.grpWinOfflineWelcome.TabIndex = 27
         Me.grpWinOfflineWelcome.TabStop = False
@@ -1287,7 +1287,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineNext1.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWinOfflineNext1.ForeColor = System.Drawing.Color.White
         Me.btnWinOfflineNext1.Location = New System.Drawing.Point(853, 195)
-        Me.btnWinOfflineNext1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineNext1.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineNext1.Name = "btnWinOfflineNext1"
         Me.btnWinOfflineNext1.Size = New System.Drawing.Size(158, 38)
         Me.btnWinOfflineNext1.TabIndex = 4
@@ -1303,7 +1303,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineExit1.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWinOfflineExit1.ForeColor = System.Drawing.Color.White
         Me.btnWinOfflineExit1.Location = New System.Drawing.Point(853, 241)
-        Me.btnWinOfflineExit1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineExit1.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineExit1.Name = "btnWinOfflineExit1"
         Me.btnWinOfflineExit1.Size = New System.Drawing.Size(158, 38)
         Me.btnWinOfflineExit1.TabIndex = 5
@@ -1321,9 +1321,9 @@ Partial Class WinOfflineUI
         Me.grpWinOfflineStartOptions.Controls.Add(Me.rbnApply)
         Me.grpWinOfflineStartOptions.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpWinOfflineStartOptions.Location = New System.Drawing.Point(25, 34)
-        Me.grpWinOfflineStartOptions.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpWinOfflineStartOptions.Margin = New System.Windows.Forms.Padding(4)
         Me.grpWinOfflineStartOptions.Name = "grpWinOfflineStartOptions"
-        Me.grpWinOfflineStartOptions.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpWinOfflineStartOptions.Padding = New System.Windows.Forms.Padding(4)
         Me.grpWinOfflineStartOptions.Size = New System.Drawing.Size(819, 246)
         Me.grpWinOfflineStartOptions.TabIndex = 4
         Me.grpWinOfflineStartOptions.TabStop = False
@@ -1333,7 +1333,7 @@ Partial Class WinOfflineUI
         '
         Me.rbnCLIHelp.AutoSize = True
         Me.rbnCLIHelp.Location = New System.Drawing.Point(21, 195)
-        Me.rbnCLIHelp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rbnCLIHelp.Margin = New System.Windows.Forms.Padding(4)
         Me.rbnCLIHelp.Name = "rbnCLIHelp"
         Me.rbnCLIHelp.Size = New System.Drawing.Size(337, 27)
         Me.rbnCLIHelp.TabIndex = 3
@@ -1345,7 +1345,7 @@ Partial Class WinOfflineUI
         '
         Me.rbnBackout.AutoSize = True
         Me.rbnBackout.Location = New System.Drawing.Point(21, 91)
-        Me.rbnBackout.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rbnBackout.Margin = New System.Windows.Forms.Padding(4)
         Me.rbnBackout.Name = "rbnBackout"
         Me.rbnBackout.Size = New System.Drawing.Size(408, 27)
         Me.rbnBackout.TabIndex = 1
@@ -1356,7 +1356,7 @@ Partial Class WinOfflineUI
         '
         Me.rbnLearn.AutoSize = True
         Me.rbnLearn.Location = New System.Drawing.Point(21, 142)
-        Me.rbnLearn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rbnLearn.Margin = New System.Windows.Forms.Padding(4)
         Me.rbnLearn.Name = "rbnLearn"
         Me.rbnLearn.Size = New System.Drawing.Size(561, 27)
         Me.rbnLearn.TabIndex = 2
@@ -1368,7 +1368,7 @@ Partial Class WinOfflineUI
         Me.rbnApply.AutoSize = True
         Me.rbnApply.Checked = True
         Me.rbnApply.Location = New System.Drawing.Point(21, 40)
-        Me.rbnApply.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rbnApply.Margin = New System.Windows.Forms.Padding(4)
         Me.rbnApply.Name = "rbnApply"
         Me.rbnApply.Size = New System.Drawing.Size(512, 27)
         Me.rbnApply.TabIndex = 0
@@ -1381,7 +1381,7 @@ Partial Class WinOfflineUI
         Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(931, 19)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(74, 80)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1398,7 +1398,7 @@ Partial Class WinOfflineUI
         Me.grpHistory.Location = New System.Drawing.Point(0, 292)
         Me.grpHistory.Margin = New System.Windows.Forms.Padding(0)
         Me.grpHistory.Name = "grpHistory"
-        Me.grpHistory.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpHistory.Padding = New System.Windows.Forms.Padding(4)
         Me.grpHistory.Size = New System.Drawing.Size(1023, 404)
         Me.grpHistory.TabIndex = 26
         Me.grpHistory.TabStop = False
@@ -1410,7 +1410,7 @@ Partial Class WinOfflineUI
         Me.treHistory.Dock = System.Windows.Forms.DockStyle.Fill
         Me.treHistory.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.treHistory.Location = New System.Drawing.Point(4, 27)
-        Me.treHistory.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.treHistory.Margin = New System.Windows.Forms.Padding(4)
         Me.treHistory.Name = "treHistory"
         Me.treHistory.Size = New System.Drawing.Size(1015, 373)
         Me.treHistory.TabIndex = 1
@@ -1423,7 +1423,7 @@ Partial Class WinOfflineUI
         Me.pnlWinOfflineRemove.Controls.Add(Me.pnlWinOfflineButton2)
         Me.pnlWinOfflineRemove.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlWinOfflineRemove.Location = New System.Drawing.Point(0, 0)
-        Me.pnlWinOfflineRemove.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlWinOfflineRemove.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlWinOfflineRemove.Name = "pnlWinOfflineRemove"
         Me.pnlWinOfflineRemove.Size = New System.Drawing.Size(1023, 698)
         Me.pnlWinOfflineRemove.TabIndex = 34
@@ -1438,7 +1438,7 @@ Partial Class WinOfflineUI
         Me.lvwRemoveOptions.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lvwRemoveOptions.GridLines = True
         Me.lvwRemoveOptions.Location = New System.Drawing.Point(0, 0)
-        Me.lvwRemoveOptions.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lvwRemoveOptions.Margin = New System.Windows.Forms.Padding(4)
         Me.lvwRemoveOptions.Name = "lvwRemoveOptions"
         Me.lvwRemoveOptions.Size = New System.Drawing.Size(1019, 394)
         Me.lvwRemoveOptions.TabIndex = 32
@@ -1458,9 +1458,9 @@ Partial Class WinOfflineUI
         Me.grpHistoryView.Controls.Add(Me.lvwHistory)
         Me.grpHistoryView.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpHistoryView.Location = New System.Drawing.Point(0, 394)
-        Me.grpHistoryView.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpHistoryView.Margin = New System.Windows.Forms.Padding(4)
         Me.grpHistoryView.Name = "grpHistoryView"
-        Me.grpHistoryView.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpHistoryView.Padding = New System.Windows.Forms.Padding(4)
         Me.grpHistoryView.Size = New System.Drawing.Size(1023, 195)
         Me.grpHistoryView.TabIndex = 33
         Me.grpHistoryView.TabStop = False
@@ -1474,7 +1474,7 @@ Partial Class WinOfflineUI
         Me.lvwHistory.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lvwHistory.GridLines = True
         Me.lvwHistory.Location = New System.Drawing.Point(4, 27)
-        Me.lvwHistory.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lvwHistory.Margin = New System.Windows.Forms.Padding(4)
         Me.lvwHistory.Name = "lvwHistory"
         Me.lvwHistory.Size = New System.Drawing.Size(1015, 164)
         Me.lvwHistory.TabIndex = 32
@@ -1503,7 +1503,7 @@ Partial Class WinOfflineUI
         Me.pnlWinOfflineButton2.Controls.Add(Me.btnWinOfflineExit4)
         Me.pnlWinOfflineButton2.Controls.Add(Me.btnWinOfflineBack4)
         Me.pnlWinOfflineButton2.Location = New System.Drawing.Point(169, 621)
-        Me.pnlWinOfflineButton2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlWinOfflineButton2.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlWinOfflineButton2.Name = "pnlWinOfflineButton2"
         Me.pnlWinOfflineButton2.Size = New System.Drawing.Size(674, 75)
         Me.pnlWinOfflineButton2.TabIndex = 34
@@ -1516,7 +1516,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineStart2.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWinOfflineStart2.ForeColor = System.Drawing.SystemColors.Window
         Me.btnWinOfflineStart2.Location = New System.Drawing.Point(228, 15)
-        Me.btnWinOfflineStart2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineStart2.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineStart2.Name = "btnWinOfflineStart2"
         Me.btnWinOfflineStart2.Size = New System.Drawing.Size(219, 48)
         Me.btnWinOfflineStart2.TabIndex = 0
@@ -1531,7 +1531,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineExit4.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWinOfflineExit4.ForeColor = System.Drawing.Color.White
         Me.btnWinOfflineExit4.Location = New System.Drawing.Point(509, 20)
-        Me.btnWinOfflineExit4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineExit4.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineExit4.Name = "btnWinOfflineExit4"
         Me.btnWinOfflineExit4.Size = New System.Drawing.Size(158, 35)
         Me.btnWinOfflineExit4.TabIndex = 1
@@ -1546,7 +1546,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineBack4.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWinOfflineBack4.ForeColor = System.Drawing.Color.White
         Me.btnWinOfflineBack4.Location = New System.Drawing.Point(8, 21)
-        Me.btnWinOfflineBack4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineBack4.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineBack4.Name = "btnWinOfflineBack4"
         Me.btnWinOfflineBack4.Size = New System.Drawing.Size(158, 35)
         Me.btnWinOfflineBack4.TabIndex = 2
@@ -1559,7 +1559,7 @@ Partial Class WinOfflineUI
         Me.pnlWinOfflineSDHelp.Controls.Add(Me.grpSDHelp)
         Me.pnlWinOfflineSDHelp.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlWinOfflineSDHelp.Location = New System.Drawing.Point(0, 0)
-        Me.pnlWinOfflineSDHelp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlWinOfflineSDHelp.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlWinOfflineSDHelp.Name = "pnlWinOfflineSDHelp"
         Me.pnlWinOfflineSDHelp.Size = New System.Drawing.Size(1023, 698)
         Me.pnlWinOfflineSDHelp.TabIndex = 32
@@ -1577,9 +1577,9 @@ Partial Class WinOfflineUI
         Me.grpSDHelp.Controls.Add(Me.lblStepx)
         Me.grpSDHelp.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSDHelp.Location = New System.Drawing.Point(0, 4)
-        Me.grpSDHelp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSDHelp.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSDHelp.Name = "grpSDHelp"
-        Me.grpSDHelp.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSDHelp.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSDHelp.Size = New System.Drawing.Size(1019, 690)
         Me.grpSDHelp.TabIndex = 14
         Me.grpSDHelp.TabStop = False
@@ -1594,7 +1594,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineSwicthes.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWinOfflineSwicthes.ForeColor = System.Drawing.Color.White
         Me.btnWinOfflineSwicthes.Location = New System.Drawing.Point(363, 639)
-        Me.btnWinOfflineSwicthes.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineSwicthes.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineSwicthes.Name = "btnWinOfflineSwicthes"
         Me.btnWinOfflineSwicthes.Size = New System.Drawing.Size(179, 35)
         Me.btnWinOfflineSwicthes.TabIndex = 3
@@ -1611,7 +1611,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineBack2.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWinOfflineBack2.ForeColor = System.Drawing.Color.White
         Me.btnWinOfflineBack2.Location = New System.Drawing.Point(9, 639)
-        Me.btnWinOfflineBack2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineBack2.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineBack2.Name = "btnWinOfflineBack2"
         Me.btnWinOfflineBack2.Size = New System.Drawing.Size(161, 35)
         Me.btnWinOfflineBack2.TabIndex = 2
@@ -1626,7 +1626,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineSDHelpNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnWinOfflineSDHelpNext.ForeColor = System.Drawing.Color.White
         Me.btnWinOfflineSDHelpNext.Location = New System.Drawing.Point(873, 629)
-        Me.btnWinOfflineSDHelpNext.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineSDHelpNext.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineSDHelpNext.Name = "btnWinOfflineSDHelpNext"
         Me.btnWinOfflineSDHelpNext.Size = New System.Drawing.Size(139, 56)
         Me.btnWinOfflineSDHelpNext.TabIndex = 0
@@ -1640,7 +1640,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineSDHelpPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnWinOfflineSDHelpPrevious.ForeColor = System.Drawing.Color.White
         Me.btnWinOfflineSDHelpPrevious.Location = New System.Drawing.Point(730, 630)
-        Me.btnWinOfflineSDHelpPrevious.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineSDHelpPrevious.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineSDHelpPrevious.Name = "btnWinOfflineSDHelpPrevious"
         Me.btnWinOfflineSDHelpPrevious.Size = New System.Drawing.Size(139, 54)
         Me.btnWinOfflineSDHelpPrevious.TabIndex = 1
@@ -1654,7 +1654,7 @@ Partial Class WinOfflineUI
         Me.picSteps.BackColor = System.Drawing.SystemColors.Control
         Me.picSteps.ErrorImage = Nothing
         Me.picSteps.Location = New System.Drawing.Point(4, 28)
-        Me.picSteps.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.picSteps.Margin = New System.Windows.Forms.Padding(4)
         Me.picSteps.Name = "picSteps"
         Me.picSteps.Size = New System.Drawing.Size(1010, 498)
         Me.picSteps.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
@@ -1680,7 +1680,7 @@ Partial Class WinOfflineUI
         Me.pnlWinOfflineCLIHelp.Controls.Add(Me.grpCLIOptions)
         Me.pnlWinOfflineCLIHelp.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlWinOfflineCLIHelp.Location = New System.Drawing.Point(0, 0)
-        Me.pnlWinOfflineCLIHelp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlWinOfflineCLIHelp.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlWinOfflineCLIHelp.Name = "pnlWinOfflineCLIHelp"
         Me.pnlWinOfflineCLIHelp.Size = New System.Drawing.Size(1023, 698)
         Me.pnlWinOfflineCLIHelp.TabIndex = 31
@@ -1693,9 +1693,9 @@ Partial Class WinOfflineUI
         Me.grpCLIOptions.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpCLIOptions.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpCLIOptions.Location = New System.Drawing.Point(0, 0)
-        Me.grpCLIOptions.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpCLIOptions.Margin = New System.Windows.Forms.Padding(4)
         Me.grpCLIOptions.Name = "grpCLIOptions"
-        Me.grpCLIOptions.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpCLIOptions.Padding = New System.Windows.Forms.Padding(4)
         Me.grpCLIOptions.Size = New System.Drawing.Size(1023, 698)
         Me.grpCLIOptions.TabIndex = 3
         Me.grpCLIOptions.TabStop = False
@@ -1710,7 +1710,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineExit2.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWinOfflineExit2.ForeColor = System.Drawing.Color.White
         Me.btnWinOfflineExit2.Location = New System.Drawing.Point(853, 639)
-        Me.btnWinOfflineExit2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineExit2.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineExit2.Name = "btnWinOfflineExit2"
         Me.btnWinOfflineExit2.Size = New System.Drawing.Size(158, 35)
         Me.btnWinOfflineExit2.TabIndex = 1
@@ -1726,7 +1726,7 @@ Partial Class WinOfflineUI
         Me.btnWinOfflineBack1.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWinOfflineBack1.ForeColor = System.Drawing.Color.White
         Me.btnWinOfflineBack1.Location = New System.Drawing.Point(8, 639)
-        Me.btnWinOfflineBack1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnWinOfflineBack1.Margin = New System.Windows.Forms.Padding(4)
         Me.btnWinOfflineBack1.Name = "btnWinOfflineBack1"
         Me.btnWinOfflineBack1.Size = New System.Drawing.Size(158, 35)
         Me.btnWinOfflineBack1.TabIndex = 0
@@ -1742,7 +1742,7 @@ Partial Class WinOfflineUI
         Me.rtbOptions.DetectUrls = False
         Me.rtbOptions.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rtbOptions.Location = New System.Drawing.Point(8, 26)
-        Me.rtbOptions.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rtbOptions.Margin = New System.Windows.Forms.Padding(4)
         Me.rtbOptions.Name = "rtbOptions"
         Me.rtbOptions.ReadOnly = True
         Me.rtbOptions.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
@@ -1760,7 +1760,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlMdbOverview.Controls.Add(Me.pnlSqlMdbOverviewButtons)
         Me.pnlSqlMdbOverview.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlMdbOverview.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlMdbOverview.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlMdbOverview.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlMdbOverview.Name = "pnlSqlMdbOverview"
         Me.pnlSqlMdbOverview.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlMdbOverview.TabIndex = 1
@@ -1779,9 +1779,9 @@ Partial Class WinOfflineUI
         Me.grpSqlMdbOverview.Controls.Add(Me.txtITCMVersion)
         Me.grpSqlMdbOverview.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSqlMdbOverview.Location = New System.Drawing.Point(0, 0)
-        Me.grpSqlMdbOverview.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlMdbOverview.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSqlMdbOverview.Name = "grpSqlMdbOverview"
-        Me.grpSqlMdbOverview.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlMdbOverview.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSqlMdbOverview.Size = New System.Drawing.Size(1023, 105)
         Me.grpSqlMdbOverview.TabIndex = 27
         Me.grpSqlMdbOverview.TabStop = False
@@ -1792,7 +1792,7 @@ Partial Class WinOfflineUI
         Me.txtMdbType.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtMdbType.BackColor = System.Drawing.Color.Beige
         Me.txtMdbType.Location = New System.Drawing.Point(791, 65)
-        Me.txtMdbType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtMdbType.Margin = New System.Windows.Forms.Padding(4)
         Me.txtMdbType.Name = "txtMdbType"
         Me.txtMdbType.ReadOnly = True
         Me.txtMdbType.Size = New System.Drawing.Size(189, 30)
@@ -1835,7 +1835,7 @@ Partial Class WinOfflineUI
         '
         Me.txtMdbVersion.BackColor = System.Drawing.Color.Beige
         Me.txtMdbVersion.Location = New System.Drawing.Point(174, 30)
-        Me.txtMdbVersion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtMdbVersion.Margin = New System.Windows.Forms.Padding(4)
         Me.txtMdbVersion.Name = "txtMdbVersion"
         Me.txtMdbVersion.ReadOnly = True
         Me.txtMdbVersion.Size = New System.Drawing.Size(189, 30)
@@ -1857,7 +1857,7 @@ Partial Class WinOfflineUI
         Me.txtMdbInstallDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtMdbInstallDate.BackColor = System.Drawing.Color.Beige
         Me.txtMdbInstallDate.Location = New System.Drawing.Point(791, 30)
-        Me.txtMdbInstallDate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtMdbInstallDate.Margin = New System.Windows.Forms.Padding(4)
         Me.txtMdbInstallDate.Name = "txtMdbInstallDate"
         Me.txtMdbInstallDate.ReadOnly = True
         Me.txtMdbInstallDate.Size = New System.Drawing.Size(189, 30)
@@ -1868,7 +1868,7 @@ Partial Class WinOfflineUI
         '
         Me.txtITCMVersion.BackColor = System.Drawing.Color.Beige
         Me.txtITCMVersion.Location = New System.Drawing.Point(174, 65)
-        Me.txtITCMVersion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtITCMVersion.Margin = New System.Windows.Forms.Padding(4)
         Me.txtITCMVersion.Name = "txtITCMVersion"
         Me.txtITCMVersion.ReadOnly = True
         Me.txtITCMVersion.Size = New System.Drawing.Size(189, 30)
@@ -1883,9 +1883,9 @@ Partial Class WinOfflineUI
         Me.grpSqlMdbItcmSum.Controls.Add(Me.lvwITCMSummary)
         Me.grpSqlMdbItcmSum.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSqlMdbItcmSum.Location = New System.Drawing.Point(0, 111)
-        Me.grpSqlMdbItcmSum.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlMdbItcmSum.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSqlMdbItcmSum.Name = "grpSqlMdbItcmSum"
-        Me.grpSqlMdbItcmSum.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlMdbItcmSum.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSqlMdbItcmSum.Size = New System.Drawing.Size(507, 523)
         Me.grpSqlMdbItcmSum.TabIndex = 63
         Me.grpSqlMdbItcmSum.TabStop = False
@@ -1900,7 +1900,7 @@ Partial Class WinOfflineUI
         Me.lvwITCMSummary.GridLines = True
         Me.lvwITCMSummary.LabelWrap = False
         Me.lvwITCMSummary.Location = New System.Drawing.Point(4, 27)
-        Me.lvwITCMSummary.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lvwITCMSummary.Margin = New System.Windows.Forms.Padding(4)
         Me.lvwITCMSummary.Name = "lvwITCMSummary"
         Me.lvwITCMSummary.Size = New System.Drawing.Size(499, 492)
         Me.lvwITCMSummary.TabIndex = 58
@@ -1922,9 +1922,9 @@ Partial Class WinOfflineUI
         Me.grpSqlMdbAgentVersion.Controls.Add(Me.dgvAgentVersion)
         Me.grpSqlMdbAgentVersion.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSqlMdbAgentVersion.Location = New System.Drawing.Point(511, 111)
-        Me.grpSqlMdbAgentVersion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlMdbAgentVersion.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSqlMdbAgentVersion.Name = "grpSqlMdbAgentVersion"
-        Me.grpSqlMdbAgentVersion.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlMdbAgentVersion.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSqlMdbAgentVersion.Size = New System.Drawing.Size(511, 261)
         Me.grpSqlMdbAgentVersion.TabIndex = 66
         Me.grpSqlMdbAgentVersion.TabStop = False
@@ -1959,7 +1959,7 @@ Partial Class WinOfflineUI
         Me.dgvAgentVersion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvAgentVersion.EnableHeadersVisualStyles = False
         Me.dgvAgentVersion.Location = New System.Drawing.Point(4, 27)
-        Me.dgvAgentVersion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvAgentVersion.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvAgentVersion.Name = "dgvAgentVersion"
         Me.dgvAgentVersion.ReadOnly = True
         Me.dgvAgentVersion.RowHeadersVisible = False
@@ -1976,9 +1976,9 @@ Partial Class WinOfflineUI
         Me.grpSqlMdbDefSummary.Controls.Add(Me.dgvContentSummary)
         Me.grpSqlMdbDefSummary.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSqlMdbDefSummary.Location = New System.Drawing.Point(511, 371)
-        Me.grpSqlMdbDefSummary.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlMdbDefSummary.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSqlMdbDefSummary.Name = "grpSqlMdbDefSummary"
-        Me.grpSqlMdbDefSummary.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlMdbDefSummary.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSqlMdbDefSummary.Size = New System.Drawing.Size(511, 262)
         Me.grpSqlMdbDefSummary.TabIndex = 65
         Me.grpSqlMdbDefSummary.TabStop = False
@@ -2013,7 +2013,7 @@ Partial Class WinOfflineUI
         Me.dgvContentSummary.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvContentSummary.EnableHeadersVisualStyles = False
         Me.dgvContentSummary.Location = New System.Drawing.Point(4, 27)
-        Me.dgvContentSummary.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvContentSummary.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvContentSummary.Name = "dgvContentSummary"
         Me.dgvContentSummary.ReadOnly = True
         Me.dgvContentSummary.RowHeadersVisible = False
@@ -2034,7 +2034,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlMdbOverviewButtons.Controls.Add(Me.btnSqlExportMdbOverview)
         Me.pnlSqlMdbOverviewButtons.Controls.Add(Me.btnSqlExitMdbOverview)
         Me.pnlSqlMdbOverviewButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlMdbOverviewButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlMdbOverviewButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlMdbOverviewButtons.Name = "pnlSqlMdbOverviewButtons"
         Me.pnlSqlMdbOverviewButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlMdbOverviewButtons.TabIndex = 67
@@ -2047,7 +2047,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectMdbOverview.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectMdbOverview.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectMdbOverview.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectMdbOverview.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectMdbOverview.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectMdbOverview.Name = "btnSqlConnectMdbOverview"
         Me.btnSqlConnectMdbOverview.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectMdbOverview.TabIndex = 77
@@ -2062,7 +2062,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectMdbOverview.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectMdbOverview.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectMdbOverview.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectMdbOverview.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectMdbOverview.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectMdbOverview.Name = "btnSqlDisconnectMdbOverview"
         Me.btnSqlDisconnectMdbOverview.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectMdbOverview.TabIndex = 78
@@ -2077,7 +2077,7 @@ Partial Class WinOfflineUI
         Me.btnSqlRefreshMdbOverview.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlRefreshMdbOverview.ForeColor = System.Drawing.Color.White
         Me.btnSqlRefreshMdbOverview.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlRefreshMdbOverview.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlRefreshMdbOverview.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlRefreshMdbOverview.Name = "btnSqlRefreshMdbOverview"
         Me.btnSqlRefreshMdbOverview.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlRefreshMdbOverview.TabIndex = 79
@@ -2092,7 +2092,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExportMdbOverview.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExportMdbOverview.ForeColor = System.Drawing.Color.White
         Me.btnSqlExportMdbOverview.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlExportMdbOverview.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExportMdbOverview.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExportMdbOverview.Name = "btnSqlExportMdbOverview"
         Me.btnSqlExportMdbOverview.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExportMdbOverview.TabIndex = 80
@@ -2107,7 +2107,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitMdbOverview.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitMdbOverview.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitMdbOverview.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitMdbOverview.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitMdbOverview.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitMdbOverview.Name = "btnSqlExitMdbOverview"
         Me.btnSqlExitMdbOverview.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitMdbOverview.TabIndex = 81
@@ -2122,7 +2122,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlTableSpaceGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlTableSpaceGrid.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pnlSqlTableSpaceGrid.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlTableSpaceGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlTableSpaceGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlTableSpaceGrid.Name = "pnlSqlTableSpaceGrid"
         Me.pnlSqlTableSpaceGrid.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlTableSpaceGrid.TabIndex = 36
@@ -2135,9 +2135,9 @@ Partial Class WinOfflineUI
         Me.grpSqlTableSpace.Controls.Add(Me.dgvTableSpaceGrid)
         Me.grpSqlTableSpace.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSqlTableSpace.Location = New System.Drawing.Point(0, 0)
-        Me.grpSqlTableSpace.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlTableSpace.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSqlTableSpace.Name = "grpSqlTableSpace"
-        Me.grpSqlTableSpace.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlTableSpace.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSqlTableSpace.Size = New System.Drawing.Size(1023, 633)
         Me.grpSqlTableSpace.TabIndex = 61
         Me.grpSqlTableSpace.TabStop = False
@@ -2172,7 +2172,7 @@ Partial Class WinOfflineUI
         Me.dgvTableSpaceGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvTableSpaceGrid.EnableHeadersVisualStyles = False
         Me.dgvTableSpaceGrid.Location = New System.Drawing.Point(4, 27)
-        Me.dgvTableSpaceGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvTableSpaceGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvTableSpaceGrid.Name = "dgvTableSpaceGrid"
         Me.dgvTableSpaceGrid.ReadOnly = True
         Me.dgvTableSpaceGrid.RowHeadersVisible = False
@@ -2189,7 +2189,7 @@ Partial Class WinOfflineUI
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.prgTableSpaceGrid.ForeColor = System.Drawing.SystemColors.HotTrack
         Me.prgTableSpaceGrid.Location = New System.Drawing.Point(0, 605)
-        Me.prgTableSpaceGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.prgTableSpaceGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.prgTableSpaceGrid.Name = "prgTableSpaceGrid"
         Me.prgTableSpaceGrid.Size = New System.Drawing.Size(1023, 29)
         Me.prgTableSpaceGrid.Step = 1
@@ -2206,7 +2206,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlTableSpaceGridButtons.Controls.Add(Me.btnSqlExportTableSpace)
         Me.pnlSqlTableSpaceGridButtons.Controls.Add(Me.btnSqlExitTableSpace)
         Me.pnlSqlTableSpaceGridButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlTableSpaceGridButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlTableSpaceGridButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlTableSpaceGridButtons.Name = "pnlSqlTableSpaceGridButtons"
         Me.pnlSqlTableSpaceGridButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlTableSpaceGridButtons.TabIndex = 68
@@ -2219,7 +2219,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectTableSpace.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectTableSpace.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectTableSpace.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectTableSpace.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectTableSpace.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectTableSpace.Name = "btnSqlConnectTableSpace"
         Me.btnSqlConnectTableSpace.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectTableSpace.TabIndex = 77
@@ -2234,7 +2234,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectTableSpace.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectTableSpace.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectTableSpace.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectTableSpace.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectTableSpace.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectTableSpace.Name = "btnSqlDisconnectTableSpace"
         Me.btnSqlDisconnectTableSpace.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectTableSpace.TabIndex = 78
@@ -2249,7 +2249,7 @@ Partial Class WinOfflineUI
         Me.btnSqlRefreshTableSpace.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlRefreshTableSpace.ForeColor = System.Drawing.Color.White
         Me.btnSqlRefreshTableSpace.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlRefreshTableSpace.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlRefreshTableSpace.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlRefreshTableSpace.Name = "btnSqlRefreshTableSpace"
         Me.btnSqlRefreshTableSpace.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlRefreshTableSpace.TabIndex = 79
@@ -2264,7 +2264,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExportTableSpace.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExportTableSpace.ForeColor = System.Drawing.Color.White
         Me.btnSqlExportTableSpace.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlExportTableSpace.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExportTableSpace.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExportTableSpace.Name = "btnSqlExportTableSpace"
         Me.btnSqlExportTableSpace.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExportTableSpace.TabIndex = 80
@@ -2279,7 +2279,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitTableSpace.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitTableSpace.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitTableSpace.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitTableSpace.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitTableSpace.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitTableSpace.Name = "btnSqlExitTableSpace"
         Me.btnSqlExitTableSpace.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitTableSpace.TabIndex = 81
@@ -2293,7 +2293,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlUserGrid.Controls.Add(Me.pnlSqlUserGridButtons)
         Me.pnlSqlUserGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlUserGrid.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlUserGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlUserGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlUserGrid.Name = "pnlSqlUserGrid"
         Me.pnlSqlUserGrid.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlUserGrid.TabIndex = 44
@@ -2307,7 +2307,7 @@ Partial Class WinOfflineUI
         Me.tabCtrlUserGrid.Controls.Add(Me.tabUserObsolete90)
         Me.tabCtrlUserGrid.Controls.Add(Me.tabUserObsolete365)
         Me.tabCtrlUserGrid.Location = New System.Drawing.Point(0, 1)
-        Me.tabCtrlUserGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabCtrlUserGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.tabCtrlUserGrid.Name = "tabCtrlUserGrid"
         Me.tabCtrlUserGrid.SelectedIndex = 0
         Me.tabCtrlUserGrid.Size = New System.Drawing.Size(1023, 633)
@@ -2317,9 +2317,9 @@ Partial Class WinOfflineUI
         '
         Me.tabUserSummary.Controls.Add(Me.dgvUserGrid)
         Me.tabUserSummary.Location = New System.Drawing.Point(4, 28)
-        Me.tabUserSummary.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabUserSummary.Margin = New System.Windows.Forms.Padding(4)
         Me.tabUserSummary.Name = "tabUserSummary"
-        Me.tabUserSummary.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabUserSummary.Padding = New System.Windows.Forms.Padding(4)
         Me.tabUserSummary.Size = New System.Drawing.Size(1015, 601)
         Me.tabUserSummary.TabIndex = 0
         Me.tabUserSummary.Text = "User Summary"
@@ -2330,7 +2330,7 @@ Partial Class WinOfflineUI
         Me.dgvUserGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvUserGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvUserGrid.Location = New System.Drawing.Point(4, 4)
-        Me.dgvUserGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvUserGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvUserGrid.Name = "dgvUserGrid"
         Me.dgvUserGrid.Size = New System.Drawing.Size(1007, 593)
         Me.dgvUserGrid.TabIndex = 1
@@ -2339,10 +2339,10 @@ Partial Class WinOfflineUI
         '
         Me.tabUserObsolete90.Controls.Add(Me.dgvUserObsolete90)
         Me.tabUserObsolete90.Location = New System.Drawing.Point(4, 28)
-        Me.tabUserObsolete90.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabUserObsolete90.Margin = New System.Windows.Forms.Padding(4)
         Me.tabUserObsolete90.Name = "tabUserObsolete90"
-        Me.tabUserObsolete90.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabUserObsolete90.Size = New System.Drawing.Size(1016, 602)
+        Me.tabUserObsolete90.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabUserObsolete90.Size = New System.Drawing.Size(1015, 601)
         Me.tabUserObsolete90.TabIndex = 1
         Me.tabUserObsolete90.Text = "Obsolete Users [90 days]"
         Me.tabUserObsolete90.UseVisualStyleBackColor = True
@@ -2352,19 +2352,19 @@ Partial Class WinOfflineUI
         Me.dgvUserObsolete90.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvUserObsolete90.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvUserObsolete90.Location = New System.Drawing.Point(4, 4)
-        Me.dgvUserObsolete90.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvUserObsolete90.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvUserObsolete90.Name = "dgvUserObsolete90"
-        Me.dgvUserObsolete90.Size = New System.Drawing.Size(1008, 594)
+        Me.dgvUserObsolete90.Size = New System.Drawing.Size(1007, 593)
         Me.dgvUserObsolete90.TabIndex = 2
         '
         'tabUserObsolete365
         '
         Me.tabUserObsolete365.Controls.Add(Me.dgvUserObsolete365)
         Me.tabUserObsolete365.Location = New System.Drawing.Point(4, 28)
-        Me.tabUserObsolete365.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabUserObsolete365.Margin = New System.Windows.Forms.Padding(4)
         Me.tabUserObsolete365.Name = "tabUserObsolete365"
-        Me.tabUserObsolete365.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabUserObsolete365.Size = New System.Drawing.Size(1016, 602)
+        Me.tabUserObsolete365.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabUserObsolete365.Size = New System.Drawing.Size(1015, 601)
         Me.tabUserObsolete365.TabIndex = 2
         Me.tabUserObsolete365.Text = "Obsolete Users [1 year]"
         Me.tabUserObsolete365.UseVisualStyleBackColor = True
@@ -2374,9 +2374,9 @@ Partial Class WinOfflineUI
         Me.dgvUserObsolete365.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvUserObsolete365.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvUserObsolete365.Location = New System.Drawing.Point(4, 4)
-        Me.dgvUserObsolete365.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvUserObsolete365.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvUserObsolete365.Name = "dgvUserObsolete365"
-        Me.dgvUserObsolete365.Size = New System.Drawing.Size(1008, 594)
+        Me.dgvUserObsolete365.Size = New System.Drawing.Size(1007, 593)
         Me.dgvUserObsolete365.TabIndex = 3
         '
         'prgUserGrid
@@ -2385,7 +2385,7 @@ Partial Class WinOfflineUI
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.prgUserGrid.ForeColor = System.Drawing.SystemColors.HotTrack
         Me.prgUserGrid.Location = New System.Drawing.Point(0, 605)
-        Me.prgUserGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.prgUserGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.prgUserGrid.Name = "prgUserGrid"
         Me.prgUserGrid.Size = New System.Drawing.Size(1023, 29)
         Me.prgUserGrid.Step = 1
@@ -2402,7 +2402,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlUserGridButtons.Controls.Add(Me.btnSqlExportUserGrid)
         Me.pnlSqlUserGridButtons.Controls.Add(Me.btnSqlExitUserGrid)
         Me.pnlSqlUserGridButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlUserGridButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlUserGridButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlUserGridButtons.Name = "pnlSqlUserGridButtons"
         Me.pnlSqlUserGridButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlUserGridButtons.TabIndex = 68
@@ -2415,7 +2415,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectUserGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectUserGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectUserGrid.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectUserGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectUserGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectUserGrid.Name = "btnSqlConnectUserGrid"
         Me.btnSqlConnectUserGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectUserGrid.TabIndex = 77
@@ -2430,7 +2430,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectUserGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectUserGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectUserGrid.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectUserGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectUserGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectUserGrid.Name = "btnSqlDisconnectUserGrid"
         Me.btnSqlDisconnectUserGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectUserGrid.TabIndex = 78
@@ -2445,7 +2445,7 @@ Partial Class WinOfflineUI
         Me.btnSqlRefreshUserGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlRefreshUserGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlRefreshUserGrid.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlRefreshUserGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlRefreshUserGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlRefreshUserGrid.Name = "btnSqlRefreshUserGrid"
         Me.btnSqlRefreshUserGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlRefreshUserGrid.TabIndex = 79
@@ -2460,7 +2460,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExportUserGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExportUserGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExportUserGrid.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlExportUserGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExportUserGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExportUserGrid.Name = "btnSqlExportUserGrid"
         Me.btnSqlExportUserGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExportUserGrid.TabIndex = 80
@@ -2475,7 +2475,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitUserGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitUserGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitUserGrid.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitUserGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitUserGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitUserGrid.Name = "btnSqlExitUserGrid"
         Me.btnSqlExitUserGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitUserGrid.TabIndex = 81
@@ -2489,7 +2489,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlAgentGrid.Controls.Add(Me.pnlSqlAgentGridButtons)
         Me.pnlSqlAgentGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlAgentGrid.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlAgentGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlAgentGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlAgentGrid.Name = "pnlSqlAgentGrid"
         Me.pnlSqlAgentGrid.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlAgentGrid.TabIndex = 39
@@ -2503,7 +2503,7 @@ Partial Class WinOfflineUI
         Me.tabCtrlAgentGrid.Controls.Add(Me.tabAgentObsolete90)
         Me.tabCtrlAgentGrid.Controls.Add(Me.tabAgentObsolete365)
         Me.tabCtrlAgentGrid.Location = New System.Drawing.Point(0, 1)
-        Me.tabCtrlAgentGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabCtrlAgentGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.tabCtrlAgentGrid.Name = "tabCtrlAgentGrid"
         Me.tabCtrlAgentGrid.SelectedIndex = 0
         Me.tabCtrlAgentGrid.Size = New System.Drawing.Size(1023, 633)
@@ -2513,9 +2513,9 @@ Partial Class WinOfflineUI
         '
         Me.tabAgentSummary.Controls.Add(Me.dgvAgentGrid)
         Me.tabAgentSummary.Location = New System.Drawing.Point(4, 28)
-        Me.tabAgentSummary.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabAgentSummary.Margin = New System.Windows.Forms.Padding(4)
         Me.tabAgentSummary.Name = "tabAgentSummary"
-        Me.tabAgentSummary.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabAgentSummary.Padding = New System.Windows.Forms.Padding(4)
         Me.tabAgentSummary.Size = New System.Drawing.Size(1015, 601)
         Me.tabAgentSummary.TabIndex = 0
         Me.tabAgentSummary.Text = "Agent Summary"
@@ -2526,7 +2526,7 @@ Partial Class WinOfflineUI
         Me.dgvAgentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvAgentGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvAgentGrid.Location = New System.Drawing.Point(4, 4)
-        Me.dgvAgentGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvAgentGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvAgentGrid.Name = "dgvAgentGrid"
         Me.dgvAgentGrid.Size = New System.Drawing.Size(1007, 593)
         Me.dgvAgentGrid.TabIndex = 1
@@ -2535,10 +2535,10 @@ Partial Class WinOfflineUI
         '
         Me.tabAgentObsolete90.Controls.Add(Me.dgvAgentObsolete90)
         Me.tabAgentObsolete90.Location = New System.Drawing.Point(4, 28)
-        Me.tabAgentObsolete90.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabAgentObsolete90.Margin = New System.Windows.Forms.Padding(4)
         Me.tabAgentObsolete90.Name = "tabAgentObsolete90"
-        Me.tabAgentObsolete90.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabAgentObsolete90.Size = New System.Drawing.Size(1016, 602)
+        Me.tabAgentObsolete90.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabAgentObsolete90.Size = New System.Drawing.Size(1015, 601)
         Me.tabAgentObsolete90.TabIndex = 1
         Me.tabAgentObsolete90.Text = "Obsolete Agents [90 days]"
         Me.tabAgentObsolete90.UseVisualStyleBackColor = True
@@ -2548,19 +2548,19 @@ Partial Class WinOfflineUI
         Me.dgvAgentObsolete90.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvAgentObsolete90.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvAgentObsolete90.Location = New System.Drawing.Point(4, 4)
-        Me.dgvAgentObsolete90.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvAgentObsolete90.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvAgentObsolete90.Name = "dgvAgentObsolete90"
-        Me.dgvAgentObsolete90.Size = New System.Drawing.Size(1008, 594)
+        Me.dgvAgentObsolete90.Size = New System.Drawing.Size(1007, 593)
         Me.dgvAgentObsolete90.TabIndex = 2
         '
         'tabAgentObsolete365
         '
         Me.tabAgentObsolete365.Controls.Add(Me.dgvAgentObsolete365)
         Me.tabAgentObsolete365.Location = New System.Drawing.Point(4, 28)
-        Me.tabAgentObsolete365.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabAgentObsolete365.Margin = New System.Windows.Forms.Padding(4)
         Me.tabAgentObsolete365.Name = "tabAgentObsolete365"
-        Me.tabAgentObsolete365.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabAgentObsolete365.Size = New System.Drawing.Size(1016, 602)
+        Me.tabAgentObsolete365.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabAgentObsolete365.Size = New System.Drawing.Size(1015, 601)
         Me.tabAgentObsolete365.TabIndex = 2
         Me.tabAgentObsolete365.Text = "Obsolete Agents [1 year]"
         Me.tabAgentObsolete365.UseVisualStyleBackColor = True
@@ -2570,9 +2570,9 @@ Partial Class WinOfflineUI
         Me.dgvAgentObsolete365.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvAgentObsolete365.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvAgentObsolete365.Location = New System.Drawing.Point(4, 4)
-        Me.dgvAgentObsolete365.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvAgentObsolete365.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvAgentObsolete365.Name = "dgvAgentObsolete365"
-        Me.dgvAgentObsolete365.Size = New System.Drawing.Size(1008, 594)
+        Me.dgvAgentObsolete365.Size = New System.Drawing.Size(1007, 593)
         Me.dgvAgentObsolete365.TabIndex = 3
         '
         'prgAgentGrid
@@ -2581,7 +2581,7 @@ Partial Class WinOfflineUI
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.prgAgentGrid.ForeColor = System.Drawing.SystemColors.HotTrack
         Me.prgAgentGrid.Location = New System.Drawing.Point(0, 605)
-        Me.prgAgentGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.prgAgentGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.prgAgentGrid.Name = "prgAgentGrid"
         Me.prgAgentGrid.Size = New System.Drawing.Size(1023, 29)
         Me.prgAgentGrid.Step = 1
@@ -2598,7 +2598,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlAgentGridButtons.Controls.Add(Me.btnSqlExportAgentGrid)
         Me.pnlSqlAgentGridButtons.Controls.Add(Me.btnSqlExitAgentGrid)
         Me.pnlSqlAgentGridButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlAgentGridButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlAgentGridButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlAgentGridButtons.Name = "pnlSqlAgentGridButtons"
         Me.pnlSqlAgentGridButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlAgentGridButtons.TabIndex = 68
@@ -2611,7 +2611,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectAgentGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectAgentGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectAgentGrid.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectAgentGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectAgentGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectAgentGrid.Name = "btnSqlConnectAgentGrid"
         Me.btnSqlConnectAgentGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectAgentGrid.TabIndex = 77
@@ -2626,7 +2626,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectAgentGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectAgentGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectAgentGrid.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectAgentGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectAgentGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectAgentGrid.Name = "btnSqlDisconnectAgentGrid"
         Me.btnSqlDisconnectAgentGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectAgentGrid.TabIndex = 78
@@ -2641,7 +2641,7 @@ Partial Class WinOfflineUI
         Me.btnSqlRefreshAgentGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlRefreshAgentGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlRefreshAgentGrid.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlRefreshAgentGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlRefreshAgentGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlRefreshAgentGrid.Name = "btnSqlRefreshAgentGrid"
         Me.btnSqlRefreshAgentGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlRefreshAgentGrid.TabIndex = 79
@@ -2656,7 +2656,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExportAgentGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExportAgentGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExportAgentGrid.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlExportAgentGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExportAgentGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExportAgentGrid.Name = "btnSqlExportAgentGrid"
         Me.btnSqlExportAgentGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExportAgentGrid.TabIndex = 80
@@ -2671,7 +2671,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitAgentGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitAgentGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitAgentGrid.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitAgentGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitAgentGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitAgentGrid.Name = "btnSqlExitAgentGrid"
         Me.btnSqlExitAgentGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitAgentGrid.TabIndex = 81
@@ -2685,7 +2685,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlServerGrid.Controls.Add(Me.pnlSqlServerGridButtons)
         Me.pnlSqlServerGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlServerGrid.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlServerGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlServerGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlServerGrid.Name = "pnlSqlServerGrid"
         Me.pnlSqlServerGrid.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlServerGrid.TabIndex = 37
@@ -2699,7 +2699,7 @@ Partial Class WinOfflineUI
         Me.tabCtrlServerGrid.Controls.Add(Me.tabServerLastCollected24)
         Me.tabCtrlServerGrid.Controls.Add(Me.tabServerSignature30)
         Me.tabCtrlServerGrid.Location = New System.Drawing.Point(0, 1)
-        Me.tabCtrlServerGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabCtrlServerGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.tabCtrlServerGrid.Name = "tabCtrlServerGrid"
         Me.tabCtrlServerGrid.SelectedIndex = 0
         Me.tabCtrlServerGrid.Size = New System.Drawing.Size(1023, 633)
@@ -2709,9 +2709,9 @@ Partial Class WinOfflineUI
         '
         Me.tabServerSummary.Controls.Add(Me.dgvServerGrid)
         Me.tabServerSummary.Location = New System.Drawing.Point(4, 28)
-        Me.tabServerSummary.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabServerSummary.Margin = New System.Windows.Forms.Padding(4)
         Me.tabServerSummary.Name = "tabServerSummary"
-        Me.tabServerSummary.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabServerSummary.Padding = New System.Windows.Forms.Padding(4)
         Me.tabServerSummary.Size = New System.Drawing.Size(1015, 601)
         Me.tabServerSummary.TabIndex = 0
         Me.tabServerSummary.Text = "Scalability Summary"
@@ -2722,7 +2722,7 @@ Partial Class WinOfflineUI
         Me.dgvServerGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvServerGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvServerGrid.Location = New System.Drawing.Point(4, 4)
-        Me.dgvServerGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvServerGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvServerGrid.Name = "dgvServerGrid"
         Me.dgvServerGrid.Size = New System.Drawing.Size(1007, 593)
         Me.dgvServerGrid.TabIndex = 1
@@ -2731,10 +2731,10 @@ Partial Class WinOfflineUI
         '
         Me.tabServerLastCollected24.Controls.Add(Me.dgvServerLastCollected24)
         Me.tabServerLastCollected24.Location = New System.Drawing.Point(4, 28)
-        Me.tabServerLastCollected24.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabServerLastCollected24.Margin = New System.Windows.Forms.Padding(4)
         Me.tabServerLastCollected24.Name = "tabServerLastCollected24"
-        Me.tabServerLastCollected24.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabServerLastCollected24.Size = New System.Drawing.Size(1016, 602)
+        Me.tabServerLastCollected24.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabServerLastCollected24.Size = New System.Drawing.Size(1015, 601)
         Me.tabServerLastCollected24.TabIndex = 1
         Me.tabServerLastCollected24.Text = "Last Collected [>24 hours]"
         Me.tabServerLastCollected24.UseVisualStyleBackColor = True
@@ -2744,19 +2744,19 @@ Partial Class WinOfflineUI
         Me.dgvServerLastCollected24.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvServerLastCollected24.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvServerLastCollected24.Location = New System.Drawing.Point(4, 4)
-        Me.dgvServerLastCollected24.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvServerLastCollected24.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvServerLastCollected24.Name = "dgvServerLastCollected24"
-        Me.dgvServerLastCollected24.Size = New System.Drawing.Size(1008, 594)
+        Me.dgvServerLastCollected24.Size = New System.Drawing.Size(1007, 593)
         Me.dgvServerLastCollected24.TabIndex = 2
         '
         'tabServerSignature30
         '
         Me.tabServerSignature30.Controls.Add(Me.dgvServerSignature30)
         Me.tabServerSignature30.Location = New System.Drawing.Point(4, 28)
-        Me.tabServerSignature30.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabServerSignature30.Margin = New System.Windows.Forms.Padding(4)
         Me.tabServerSignature30.Name = "tabServerSignature30"
-        Me.tabServerSignature30.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabServerSignature30.Size = New System.Drawing.Size(1016, 602)
+        Me.tabServerSignature30.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabServerSignature30.Size = New System.Drawing.Size(1015, 601)
         Me.tabServerSignature30.TabIndex = 2
         Me.tabServerSignature30.Text = "Signature File [>30 days]"
         Me.tabServerSignature30.UseVisualStyleBackColor = True
@@ -2766,9 +2766,9 @@ Partial Class WinOfflineUI
         Me.dgvServerSignature30.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvServerSignature30.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvServerSignature30.Location = New System.Drawing.Point(4, 4)
-        Me.dgvServerSignature30.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvServerSignature30.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvServerSignature30.Name = "dgvServerSignature30"
-        Me.dgvServerSignature30.Size = New System.Drawing.Size(1008, 594)
+        Me.dgvServerSignature30.Size = New System.Drawing.Size(1007, 593)
         Me.dgvServerSignature30.TabIndex = 3
         '
         'prgServerGrid
@@ -2777,7 +2777,7 @@ Partial Class WinOfflineUI
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.prgServerGrid.ForeColor = System.Drawing.SystemColors.HotTrack
         Me.prgServerGrid.Location = New System.Drawing.Point(0, 605)
-        Me.prgServerGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.prgServerGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.prgServerGrid.Name = "prgServerGrid"
         Me.prgServerGrid.Size = New System.Drawing.Size(1023, 29)
         Me.prgServerGrid.Step = 1
@@ -2794,7 +2794,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlServerGridButtons.Controls.Add(Me.btnSqlExportServerGrid)
         Me.pnlSqlServerGridButtons.Controls.Add(Me.btnSqlExitServerGrid)
         Me.pnlSqlServerGridButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlServerGridButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlServerGridButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlServerGridButtons.Name = "pnlSqlServerGridButtons"
         Me.pnlSqlServerGridButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlServerGridButtons.TabIndex = 68
@@ -2807,7 +2807,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectServerGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectServerGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectServerGrid.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectServerGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectServerGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectServerGrid.Name = "btnSqlConnectServerGrid"
         Me.btnSqlConnectServerGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectServerGrid.TabIndex = 77
@@ -2822,7 +2822,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectServerGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectServerGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectServerGrid.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectServerGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectServerGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectServerGrid.Name = "btnSqlDisconnectServerGrid"
         Me.btnSqlDisconnectServerGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectServerGrid.TabIndex = 78
@@ -2837,7 +2837,7 @@ Partial Class WinOfflineUI
         Me.btnSqlRefreshServerGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlRefreshServerGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlRefreshServerGrid.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlRefreshServerGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlRefreshServerGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlRefreshServerGrid.Name = "btnSqlRefreshServerGrid"
         Me.btnSqlRefreshServerGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlRefreshServerGrid.TabIndex = 79
@@ -2852,7 +2852,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExportServerGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExportServerGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExportServerGrid.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlExportServerGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExportServerGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExportServerGrid.Name = "btnSqlExportServerGrid"
         Me.btnSqlExportServerGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExportServerGrid.TabIndex = 80
@@ -2867,7 +2867,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitServerGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitServerGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitServerGrid.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitServerGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitServerGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitServerGrid.Name = "btnSqlExitServerGrid"
         Me.btnSqlExitServerGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitServerGrid.TabIndex = 81
@@ -2881,7 +2881,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlEngineGrid.Controls.Add(Me.pnlSqlEngineGridButtons)
         Me.pnlSqlEngineGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlEngineGrid.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlEngineGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlEngineGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlEngineGrid.Name = "pnlSqlEngineGrid"
         Me.pnlSqlEngineGrid.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlEngineGrid.TabIndex = 38
@@ -2894,9 +2894,9 @@ Partial Class WinOfflineUI
         Me.grpSqlEngineGrid.Controls.Add(Me.dgvEngineGrid)
         Me.grpSqlEngineGrid.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSqlEngineGrid.Location = New System.Drawing.Point(0, 0)
-        Me.grpSqlEngineGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlEngineGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSqlEngineGrid.Name = "grpSqlEngineGrid"
-        Me.grpSqlEngineGrid.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlEngineGrid.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSqlEngineGrid.Size = New System.Drawing.Size(1023, 634)
         Me.grpSqlEngineGrid.TabIndex = 0
         Me.grpSqlEngineGrid.TabStop = False
@@ -2907,7 +2907,7 @@ Partial Class WinOfflineUI
         Me.dgvEngineGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvEngineGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvEngineGrid.Location = New System.Drawing.Point(4, 27)
-        Me.dgvEngineGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvEngineGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvEngineGrid.Name = "dgvEngineGrid"
         Me.dgvEngineGrid.Size = New System.Drawing.Size(1015, 603)
         Me.dgvEngineGrid.TabIndex = 0
@@ -2918,7 +2918,7 @@ Partial Class WinOfflineUI
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.prgEngineGrid.ForeColor = System.Drawing.SystemColors.HotTrack
         Me.prgEngineGrid.Location = New System.Drawing.Point(0, 605)
-        Me.prgEngineGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.prgEngineGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.prgEngineGrid.Name = "prgEngineGrid"
         Me.prgEngineGrid.Size = New System.Drawing.Size(1023, 29)
         Me.prgEngineGrid.Step = 1
@@ -2935,7 +2935,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlEngineGridButtons.Controls.Add(Me.btnSqlExportEngineGrid)
         Me.pnlSqlEngineGridButtons.Controls.Add(Me.btnSqlExitEngineGrid)
         Me.pnlSqlEngineGridButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlEngineGridButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlEngineGridButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlEngineGridButtons.Name = "pnlSqlEngineGridButtons"
         Me.pnlSqlEngineGridButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlEngineGridButtons.TabIndex = 68
@@ -2948,7 +2948,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectEngineGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectEngineGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectEngineGrid.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectEngineGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectEngineGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectEngineGrid.Name = "btnSqlConnectEngineGrid"
         Me.btnSqlConnectEngineGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectEngineGrid.TabIndex = 77
@@ -2963,7 +2963,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectEngineGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectEngineGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectEngineGrid.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectEngineGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectEngineGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectEngineGrid.Name = "btnSqlDisconnectEngineGrid"
         Me.btnSqlDisconnectEngineGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectEngineGrid.TabIndex = 78
@@ -2978,7 +2978,7 @@ Partial Class WinOfflineUI
         Me.btnSqlRefreshEngineGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlRefreshEngineGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlRefreshEngineGrid.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlRefreshEngineGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlRefreshEngineGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlRefreshEngineGrid.Name = "btnSqlRefreshEngineGrid"
         Me.btnSqlRefreshEngineGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlRefreshEngineGrid.TabIndex = 79
@@ -2993,7 +2993,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExportEngineGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExportEngineGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExportEngineGrid.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlExportEngineGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExportEngineGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExportEngineGrid.Name = "btnSqlExportEngineGrid"
         Me.btnSqlExportEngineGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExportEngineGrid.TabIndex = 80
@@ -3008,7 +3008,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitEngineGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitEngineGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitEngineGrid.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitEngineGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitEngineGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitEngineGrid.Name = "btnSqlExitEngineGrid"
         Me.btnSqlExitEngineGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitEngineGrid.TabIndex = 81
@@ -3023,7 +3023,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlGroupEvalGrid.Controls.Add(Me.pnlSqlGroupEvalGridButtons)
         Me.pnlSqlGroupEvalGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlGroupEvalGrid.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlGroupEvalGrid.Name = "pnlSqlGroupEvalGrid"
         Me.pnlSqlGroupEvalGrid.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlGroupEvalGrid.TabIndex = 46
@@ -3036,9 +3036,9 @@ Partial Class WinOfflineUI
         Me.grpSqlGroupEvalGrid.Controls.Add(Me.dgvGroupEvalGrid)
         Me.grpSqlGroupEvalGrid.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSqlGroupEvalGrid.Location = New System.Drawing.Point(0, 0)
-        Me.grpSqlGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSqlGroupEvalGrid.Name = "grpSqlGroupEvalGrid"
-        Me.grpSqlGroupEvalGrid.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlGroupEvalGrid.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSqlGroupEvalGrid.Size = New System.Drawing.Size(1023, 440)
         Me.grpSqlGroupEvalGrid.TabIndex = 70
         Me.grpSqlGroupEvalGrid.TabStop = False
@@ -3049,7 +3049,7 @@ Partial Class WinOfflineUI
         Me.dgvGroupEvalGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvGroupEvalGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvGroupEvalGrid.Location = New System.Drawing.Point(4, 27)
-        Me.dgvGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvGroupEvalGrid.Name = "dgvGroupEvalGrid"
         Me.dgvGroupEvalGrid.Size = New System.Drawing.Size(1015, 409)
         Me.dgvGroupEvalGrid.TabIndex = 0
@@ -3060,7 +3060,7 @@ Partial Class WinOfflineUI
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.prgGroupEvalGrid.ForeColor = System.Drawing.SystemColors.HotTrack
         Me.prgGroupEvalGrid.Location = New System.Drawing.Point(0, 410)
-        Me.prgGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.prgGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.prgGroupEvalGrid.Name = "prgGroupEvalGrid"
         Me.prgGroupEvalGrid.Size = New System.Drawing.Size(1023, 29)
         Me.prgGroupEvalGrid.Step = 1
@@ -3077,9 +3077,9 @@ Partial Class WinOfflineUI
         Me.grpSqlGroupEvalGridInst.Controls.Add(Me.btnGroupEvalGridDiscard)
         Me.grpSqlGroupEvalGridInst.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSqlGroupEvalGridInst.Location = New System.Drawing.Point(0, 440)
-        Me.grpSqlGroupEvalGridInst.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlGroupEvalGridInst.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSqlGroupEvalGridInst.Name = "grpSqlGroupEvalGridInst"
-        Me.grpSqlGroupEvalGridInst.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlGroupEvalGridInst.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSqlGroupEvalGridInst.Size = New System.Drawing.Size(1023, 192)
         Me.grpSqlGroupEvalGridInst.TabIndex = 72
         Me.grpSqlGroupEvalGridInst.TabStop = False
@@ -3093,7 +3093,7 @@ Partial Class WinOfflineUI
         Me.btnGroupEvalGridPreview.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnGroupEvalGridPreview.ForeColor = System.Drawing.Color.White
         Me.btnGroupEvalGridPreview.Location = New System.Drawing.Point(851, 91)
-        Me.btnGroupEvalGridPreview.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnGroupEvalGridPreview.Margin = New System.Windows.Forms.Padding(4)
         Me.btnGroupEvalGridPreview.Name = "btnGroupEvalGridPreview"
         Me.btnGroupEvalGridPreview.Size = New System.Drawing.Size(158, 38)
         Me.btnGroupEvalGridPreview.TabIndex = 85
@@ -3120,7 +3120,7 @@ Partial Class WinOfflineUI
         Me.btnGroupEvalGridCommit.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnGroupEvalGridCommit.ForeColor = System.Drawing.Color.White
         Me.btnGroupEvalGridCommit.Location = New System.Drawing.Point(851, 39)
-        Me.btnGroupEvalGridCommit.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnGroupEvalGridCommit.Margin = New System.Windows.Forms.Padding(4)
         Me.btnGroupEvalGridCommit.Name = "btnGroupEvalGridCommit"
         Me.btnGroupEvalGridCommit.Size = New System.Drawing.Size(158, 38)
         Me.btnGroupEvalGridCommit.TabIndex = 83
@@ -3135,7 +3135,7 @@ Partial Class WinOfflineUI
         Me.btnGroupEvalGridDiscard.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnGroupEvalGridDiscard.ForeColor = System.Drawing.Color.White
         Me.btnGroupEvalGridDiscard.Location = New System.Drawing.Point(851, 144)
-        Me.btnGroupEvalGridDiscard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnGroupEvalGridDiscard.Margin = New System.Windows.Forms.Padding(4)
         Me.btnGroupEvalGridDiscard.Name = "btnGroupEvalGridDiscard"
         Me.btnGroupEvalGridDiscard.Size = New System.Drawing.Size(158, 38)
         Me.btnGroupEvalGridDiscard.TabIndex = 82
@@ -3152,7 +3152,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlGroupEvalGridButtons.Controls.Add(Me.btnSqlExportGroupEvalGrid)
         Me.pnlSqlGroupEvalGridButtons.Controls.Add(Me.btnSqlExitGroupEvalGrid)
         Me.pnlSqlGroupEvalGridButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlGroupEvalGridButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlGroupEvalGridButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlGroupEvalGridButtons.Name = "pnlSqlGroupEvalGridButtons"
         Me.pnlSqlGroupEvalGridButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlGroupEvalGridButtons.TabIndex = 69
@@ -3165,7 +3165,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectGroupEvalGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectGroupEvalGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectGroupEvalGrid.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectGroupEvalGrid.Name = "btnSqlConnectGroupEvalGrid"
         Me.btnSqlConnectGroupEvalGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectGroupEvalGrid.TabIndex = 77
@@ -3180,7 +3180,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectGroupEvalGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectGroupEvalGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectGroupEvalGrid.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectGroupEvalGrid.Name = "btnSqlDisconnectGroupEvalGrid"
         Me.btnSqlDisconnectGroupEvalGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectGroupEvalGrid.TabIndex = 78
@@ -3195,7 +3195,7 @@ Partial Class WinOfflineUI
         Me.btnSqlRefreshGroupEvalGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlRefreshGroupEvalGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlRefreshGroupEvalGrid.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlRefreshGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlRefreshGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlRefreshGroupEvalGrid.Name = "btnSqlRefreshGroupEvalGrid"
         Me.btnSqlRefreshGroupEvalGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlRefreshGroupEvalGrid.TabIndex = 79
@@ -3210,7 +3210,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExportGroupEvalGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExportGroupEvalGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExportGroupEvalGrid.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlExportGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExportGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExportGroupEvalGrid.Name = "btnSqlExportGroupEvalGrid"
         Me.btnSqlExportGroupEvalGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExportGroupEvalGrid.TabIndex = 80
@@ -3225,7 +3225,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitGroupEvalGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitGroupEvalGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitGroupEvalGrid.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitGroupEvalGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitGroupEvalGrid.Name = "btnSqlExitGroupEvalGrid"
         Me.btnSqlExitGroupEvalGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitGroupEvalGrid.TabIndex = 81
@@ -3239,7 +3239,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlInstSoftGrid.Controls.Add(Me.pnlSqlInstSoftGridButtons)
         Me.pnlSqlInstSoftGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlInstSoftGrid.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlInstSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlInstSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlInstSoftGrid.Name = "pnlSqlInstSoftGrid"
         Me.pnlSqlInstSoftGrid.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlInstSoftGrid.TabIndex = 42
@@ -3252,9 +3252,9 @@ Partial Class WinOfflineUI
         Me.grpSqlInstSoftGrid.Controls.Add(Me.dgvSoftInst)
         Me.grpSqlInstSoftGrid.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSqlInstSoftGrid.Location = New System.Drawing.Point(0, 0)
-        Me.grpSqlInstSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlInstSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSqlInstSoftGrid.Name = "grpSqlInstSoftGrid"
-        Me.grpSqlInstSoftGrid.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlInstSoftGrid.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSqlInstSoftGrid.Size = New System.Drawing.Size(1023, 633)
         Me.grpSqlInstSoftGrid.TabIndex = 70
         Me.grpSqlInstSoftGrid.TabStop = False
@@ -3265,7 +3265,7 @@ Partial Class WinOfflineUI
         Me.dgvSoftInst.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSoftInst.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvSoftInst.Location = New System.Drawing.Point(4, 27)
-        Me.dgvSoftInst.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvSoftInst.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvSoftInst.Name = "dgvSoftInst"
         Me.dgvSoftInst.Size = New System.Drawing.Size(1015, 602)
         Me.dgvSoftInst.TabIndex = 2
@@ -3276,7 +3276,7 @@ Partial Class WinOfflineUI
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.prgInstSoftGrid.ForeColor = System.Drawing.SystemColors.HotTrack
         Me.prgInstSoftGrid.Location = New System.Drawing.Point(0, 605)
-        Me.prgInstSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.prgInstSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.prgInstSoftGrid.Name = "prgInstSoftGrid"
         Me.prgInstSoftGrid.Size = New System.Drawing.Size(1023, 29)
         Me.prgInstSoftGrid.Step = 1
@@ -3293,7 +3293,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlInstSoftGridButtons.Controls.Add(Me.btnSqlExportInstSoftGrid)
         Me.pnlSqlInstSoftGridButtons.Controls.Add(Me.btnSqlExitInstSoftGrid)
         Me.pnlSqlInstSoftGridButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlInstSoftGridButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlInstSoftGridButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlInstSoftGridButtons.Name = "pnlSqlInstSoftGridButtons"
         Me.pnlSqlInstSoftGridButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlInstSoftGridButtons.TabIndex = 69
@@ -3306,7 +3306,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectInstSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectInstSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectInstSoftGrid.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectInstSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectInstSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectInstSoftGrid.Name = "btnSqlConnectInstSoftGrid"
         Me.btnSqlConnectInstSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectInstSoftGrid.TabIndex = 77
@@ -3321,7 +3321,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectInstSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectInstSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectInstSoftGrid.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectInstSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectInstSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectInstSoftGrid.Name = "btnSqlDisconnectInstSoftGrid"
         Me.btnSqlDisconnectInstSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectInstSoftGrid.TabIndex = 78
@@ -3336,7 +3336,7 @@ Partial Class WinOfflineUI
         Me.btnSqlRefreshInstSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlRefreshInstSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlRefreshInstSoftGrid.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlRefreshInstSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlRefreshInstSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlRefreshInstSoftGrid.Name = "btnSqlRefreshInstSoftGrid"
         Me.btnSqlRefreshInstSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlRefreshInstSoftGrid.TabIndex = 79
@@ -3351,7 +3351,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExportInstSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExportInstSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExportInstSoftGrid.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlExportInstSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExportInstSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExportInstSoftGrid.Name = "btnSqlExportInstSoftGrid"
         Me.btnSqlExportInstSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExportInstSoftGrid.TabIndex = 80
@@ -3366,7 +3366,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitInstSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitInstSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitInstSoftGrid.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitInstSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitInstSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitInstSoftGrid.Name = "btnSqlExitInstSoftGrid"
         Me.btnSqlExitInstSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitInstSoftGrid.TabIndex = 81
@@ -3381,7 +3381,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlDiscSoftGrid.Controls.Add(Me.pnlSqlDiscSoftGridButtons)
         Me.pnlSqlDiscSoftGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlDiscSoftGrid.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlDiscSoftGrid.Name = "pnlSqlDiscSoftGrid"
         Me.pnlSqlDiscSoftGrid.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlDiscSoftGrid.TabIndex = 43
@@ -3393,9 +3393,9 @@ Partial Class WinOfflineUI
         Me.grpDiscSoftGrid.Controls.Add(Me.lblDiscSoftGrid)
         Me.grpDiscSoftGrid.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpDiscSoftGrid.Location = New System.Drawing.Point(0, 0)
-        Me.grpDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.grpDiscSoftGrid.Name = "grpDiscSoftGrid"
-        Me.grpDiscSoftGrid.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpDiscSoftGrid.Padding = New System.Windows.Forms.Padding(4)
         Me.grpDiscSoftGrid.Size = New System.Drawing.Size(1023, 56)
         Me.grpDiscSoftGrid.TabIndex = 70
         Me.grpDiscSoftGrid.TabStop = False
@@ -3425,7 +3425,7 @@ Partial Class WinOfflineUI
         Me.tabCtrlDiscSoftGrid.Controls.Add(Me.tabDiscEverything)
         Me.tabCtrlDiscSoftGrid.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tabCtrlDiscSoftGrid.Location = New System.Drawing.Point(0, 56)
-        Me.tabCtrlDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabCtrlDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.tabCtrlDiscSoftGrid.Name = "tabCtrlDiscSoftGrid"
         Me.tabCtrlDiscSoftGrid.SelectedIndex = 0
         Me.tabCtrlDiscSoftGrid.Size = New System.Drawing.Size(1023, 578)
@@ -3436,9 +3436,9 @@ Partial Class WinOfflineUI
         Me.tabDiscSignature.Controls.Add(Me.dgvDiscSignature)
         Me.tabDiscSignature.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tabDiscSignature.Location = New System.Drawing.Point(4, 28)
-        Me.tabDiscSignature.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabDiscSignature.Margin = New System.Windows.Forms.Padding(4)
         Me.tabDiscSignature.Name = "tabDiscSignature"
-        Me.tabDiscSignature.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabDiscSignature.Padding = New System.Windows.Forms.Padding(4)
         Me.tabDiscSignature.Size = New System.Drawing.Size(1015, 546)
         Me.tabDiscSignature.TabIndex = 0
         Me.tabDiscSignature.Text = "Signature"
@@ -3449,7 +3449,7 @@ Partial Class WinOfflineUI
         Me.dgvDiscSignature.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDiscSignature.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvDiscSignature.Location = New System.Drawing.Point(4, 4)
-        Me.dgvDiscSignature.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvDiscSignature.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvDiscSignature.Name = "dgvDiscSignature"
         Me.dgvDiscSignature.Size = New System.Drawing.Size(1007, 538)
         Me.dgvDiscSignature.TabIndex = 2
@@ -3459,10 +3459,10 @@ Partial Class WinOfflineUI
         Me.tabDiscCustom.Controls.Add(Me.dgvDiscCustom)
         Me.tabDiscCustom.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tabDiscCustom.Location = New System.Drawing.Point(4, 28)
-        Me.tabDiscCustom.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabDiscCustom.Margin = New System.Windows.Forms.Padding(4)
         Me.tabDiscCustom.Name = "tabDiscCustom"
-        Me.tabDiscCustom.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabDiscCustom.Size = New System.Drawing.Size(1016, 547)
+        Me.tabDiscCustom.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabDiscCustom.Size = New System.Drawing.Size(1015, 546)
         Me.tabDiscCustom.TabIndex = 4
         Me.tabDiscCustom.Text = "Custom Signature"
         Me.tabDiscCustom.UseVisualStyleBackColor = True
@@ -3472,19 +3472,19 @@ Partial Class WinOfflineUI
         Me.dgvDiscCustom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDiscCustom.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvDiscCustom.Location = New System.Drawing.Point(4, 4)
-        Me.dgvDiscCustom.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvDiscCustom.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvDiscCustom.Name = "dgvDiscCustom"
-        Me.dgvDiscCustom.Size = New System.Drawing.Size(1008, 539)
+        Me.dgvDiscCustom.Size = New System.Drawing.Size(1007, 538)
         Me.dgvDiscCustom.TabIndex = 2
         '
         'tabDiscHeuristic
         '
         Me.tabDiscHeuristic.Controls.Add(Me.dgvDiscHeuristic)
         Me.tabDiscHeuristic.Location = New System.Drawing.Point(4, 28)
-        Me.tabDiscHeuristic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabDiscHeuristic.Margin = New System.Windows.Forms.Padding(4)
         Me.tabDiscHeuristic.Name = "tabDiscHeuristic"
-        Me.tabDiscHeuristic.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabDiscHeuristic.Size = New System.Drawing.Size(1016, 547)
+        Me.tabDiscHeuristic.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabDiscHeuristic.Size = New System.Drawing.Size(1015, 546)
         Me.tabDiscHeuristic.TabIndex = 1
         Me.tabDiscHeuristic.Text = "Heuristic"
         Me.tabDiscHeuristic.UseVisualStyleBackColor = True
@@ -3494,19 +3494,19 @@ Partial Class WinOfflineUI
         Me.dgvDiscHeuristic.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDiscHeuristic.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvDiscHeuristic.Location = New System.Drawing.Point(4, 4)
-        Me.dgvDiscHeuristic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvDiscHeuristic.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvDiscHeuristic.Name = "dgvDiscHeuristic"
-        Me.dgvDiscHeuristic.Size = New System.Drawing.Size(1008, 539)
+        Me.dgvDiscHeuristic.Size = New System.Drawing.Size(1007, 538)
         Me.dgvDiscHeuristic.TabIndex = 2
         '
         'tabDiscIntellisig
         '
         Me.tabDiscIntellisig.Controls.Add(Me.dgvDiscIntellisig)
         Me.tabDiscIntellisig.Location = New System.Drawing.Point(4, 28)
-        Me.tabDiscIntellisig.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabDiscIntellisig.Margin = New System.Windows.Forms.Padding(4)
         Me.tabDiscIntellisig.Name = "tabDiscIntellisig"
-        Me.tabDiscIntellisig.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabDiscIntellisig.Size = New System.Drawing.Size(1016, 547)
+        Me.tabDiscIntellisig.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabDiscIntellisig.Size = New System.Drawing.Size(1015, 546)
         Me.tabDiscIntellisig.TabIndex = 2
         Me.tabDiscIntellisig.Text = "Intellisig"
         Me.tabDiscIntellisig.UseVisualStyleBackColor = True
@@ -3516,19 +3516,19 @@ Partial Class WinOfflineUI
         Me.dgvDiscIntellisig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDiscIntellisig.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvDiscIntellisig.Location = New System.Drawing.Point(4, 4)
-        Me.dgvDiscIntellisig.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvDiscIntellisig.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvDiscIntellisig.Name = "dgvDiscIntellisig"
-        Me.dgvDiscIntellisig.Size = New System.Drawing.Size(1008, 539)
+        Me.dgvDiscIntellisig.Size = New System.Drawing.Size(1007, 538)
         Me.dgvDiscIntellisig.TabIndex = 3
         '
         'tabDiscEverything
         '
         Me.tabDiscEverything.Controls.Add(Me.dgvDiscEverything)
         Me.tabDiscEverything.Location = New System.Drawing.Point(4, 28)
-        Me.tabDiscEverything.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabDiscEverything.Margin = New System.Windows.Forms.Padding(4)
         Me.tabDiscEverything.Name = "tabDiscEverything"
-        Me.tabDiscEverything.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabDiscEverything.Size = New System.Drawing.Size(1016, 547)
+        Me.tabDiscEverything.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabDiscEverything.Size = New System.Drawing.Size(1015, 546)
         Me.tabDiscEverything.TabIndex = 3
         Me.tabDiscEverything.Text = "Everything"
         Me.tabDiscEverything.UseVisualStyleBackColor = True
@@ -3538,9 +3538,9 @@ Partial Class WinOfflineUI
         Me.dgvDiscEverything.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDiscEverything.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvDiscEverything.Location = New System.Drawing.Point(4, 4)
-        Me.dgvDiscEverything.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvDiscEverything.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvDiscEverything.Name = "dgvDiscEverything"
-        Me.dgvDiscEverything.Size = New System.Drawing.Size(1008, 539)
+        Me.dgvDiscEverything.Size = New System.Drawing.Size(1007, 538)
         Me.dgvDiscEverything.TabIndex = 3
         '
         'prgDiscSoftGrid
@@ -3549,7 +3549,7 @@ Partial Class WinOfflineUI
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.prgDiscSoftGrid.ForeColor = System.Drawing.SystemColors.HotTrack
         Me.prgDiscSoftGrid.Location = New System.Drawing.Point(0, 605)
-        Me.prgDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.prgDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.prgDiscSoftGrid.Name = "prgDiscSoftGrid"
         Me.prgDiscSoftGrid.Size = New System.Drawing.Size(1023, 29)
         Me.prgDiscSoftGrid.Step = 1
@@ -3566,7 +3566,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlDiscSoftGridButtons.Controls.Add(Me.btnSqlExportDiscSoftGrid)
         Me.pnlSqlDiscSoftGridButtons.Controls.Add(Me.btnSqlExitDiscSoftGrid)
         Me.pnlSqlDiscSoftGridButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlDiscSoftGridButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlDiscSoftGridButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlDiscSoftGridButtons.Name = "pnlSqlDiscSoftGridButtons"
         Me.pnlSqlDiscSoftGridButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlDiscSoftGridButtons.TabIndex = 69
@@ -3579,7 +3579,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectDiscSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectDiscSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectDiscSoftGrid.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectDiscSoftGrid.Name = "btnSqlConnectDiscSoftGrid"
         Me.btnSqlConnectDiscSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectDiscSoftGrid.TabIndex = 77
@@ -3594,7 +3594,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectDiscSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectDiscSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectDiscSoftGrid.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectDiscSoftGrid.Name = "btnSqlDisconnectDiscSoftGrid"
         Me.btnSqlDisconnectDiscSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectDiscSoftGrid.TabIndex = 78
@@ -3609,7 +3609,7 @@ Partial Class WinOfflineUI
         Me.btnSqlRefreshDiscSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlRefreshDiscSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlRefreshDiscSoftGrid.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlRefreshDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlRefreshDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlRefreshDiscSoftGrid.Name = "btnSqlRefreshDiscSoftGrid"
         Me.btnSqlRefreshDiscSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlRefreshDiscSoftGrid.TabIndex = 79
@@ -3624,7 +3624,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExportDiscSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExportDiscSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExportDiscSoftGrid.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlExportDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExportDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExportDiscSoftGrid.Name = "btnSqlExportDiscSoftGrid"
         Me.btnSqlExportDiscSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExportDiscSoftGrid.TabIndex = 80
@@ -3639,7 +3639,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitDiscSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitDiscSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitDiscSoftGrid.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitDiscSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitDiscSoftGrid.Name = "btnSqlExitDiscSoftGrid"
         Me.btnSqlExitDiscSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitDiscSoftGrid.TabIndex = 81
@@ -3653,7 +3653,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlDuplCompGrid.Controls.Add(Me.pnlSqlDuplCompGridButtons)
         Me.pnlSqlDuplCompGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlDuplCompGrid.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlDuplCompGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlDuplCompGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlDuplCompGrid.Name = "pnlSqlDuplCompGrid"
         Me.pnlSqlDuplCompGrid.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlDuplCompGrid.TabIndex = 41
@@ -3669,7 +3669,7 @@ Partial Class WinOfflineUI
         Me.tabCtrlDuplComp.Controls.Add(Me.tabDuplBlank)
         Me.tabCtrlDuplComp.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tabCtrlDuplComp.Location = New System.Drawing.Point(0, 1)
-        Me.tabCtrlDuplComp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabCtrlDuplComp.Margin = New System.Windows.Forms.Padding(4)
         Me.tabCtrlDuplComp.Name = "tabCtrlDuplComp"
         Me.tabCtrlDuplComp.SelectedIndex = 0
         Me.tabCtrlDuplComp.Size = New System.Drawing.Size(1023, 633)
@@ -3679,9 +3679,9 @@ Partial Class WinOfflineUI
         '
         Me.tabDuplHostname.Controls.Add(Me.dgvDuplHostname)
         Me.tabDuplHostname.Location = New System.Drawing.Point(4, 28)
-        Me.tabDuplHostname.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabDuplHostname.Margin = New System.Windows.Forms.Padding(4)
         Me.tabDuplHostname.Name = "tabDuplHostname"
-        Me.tabDuplHostname.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabDuplHostname.Padding = New System.Windows.Forms.Padding(4)
         Me.tabDuplHostname.Size = New System.Drawing.Size(1015, 601)
         Me.tabDuplHostname.TabIndex = 0
         Me.tabDuplHostname.Text = "By Hostname"
@@ -3692,7 +3692,7 @@ Partial Class WinOfflineUI
         Me.dgvDuplHostname.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDuplHostname.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvDuplHostname.Location = New System.Drawing.Point(4, 4)
-        Me.dgvDuplHostname.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvDuplHostname.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvDuplHostname.Name = "dgvDuplHostname"
         Me.dgvDuplHostname.Size = New System.Drawing.Size(1007, 593)
         Me.dgvDuplHostname.TabIndex = 1
@@ -3701,10 +3701,10 @@ Partial Class WinOfflineUI
         '
         Me.tabDuplSerialNum.Controls.Add(Me.dgvDuplSerialNum)
         Me.tabDuplSerialNum.Location = New System.Drawing.Point(4, 28)
-        Me.tabDuplSerialNum.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabDuplSerialNum.Margin = New System.Windows.Forms.Padding(4)
         Me.tabDuplSerialNum.Name = "tabDuplSerialNum"
-        Me.tabDuplSerialNum.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabDuplSerialNum.Size = New System.Drawing.Size(1016, 602)
+        Me.tabDuplSerialNum.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabDuplSerialNum.Size = New System.Drawing.Size(1015, 601)
         Me.tabDuplSerialNum.TabIndex = 1
         Me.tabDuplSerialNum.Text = "By Serial Number"
         Me.tabDuplSerialNum.UseVisualStyleBackColor = True
@@ -3714,19 +3714,19 @@ Partial Class WinOfflineUI
         Me.dgvDuplSerialNum.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDuplSerialNum.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvDuplSerialNum.Location = New System.Drawing.Point(4, 4)
-        Me.dgvDuplSerialNum.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvDuplSerialNum.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvDuplSerialNum.Name = "dgvDuplSerialNum"
-        Me.dgvDuplSerialNum.Size = New System.Drawing.Size(1008, 594)
+        Me.dgvDuplSerialNum.Size = New System.Drawing.Size(1007, 593)
         Me.dgvDuplSerialNum.TabIndex = 0
         '
         'tabDuplBoth
         '
         Me.tabDuplBoth.Controls.Add(Me.dgvDuplBoth)
         Me.tabDuplBoth.Location = New System.Drawing.Point(4, 28)
-        Me.tabDuplBoth.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabDuplBoth.Margin = New System.Windows.Forms.Padding(4)
         Me.tabDuplBoth.Name = "tabDuplBoth"
-        Me.tabDuplBoth.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabDuplBoth.Size = New System.Drawing.Size(1016, 602)
+        Me.tabDuplBoth.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabDuplBoth.Size = New System.Drawing.Size(1015, 601)
         Me.tabDuplBoth.TabIndex = 2
         Me.tabDuplBoth.Text = "By Hostname & Serial Number"
         Me.tabDuplBoth.UseVisualStyleBackColor = True
@@ -3736,19 +3736,19 @@ Partial Class WinOfflineUI
         Me.dgvDuplBoth.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDuplBoth.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvDuplBoth.Location = New System.Drawing.Point(4, 4)
-        Me.dgvDuplBoth.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvDuplBoth.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvDuplBoth.Name = "dgvDuplBoth"
-        Me.dgvDuplBoth.Size = New System.Drawing.Size(1008, 594)
+        Me.dgvDuplBoth.Size = New System.Drawing.Size(1007, 593)
         Me.dgvDuplBoth.TabIndex = 0
         '
         'tabDuplBlank
         '
         Me.tabDuplBlank.Controls.Add(Me.dgvDuplBlank)
         Me.tabDuplBlank.Location = New System.Drawing.Point(4, 28)
-        Me.tabDuplBlank.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabDuplBlank.Margin = New System.Windows.Forms.Padding(4)
         Me.tabDuplBlank.Name = "tabDuplBlank"
-        Me.tabDuplBlank.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabDuplBlank.Size = New System.Drawing.Size(1016, 602)
+        Me.tabDuplBlank.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabDuplBlank.Size = New System.Drawing.Size(1015, 601)
         Me.tabDuplBlank.TabIndex = 3
         Me.tabDuplBlank.Text = "Missing Serial Number"
         Me.tabDuplBlank.UseVisualStyleBackColor = True
@@ -3758,9 +3758,9 @@ Partial Class WinOfflineUI
         Me.dgvDuplBlank.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDuplBlank.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvDuplBlank.Location = New System.Drawing.Point(4, 4)
-        Me.dgvDuplBlank.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvDuplBlank.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvDuplBlank.Name = "dgvDuplBlank"
-        Me.dgvDuplBlank.Size = New System.Drawing.Size(1008, 594)
+        Me.dgvDuplBlank.Size = New System.Drawing.Size(1007, 593)
         Me.dgvDuplBlank.TabIndex = 1
         '
         'prgDuplCompGrid
@@ -3769,7 +3769,7 @@ Partial Class WinOfflineUI
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.prgDuplCompGrid.ForeColor = System.Drawing.SystemColors.HotTrack
         Me.prgDuplCompGrid.Location = New System.Drawing.Point(0, 605)
-        Me.prgDuplCompGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.prgDuplCompGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.prgDuplCompGrid.Name = "prgDuplCompGrid"
         Me.prgDuplCompGrid.Size = New System.Drawing.Size(1023, 29)
         Me.prgDuplCompGrid.Step = 1
@@ -3786,7 +3786,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlDuplCompGridButtons.Controls.Add(Me.btnSqlExportDuplCompGrid)
         Me.pnlSqlDuplCompGridButtons.Controls.Add(Me.btnSqlExitDuplCompGrid)
         Me.pnlSqlDuplCompGridButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlDuplCompGridButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlDuplCompGridButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlDuplCompGridButtons.Name = "pnlSqlDuplCompGridButtons"
         Me.pnlSqlDuplCompGridButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlDuplCompGridButtons.TabIndex = 69
@@ -3799,7 +3799,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectDuplCompGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectDuplCompGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectDuplCompGrid.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectDuplCompGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectDuplCompGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectDuplCompGrid.Name = "btnSqlConnectDuplCompGrid"
         Me.btnSqlConnectDuplCompGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectDuplCompGrid.TabIndex = 77
@@ -3814,7 +3814,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectDuplCompGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectDuplCompGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectDuplCompGrid.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectDuplCompGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectDuplCompGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectDuplCompGrid.Name = "btnSqlDisconnectDuplCompGrid"
         Me.btnSqlDisconnectDuplCompGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectDuplCompGrid.TabIndex = 78
@@ -3829,7 +3829,7 @@ Partial Class WinOfflineUI
         Me.btnSqlRefreshDuplCompGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlRefreshDuplCompGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlRefreshDuplCompGrid.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlRefreshDuplCompGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlRefreshDuplCompGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlRefreshDuplCompGrid.Name = "btnSqlRefreshDuplCompGrid"
         Me.btnSqlRefreshDuplCompGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlRefreshDuplCompGrid.TabIndex = 79
@@ -3844,7 +3844,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExportDuplCompGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExportDuplCompGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExportDuplCompGrid.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlExportDuplCompGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExportDuplCompGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExportDuplCompGrid.Name = "btnSqlExportDuplCompGrid"
         Me.btnSqlExportDuplCompGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExportDuplCompGrid.TabIndex = 80
@@ -3859,7 +3859,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitDuplCompGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitDuplCompGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitDuplCompGrid.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitDuplCompGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitDuplCompGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitDuplCompGrid.Name = "btnSqlExitDuplCompGrid"
         Me.btnSqlExitDuplCompGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitDuplCompGrid.TabIndex = 81
@@ -3873,7 +3873,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlUnUsedSoftGrid.Controls.Add(Me.pnlSqlUnUsedSoftGridButtons)
         Me.pnlSqlUnUsedSoftGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlUnUsedSoftGrid.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlUnUsedSoftGrid.Name = "pnlSqlUnUsedSoftGrid"
         Me.pnlSqlUnUsedSoftGrid.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlUnUsedSoftGrid.TabIndex = 40
@@ -3888,7 +3888,7 @@ Partial Class WinOfflineUI
         Me.tabCtrlSwNotUsed.Controls.Add(Me.tabSwNotStaged)
         Me.tabCtrlSwNotUsed.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tabCtrlSwNotUsed.Location = New System.Drawing.Point(0, 1)
-        Me.tabCtrlSwNotUsed.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabCtrlSwNotUsed.Margin = New System.Windows.Forms.Padding(4)
         Me.tabCtrlSwNotUsed.Name = "tabCtrlSwNotUsed"
         Me.tabCtrlSwNotUsed.SelectedIndex = 0
         Me.tabCtrlSwNotUsed.Size = New System.Drawing.Size(1023, 633)
@@ -3898,9 +3898,9 @@ Partial Class WinOfflineUI
         '
         Me.tabSwNotUsed.Controls.Add(Me.dgvSwNotUsed)
         Me.tabSwNotUsed.Location = New System.Drawing.Point(4, 28)
-        Me.tabSwNotUsed.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabSwNotUsed.Margin = New System.Windows.Forms.Padding(4)
         Me.tabSwNotUsed.Name = "tabSwNotUsed"
-        Me.tabSwNotUsed.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabSwNotUsed.Padding = New System.Windows.Forms.Padding(4)
         Me.tabSwNotUsed.Size = New System.Drawing.Size(1015, 601)
         Me.tabSwNotUsed.TabIndex = 0
         Me.tabSwNotUsed.Text = "Software Not Used (Installed or Staged)"
@@ -3911,7 +3911,7 @@ Partial Class WinOfflineUI
         Me.dgvSwNotUsed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSwNotUsed.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvSwNotUsed.Location = New System.Drawing.Point(4, 4)
-        Me.dgvSwNotUsed.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvSwNotUsed.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvSwNotUsed.Name = "dgvSwNotUsed"
         Me.dgvSwNotUsed.Size = New System.Drawing.Size(1007, 593)
         Me.dgvSwNotUsed.TabIndex = 1
@@ -3920,10 +3920,10 @@ Partial Class WinOfflineUI
         '
         Me.tabSwNotInst.Controls.Add(Me.dgvSwNotInst)
         Me.tabSwNotInst.Location = New System.Drawing.Point(4, 28)
-        Me.tabSwNotInst.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabSwNotInst.Margin = New System.Windows.Forms.Padding(4)
         Me.tabSwNotInst.Name = "tabSwNotInst"
-        Me.tabSwNotInst.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabSwNotInst.Size = New System.Drawing.Size(1016, 602)
+        Me.tabSwNotInst.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabSwNotInst.Size = New System.Drawing.Size(1015, 601)
         Me.tabSwNotInst.TabIndex = 1
         Me.tabSwNotInst.Text = "Software Not Installed"
         Me.tabSwNotInst.UseVisualStyleBackColor = True
@@ -3933,19 +3933,19 @@ Partial Class WinOfflineUI
         Me.dgvSwNotInst.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSwNotInst.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvSwNotInst.Location = New System.Drawing.Point(4, 4)
-        Me.dgvSwNotInst.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvSwNotInst.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvSwNotInst.Name = "dgvSwNotInst"
-        Me.dgvSwNotInst.Size = New System.Drawing.Size(1008, 594)
+        Me.dgvSwNotInst.Size = New System.Drawing.Size(1007, 593)
         Me.dgvSwNotInst.TabIndex = 0
         '
         'tabSwNotStaged
         '
         Me.tabSwNotStaged.Controls.Add(Me.dgvSwNotStaged)
         Me.tabSwNotStaged.Location = New System.Drawing.Point(4, 28)
-        Me.tabSwNotStaged.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabSwNotStaged.Margin = New System.Windows.Forms.Padding(4)
         Me.tabSwNotStaged.Name = "tabSwNotStaged"
-        Me.tabSwNotStaged.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabSwNotStaged.Size = New System.Drawing.Size(1016, 602)
+        Me.tabSwNotStaged.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabSwNotStaged.Size = New System.Drawing.Size(1015, 601)
         Me.tabSwNotStaged.TabIndex = 2
         Me.tabSwNotStaged.Text = "Software Not Staged"
         Me.tabSwNotStaged.UseVisualStyleBackColor = True
@@ -3955,9 +3955,9 @@ Partial Class WinOfflineUI
         Me.dgvSwNotStaged.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSwNotStaged.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvSwNotStaged.Location = New System.Drawing.Point(4, 4)
-        Me.dgvSwNotStaged.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvSwNotStaged.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvSwNotStaged.Name = "dgvSwNotStaged"
-        Me.dgvSwNotStaged.Size = New System.Drawing.Size(1008, 594)
+        Me.dgvSwNotStaged.Size = New System.Drawing.Size(1007, 593)
         Me.dgvSwNotStaged.TabIndex = 0
         '
         'prgUnUsedSoftGrid
@@ -3966,7 +3966,7 @@ Partial Class WinOfflineUI
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.prgUnUsedSoftGrid.ForeColor = System.Drawing.SystemColors.HotTrack
         Me.prgUnUsedSoftGrid.Location = New System.Drawing.Point(0, 605)
-        Me.prgUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.prgUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.prgUnUsedSoftGrid.Name = "prgUnUsedSoftGrid"
         Me.prgUnUsedSoftGrid.Size = New System.Drawing.Size(1023, 29)
         Me.prgUnUsedSoftGrid.Step = 1
@@ -3983,7 +3983,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlUnUsedSoftGridButtons.Controls.Add(Me.btnSqlExportUnUsedSoftGrid)
         Me.pnlSqlUnUsedSoftGridButtons.Controls.Add(Me.btnSqlExitUnUsedSoftGrid)
         Me.pnlSqlUnUsedSoftGridButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlUnUsedSoftGridButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlUnUsedSoftGridButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlUnUsedSoftGridButtons.Name = "pnlSqlUnUsedSoftGridButtons"
         Me.pnlSqlUnUsedSoftGridButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlUnUsedSoftGridButtons.TabIndex = 68
@@ -3996,7 +3996,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectUnUsedSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectUnUsedSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectUnUsedSoftGrid.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectUnUsedSoftGrid.Name = "btnSqlConnectUnUsedSoftGrid"
         Me.btnSqlConnectUnUsedSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectUnUsedSoftGrid.TabIndex = 77
@@ -4011,7 +4011,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectUnUsedSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectUnUsedSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectUnUsedSoftGrid.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectUnUsedSoftGrid.Name = "btnSqlDisconnectUnUsedSoftGrid"
         Me.btnSqlDisconnectUnUsedSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectUnUsedSoftGrid.TabIndex = 78
@@ -4026,7 +4026,7 @@ Partial Class WinOfflineUI
         Me.btnSqlRefreshUnUsedSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlRefreshUnUsedSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlRefreshUnUsedSoftGrid.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlRefreshUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlRefreshUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlRefreshUnUsedSoftGrid.Name = "btnSqlRefreshUnUsedSoftGrid"
         Me.btnSqlRefreshUnUsedSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlRefreshUnUsedSoftGrid.TabIndex = 79
@@ -4041,7 +4041,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExportUnUsedSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExportUnUsedSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExportUnUsedSoftGrid.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlExportUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExportUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExportUnUsedSoftGrid.Name = "btnSqlExportUnUsedSoftGrid"
         Me.btnSqlExportUnUsedSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExportUnUsedSoftGrid.TabIndex = 80
@@ -4056,7 +4056,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitUnUsedSoftGrid.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitUnUsedSoftGrid.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitUnUsedSoftGrid.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitUnUsedSoftGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitUnUsedSoftGrid.Name = "btnSqlExitUnUsedSoftGrid"
         Me.btnSqlExitUnUsedSoftGrid.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitUnUsedSoftGrid.TabIndex = 81
@@ -4070,7 +4070,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlCleanApps.Controls.Add(Me.pnlSqlCleanAppsButtons)
         Me.pnlSqlCleanApps.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlCleanApps.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlCleanApps.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlCleanApps.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlCleanApps.Name = "pnlSqlCleanApps"
         Me.pnlSqlCleanApps.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlCleanApps.TabIndex = 28
@@ -4082,9 +4082,9 @@ Partial Class WinOfflineUI
         Me.grpSqlCleanAppsInfo.Controls.Add(Me.lblSqlCleanAppsIntro)
         Me.grpSqlCleanAppsInfo.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSqlCleanAppsInfo.Location = New System.Drawing.Point(0, 440)
-        Me.grpSqlCleanAppsInfo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlCleanAppsInfo.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSqlCleanAppsInfo.Name = "grpSqlCleanAppsInfo"
-        Me.grpSqlCleanAppsInfo.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlCleanAppsInfo.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSqlCleanAppsInfo.Size = New System.Drawing.Size(1023, 194)
         Me.grpSqlCleanAppsInfo.TabIndex = 69
         Me.grpSqlCleanAppsInfo.TabStop = False
@@ -4109,9 +4109,9 @@ Partial Class WinOfflineUI
         Me.grpSqlCleanAppsOutput.Controls.Add(Me.txtSqlCleanApps)
         Me.grpSqlCleanAppsOutput.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSqlCleanAppsOutput.Location = New System.Drawing.Point(0, 0)
-        Me.grpSqlCleanAppsOutput.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlCleanAppsOutput.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSqlCleanAppsOutput.Name = "grpSqlCleanAppsOutput"
-        Me.grpSqlCleanAppsOutput.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlCleanAppsOutput.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSqlCleanAppsOutput.Size = New System.Drawing.Size(1023, 439)
         Me.grpSqlCleanAppsOutput.TabIndex = 0
         Me.grpSqlCleanAppsOutput.TabStop = False
@@ -4123,7 +4123,7 @@ Partial Class WinOfflineUI
         Me.txtSqlCleanApps.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtSqlCleanApps.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSqlCleanApps.Location = New System.Drawing.Point(4, 27)
-        Me.txtSqlCleanApps.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtSqlCleanApps.Margin = New System.Windows.Forms.Padding(4)
         Me.txtSqlCleanApps.Multiline = True
         Me.txtSqlCleanApps.Name = "txtSqlCleanApps"
         Me.txtSqlCleanApps.ReadOnly = True
@@ -4142,7 +4142,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlCleanAppsButtons.Controls.Add(Me.btnSqlRunCleanApps)
         Me.pnlSqlCleanAppsButtons.Controls.Add(Me.btnSqlExitCleanApps)
         Me.pnlSqlCleanAppsButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlCleanAppsButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlCleanAppsButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlCleanAppsButtons.Name = "pnlSqlCleanAppsButtons"
         Me.pnlSqlCleanAppsButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlCleanAppsButtons.TabIndex = 68
@@ -4155,7 +4155,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectCleanApps.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectCleanApps.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectCleanApps.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectCleanApps.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectCleanApps.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectCleanApps.Name = "btnSqlConnectCleanApps"
         Me.btnSqlConnectCleanApps.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectCleanApps.TabIndex = 77
@@ -4170,7 +4170,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectCleanApps.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectCleanApps.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectCleanApps.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectCleanApps.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectCleanApps.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectCleanApps.Name = "btnSqlDisconnectCleanApps"
         Me.btnSqlDisconnectCleanApps.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectCleanApps.TabIndex = 78
@@ -4185,7 +4185,7 @@ Partial Class WinOfflineUI
         Me.btnSqlCafStopCleanApps.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlCafStopCleanApps.ForeColor = System.Drawing.Color.White
         Me.btnSqlCafStopCleanApps.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlCafStopCleanApps.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlCafStopCleanApps.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlCafStopCleanApps.Name = "btnSqlCafStopCleanApps"
         Me.btnSqlCafStopCleanApps.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlCafStopCleanApps.TabIndex = 79
@@ -4200,7 +4200,7 @@ Partial Class WinOfflineUI
         Me.btnSqlRunCleanApps.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlRunCleanApps.ForeColor = System.Drawing.Color.White
         Me.btnSqlRunCleanApps.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlRunCleanApps.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlRunCleanApps.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlRunCleanApps.Name = "btnSqlRunCleanApps"
         Me.btnSqlRunCleanApps.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlRunCleanApps.TabIndex = 80
@@ -4215,7 +4215,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitCleanApps.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitCleanApps.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitCleanApps.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitCleanApps.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitCleanApps.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitCleanApps.Name = "btnSqlExitCleanApps"
         Me.btnSqlExitCleanApps.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitCleanApps.TabIndex = 81
@@ -4229,7 +4229,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlQueryEditor.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSqlQueryEditor.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pnlSqlQueryEditor.Location = New System.Drawing.Point(0, 0)
-        Me.pnlSqlQueryEditor.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlQueryEditor.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlQueryEditor.Name = "pnlSqlQueryEditor"
         Me.pnlSqlQueryEditor.Size = New System.Drawing.Size(1023, 698)
         Me.pnlSqlQueryEditor.TabIndex = 28
@@ -4244,9 +4244,9 @@ Partial Class WinOfflineUI
         Me.grpSqlQuery.Controls.Add(Me.pnlSqlQueryEditorButtons)
         Me.grpSqlQuery.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSqlQuery.Location = New System.Drawing.Point(0, 0)
-        Me.grpSqlQuery.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlQuery.Margin = New System.Windows.Forms.Padding(4)
         Me.grpSqlQuery.Name = "grpSqlQuery"
-        Me.grpSqlQuery.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpSqlQuery.Padding = New System.Windows.Forms.Padding(4)
         Me.grpSqlQuery.Size = New System.Drawing.Size(1023, 698)
         Me.grpSqlQuery.TabIndex = 27
         Me.grpSqlQuery.TabStop = False
@@ -4260,7 +4260,7 @@ Partial Class WinOfflineUI
         Me.rtbSqlQuery.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.rtbSqlQuery.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rtbSqlQuery.Location = New System.Drawing.Point(4, 26)
-        Me.rtbSqlQuery.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rtbSqlQuery.Margin = New System.Windows.Forms.Padding(4)
         Me.rtbSqlQuery.Name = "rtbSqlQuery"
         Me.rtbSqlQuery.Size = New System.Drawing.Size(1012, 213)
         Me.rtbSqlQuery.TabIndex = 1
@@ -4274,7 +4274,7 @@ Partial Class WinOfflineUI
         Me.TabControlSql.Controls.Add(Me.TabPageMessages)
         Me.TabControlSql.Controls.Add(Me.TabPageGrid)
         Me.TabControlSql.Location = New System.Drawing.Point(4, 248)
-        Me.TabControlSql.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabControlSql.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControlSql.Name = "TabControlSql"
         Me.TabControlSql.SelectedIndex = 0
         Me.TabControlSql.Size = New System.Drawing.Size(1014, 386)
@@ -4284,9 +4284,9 @@ Partial Class WinOfflineUI
         '
         Me.TabPageMessages.Controls.Add(Me.txtSqlMessage)
         Me.TabPageMessages.Location = New System.Drawing.Point(4, 32)
-        Me.TabPageMessages.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPageMessages.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPageMessages.Name = "TabPageMessages"
-        Me.TabPageMessages.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPageMessages.Padding = New System.Windows.Forms.Padding(4)
         Me.TabPageMessages.Size = New System.Drawing.Size(1006, 350)
         Me.TabPageMessages.TabIndex = 0
         Me.TabPageMessages.Text = "Messages"
@@ -4297,7 +4297,7 @@ Partial Class WinOfflineUI
         Me.txtSqlMessage.BackColor = System.Drawing.Color.Beige
         Me.txtSqlMessage.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtSqlMessage.Location = New System.Drawing.Point(4, 4)
-        Me.txtSqlMessage.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtSqlMessage.Margin = New System.Windows.Forms.Padding(4)
         Me.txtSqlMessage.Multiline = True
         Me.txtSqlMessage.Name = "txtSqlMessage"
         Me.txtSqlMessage.ReadOnly = True
@@ -4310,10 +4310,10 @@ Partial Class WinOfflineUI
         '
         Me.TabPageGrid.AutoScroll = True
         Me.TabPageGrid.Location = New System.Drawing.Point(4, 32)
-        Me.TabPageGrid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPageGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPageGrid.Name = "TabPageGrid"
-        Me.TabPageGrid.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.TabPageGrid.Size = New System.Drawing.Size(1007, 350)
+        Me.TabPageGrid.Padding = New System.Windows.Forms.Padding(4)
+        Me.TabPageGrid.Size = New System.Drawing.Size(1006, 350)
         Me.TabPageGrid.TabIndex = 1
         Me.TabPageGrid.Text = "Results"
         Me.TabPageGrid.UseVisualStyleBackColor = True
@@ -4328,7 +4328,7 @@ Partial Class WinOfflineUI
         Me.pnlSqlQueryEditorButtons.Controls.Add(Me.btnSqlCancelQueryEditor)
         Me.pnlSqlQueryEditorButtons.Controls.Add(Me.btnSqlExitQueryEditor)
         Me.pnlSqlQueryEditorButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlSqlQueryEditorButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSqlQueryEditorButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlSqlQueryEditorButtons.Name = "pnlSqlQueryEditorButtons"
         Me.pnlSqlQueryEditorButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlSqlQueryEditorButtons.TabIndex = 68
@@ -4341,7 +4341,7 @@ Partial Class WinOfflineUI
         Me.btnSqlConnectQueryEditor.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlConnectQueryEditor.ForeColor = System.Drawing.Color.White
         Me.btnSqlConnectQueryEditor.Location = New System.Drawing.Point(11, 11)
-        Me.btnSqlConnectQueryEditor.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlConnectQueryEditor.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlConnectQueryEditor.Name = "btnSqlConnectQueryEditor"
         Me.btnSqlConnectQueryEditor.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlConnectQueryEditor.TabIndex = 77
@@ -4356,7 +4356,7 @@ Partial Class WinOfflineUI
         Me.btnSqlDisconnectQueryEditor.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlDisconnectQueryEditor.ForeColor = System.Drawing.Color.White
         Me.btnSqlDisconnectQueryEditor.Location = New System.Drawing.Point(221, 11)
-        Me.btnSqlDisconnectQueryEditor.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlDisconnectQueryEditor.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlDisconnectQueryEditor.Name = "btnSqlDisconnectQueryEditor"
         Me.btnSqlDisconnectQueryEditor.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlDisconnectQueryEditor.TabIndex = 78
@@ -4371,7 +4371,7 @@ Partial Class WinOfflineUI
         Me.btnSqlSubmitQueryEditor.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlSubmitQueryEditor.ForeColor = System.Drawing.Color.White
         Me.btnSqlSubmitQueryEditor.Location = New System.Drawing.Point(431, 11)
-        Me.btnSqlSubmitQueryEditor.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlSubmitQueryEditor.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlSubmitQueryEditor.Name = "btnSqlSubmitQueryEditor"
         Me.btnSqlSubmitQueryEditor.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlSubmitQueryEditor.TabIndex = 79
@@ -4386,7 +4386,7 @@ Partial Class WinOfflineUI
         Me.btnSqlCancelQueryEditor.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlCancelQueryEditor.ForeColor = System.Drawing.Color.White
         Me.btnSqlCancelQueryEditor.Location = New System.Drawing.Point(641, 11)
-        Me.btnSqlCancelQueryEditor.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlCancelQueryEditor.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlCancelQueryEditor.Name = "btnSqlCancelQueryEditor"
         Me.btnSqlCancelQueryEditor.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlCancelQueryEditor.TabIndex = 80
@@ -4401,7 +4401,7 @@ Partial Class WinOfflineUI
         Me.btnSqlExitQueryEditor.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSqlExitQueryEditor.ForeColor = System.Drawing.Color.White
         Me.btnSqlExitQueryEditor.Location = New System.Drawing.Point(851, 11)
-        Me.btnSqlExitQueryEditor.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSqlExitQueryEditor.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSqlExitQueryEditor.Name = "btnSqlExitQueryEditor"
         Me.btnSqlExitQueryEditor.Size = New System.Drawing.Size(158, 38)
         Me.btnSqlExitQueryEditor.TabIndex = 81
@@ -4414,7 +4414,7 @@ Partial Class WinOfflineUI
         Me.pnlENCOverdrive.Controls.Add(Me.grpEncStressTest)
         Me.pnlENCOverdrive.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlENCOverdrive.Location = New System.Drawing.Point(0, 0)
-        Me.pnlENCOverdrive.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlENCOverdrive.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlENCOverdrive.Name = "pnlENCOverdrive"
         Me.pnlENCOverdrive.Size = New System.Drawing.Size(1023, 698)
         Me.pnlENCOverdrive.TabIndex = 28
@@ -4427,9 +4427,9 @@ Partial Class WinOfflineUI
         Me.grpEncStressStatus.Controls.Add(Me.dgvEncStressTable)
         Me.grpEncStressStatus.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpEncStressStatus.Location = New System.Drawing.Point(1, 419)
-        Me.grpEncStressStatus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpEncStressStatus.Margin = New System.Windows.Forms.Padding(4)
         Me.grpEncStressStatus.Name = "grpEncStressStatus"
-        Me.grpEncStressStatus.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpEncStressStatus.Padding = New System.Windows.Forms.Padding(4)
         Me.grpEncStressStatus.Size = New System.Drawing.Size(1021, 278)
         Me.grpEncStressStatus.TabIndex = 1
         Me.grpEncStressStatus.TabStop = False
@@ -4463,7 +4463,7 @@ Partial Class WinOfflineUI
         Me.dgvEncStressTable.DefaultCellStyle = DataGridViewCellStyle8
         Me.dgvEncStressTable.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvEncStressTable.Location = New System.Drawing.Point(4, 27)
-        Me.dgvEncStressTable.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvEncStressTable.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvEncStressTable.Name = "dgvEncStressTable"
         Me.dgvEncStressTable.ReadOnly = True
         Me.dgvEncStressTable.RowHeadersVisible = False
@@ -4485,9 +4485,9 @@ Partial Class WinOfflineUI
         Me.grpEncStressTest.Controls.Add(Me.grpEncStressPingSettings)
         Me.grpEncStressTest.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpEncStressTest.Location = New System.Drawing.Point(0, 0)
-        Me.grpEncStressTest.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpEncStressTest.Margin = New System.Windows.Forms.Padding(4)
         Me.grpEncStressTest.Name = "grpEncStressTest"
-        Me.grpEncStressTest.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpEncStressTest.Padding = New System.Windows.Forms.Padding(4)
         Me.grpEncStressTest.Size = New System.Drawing.Size(1023, 416)
         Me.grpEncStressTest.TabIndex = 0
         Me.grpEncStressTest.TabStop = False
@@ -4511,9 +4511,9 @@ Partial Class WinOfflineUI
         Me.grpEncStressPingType.Controls.Add(Me.rbnEncStressCafPing)
         Me.grpEncStressPingType.Controls.Add(Me.rbnEncStressCamPing)
         Me.grpEncStressPingType.Location = New System.Drawing.Point(777, 124)
-        Me.grpEncStressPingType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpEncStressPingType.Margin = New System.Windows.Forms.Padding(4)
         Me.grpEncStressPingType.Name = "grpEncStressPingType"
-        Me.grpEncStressPingType.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpEncStressPingType.Padding = New System.Windows.Forms.Padding(4)
         Me.grpEncStressPingType.Size = New System.Drawing.Size(240, 238)
         Me.grpEncStressPingType.TabIndex = 36
         Me.grpEncStressPingType.TabStop = False
@@ -4523,7 +4523,7 @@ Partial Class WinOfflineUI
         '
         Me.rbnEncStressCafPing.AutoSize = True
         Me.rbnEncStressCafPing.Location = New System.Drawing.Point(71, 138)
-        Me.rbnEncStressCafPing.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rbnEncStressCafPing.Margin = New System.Windows.Forms.Padding(4)
         Me.rbnEncStressCafPing.Name = "rbnEncStressCafPing"
         Me.rbnEncStressCafPing.Size = New System.Drawing.Size(91, 27)
         Me.rbnEncStressCafPing.TabIndex = 1
@@ -4535,7 +4535,7 @@ Partial Class WinOfflineUI
         Me.rbnEncStressCamPing.AutoSize = True
         Me.rbnEncStressCamPing.Checked = True
         Me.rbnEncStressCamPing.Location = New System.Drawing.Point(71, 74)
-        Me.rbnEncStressCamPing.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rbnEncStressCamPing.Margin = New System.Windows.Forms.Padding(4)
         Me.rbnEncStressCamPing.Name = "rbnEncStressCamPing"
         Me.rbnEncStressCamPing.Size = New System.Drawing.Size(96, 27)
         Me.rbnEncStressCamPing.TabIndex = 0
@@ -4552,7 +4552,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressStop.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressStop.ForeColor = System.Drawing.Color.White
         Me.btnEncStressStop.Location = New System.Drawing.Point(675, 371)
-        Me.btnEncStressStop.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressStop.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressStop.Name = "btnEncStressStop"
         Me.btnEncStressStop.Size = New System.Drawing.Size(158, 35)
         Me.btnEncStressStop.TabIndex = 10
@@ -4567,7 +4567,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressStart.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressStart.ForeColor = System.Drawing.Color.White
         Me.btnEncStressStart.Location = New System.Drawing.Point(190, 371)
-        Me.btnEncStressStart.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressStart.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressStart.Name = "btnEncStressStart"
         Me.btnEncStressStart.Size = New System.Drawing.Size(158, 35)
         Me.btnEncStressStart.TabIndex = 9
@@ -4603,9 +4603,9 @@ Partial Class WinOfflineUI
         Me.grpEncStressPingSettings.Controls.Add(Me.lblEncStressPingThreads)
         Me.grpEncStressPingSettings.Controls.Add(Me.lblEncStressTargetThreads)
         Me.grpEncStressPingSettings.Location = New System.Drawing.Point(20, 124)
-        Me.grpEncStressPingSettings.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpEncStressPingSettings.Margin = New System.Windows.Forms.Padding(4)
         Me.grpEncStressPingSettings.Name = "grpEncStressPingSettings"
-        Me.grpEncStressPingSettings.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpEncStressPingSettings.Padding = New System.Windows.Forms.Padding(4)
         Me.grpEncStressPingSettings.Size = New System.Drawing.Size(761, 238)
         Me.grpEncStressPingSettings.TabIndex = 8
         Me.grpEncStressPingSettings.TabStop = False
@@ -4616,7 +4616,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressDelayTimePlus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEncStressDelayTimePlus.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressDelayTimePlus.Location = New System.Drawing.Point(708, 199)
-        Me.btnEncStressDelayTimePlus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressDelayTimePlus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressDelayTimePlus.Name = "btnEncStressDelayTimePlus"
         Me.btnEncStressDelayTimePlus.Size = New System.Drawing.Size(38, 29)
         Me.btnEncStressDelayTimePlus.TabIndex = 35
@@ -4630,7 +4630,7 @@ Partial Class WinOfflineUI
         Me.txtEncStressDelayTime.BackColor = System.Drawing.Color.White
         Me.txtEncStressDelayTime.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEncStressDelayTime.Location = New System.Drawing.Point(312, 200)
-        Me.txtEncStressDelayTime.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtEncStressDelayTime.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEncStressDelayTime.Name = "txtEncStressDelayTime"
         Me.txtEncStressDelayTime.ReadOnly = True
         Me.txtEncStressDelayTime.Size = New System.Drawing.Size(342, 27)
@@ -4642,7 +4642,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressDelayTimeMinus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEncStressDelayTimeMinus.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressDelayTimeMinus.Location = New System.Drawing.Point(663, 199)
-        Me.btnEncStressDelayTimeMinus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressDelayTimeMinus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressDelayTimeMinus.Name = "btnEncStressDelayTimeMinus"
         Me.btnEncStressDelayTimeMinus.Size = New System.Drawing.Size(38, 29)
         Me.btnEncStressDelayTimeMinus.TabIndex = 34
@@ -4665,7 +4665,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressReplyTimeoutPlus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEncStressReplyTimeoutPlus.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressReplyTimeoutPlus.Location = New System.Drawing.Point(708, 164)
-        Me.btnEncStressReplyTimeoutPlus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressReplyTimeoutPlus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressReplyTimeoutPlus.Name = "btnEncStressReplyTimeoutPlus"
         Me.btnEncStressReplyTimeoutPlus.Size = New System.Drawing.Size(38, 29)
         Me.btnEncStressReplyTimeoutPlus.TabIndex = 31
@@ -4677,7 +4677,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressReplyTimeoutMinus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEncStressReplyTimeoutMinus.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressReplyTimeoutMinus.Location = New System.Drawing.Point(663, 164)
-        Me.btnEncStressReplyTimeoutMinus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressReplyTimeoutMinus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressReplyTimeoutMinus.Name = "btnEncStressReplyTimeoutMinus"
         Me.btnEncStressReplyTimeoutMinus.Size = New System.Drawing.Size(38, 29)
         Me.btnEncStressReplyTimeoutMinus.TabIndex = 30
@@ -4691,7 +4691,7 @@ Partial Class WinOfflineUI
         Me.txtEncStressReplyTimeout.BackColor = System.Drawing.Color.White
         Me.txtEncStressReplyTimeout.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEncStressReplyTimeout.Location = New System.Drawing.Point(312, 165)
-        Me.txtEncStressReplyTimeout.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtEncStressReplyTimeout.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEncStressReplyTimeout.Name = "txtEncStressReplyTimeout"
         Me.txtEncStressReplyTimeout.ReadOnly = True
         Me.txtEncStressReplyTimeout.Size = New System.Drawing.Size(342, 27)
@@ -4714,7 +4714,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressMsgSizePlus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEncStressMsgSizePlus.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressMsgSizePlus.Location = New System.Drawing.Point(708, 130)
-        Me.btnEncStressMsgSizePlus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressMsgSizePlus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressMsgSizePlus.Name = "btnEncStressMsgSizePlus"
         Me.btnEncStressMsgSizePlus.Size = New System.Drawing.Size(38, 29)
         Me.btnEncStressMsgSizePlus.TabIndex = 27
@@ -4726,7 +4726,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressMsgSizeMinus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEncStressMsgSizeMinus.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressMsgSizeMinus.Location = New System.Drawing.Point(663, 130)
-        Me.btnEncStressMsgSizeMinus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressMsgSizeMinus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressMsgSizeMinus.Name = "btnEncStressMsgSizeMinus"
         Me.btnEncStressMsgSizeMinus.Size = New System.Drawing.Size(38, 29)
         Me.btnEncStressMsgSizeMinus.TabIndex = 26
@@ -4738,7 +4738,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressNumPingPlus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEncStressNumPingPlus.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressNumPingPlus.Location = New System.Drawing.Point(708, 95)
-        Me.btnEncStressNumPingPlus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressNumPingPlus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressNumPingPlus.Name = "btnEncStressNumPingPlus"
         Me.btnEncStressNumPingPlus.Size = New System.Drawing.Size(38, 29)
         Me.btnEncStressNumPingPlus.TabIndex = 25
@@ -4761,7 +4761,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressNumPingMinus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEncStressNumPingMinus.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressNumPingMinus.Location = New System.Drawing.Point(663, 95)
-        Me.btnEncStressNumPingMinus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressNumPingMinus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressNumPingMinus.Name = "btnEncStressNumPingMinus"
         Me.btnEncStressNumPingMinus.Size = New System.Drawing.Size(38, 29)
         Me.btnEncStressNumPingMinus.TabIndex = 24
@@ -4773,7 +4773,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressPingThreadPlus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEncStressPingThreadPlus.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressPingThreadPlus.Location = New System.Drawing.Point(708, 59)
-        Me.btnEncStressPingThreadPlus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressPingThreadPlus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressPingThreadPlus.Name = "btnEncStressPingThreadPlus"
         Me.btnEncStressPingThreadPlus.Size = New System.Drawing.Size(38, 29)
         Me.btnEncStressPingThreadPlus.TabIndex = 23
@@ -4785,7 +4785,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressPingThreadMinus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEncStressPingThreadMinus.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressPingThreadMinus.Location = New System.Drawing.Point(663, 59)
-        Me.btnEncStressPingThreadMinus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressPingThreadMinus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressPingThreadMinus.Name = "btnEncStressPingThreadMinus"
         Me.btnEncStressPingThreadMinus.Size = New System.Drawing.Size(38, 29)
         Me.btnEncStressPingThreadMinus.TabIndex = 22
@@ -4797,7 +4797,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressTargetThreadPlus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEncStressTargetThreadPlus.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressTargetThreadPlus.Location = New System.Drawing.Point(708, 22)
-        Me.btnEncStressTargetThreadPlus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressTargetThreadPlus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressTargetThreadPlus.Name = "btnEncStressTargetThreadPlus"
         Me.btnEncStressTargetThreadPlus.Size = New System.Drawing.Size(38, 29)
         Me.btnEncStressTargetThreadPlus.TabIndex = 21
@@ -4809,7 +4809,7 @@ Partial Class WinOfflineUI
         Me.btnEncStressTargetThreadMinus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEncStressTargetThreadMinus.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEncStressTargetThreadMinus.Location = New System.Drawing.Point(663, 22)
-        Me.btnEncStressTargetThreadMinus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEncStressTargetThreadMinus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEncStressTargetThreadMinus.Name = "btnEncStressTargetThreadMinus"
         Me.btnEncStressTargetThreadMinus.Size = New System.Drawing.Size(38, 29)
         Me.btnEncStressTargetThreadMinus.TabIndex = 20
@@ -4823,7 +4823,7 @@ Partial Class WinOfflineUI
         Me.txtEncStressMsgSize.BackColor = System.Drawing.Color.White
         Me.txtEncStressMsgSize.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEncStressMsgSize.Location = New System.Drawing.Point(312, 131)
-        Me.txtEncStressMsgSize.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtEncStressMsgSize.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEncStressMsgSize.Name = "txtEncStressMsgSize"
         Me.txtEncStressMsgSize.ReadOnly = True
         Me.txtEncStressMsgSize.Size = New System.Drawing.Size(342, 27)
@@ -4837,7 +4837,7 @@ Partial Class WinOfflineUI
         Me.txtEncStressNumPings.BackColor = System.Drawing.Color.White
         Me.txtEncStressNumPings.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEncStressNumPings.Location = New System.Drawing.Point(312, 95)
-        Me.txtEncStressNumPings.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtEncStressNumPings.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEncStressNumPings.Name = "txtEncStressNumPings"
         Me.txtEncStressNumPings.ReadOnly = True
         Me.txtEncStressNumPings.Size = New System.Drawing.Size(342, 27)
@@ -4851,7 +4851,7 @@ Partial Class WinOfflineUI
         Me.txtEncStressNumTargetThreads.BackColor = System.Drawing.Color.White
         Me.txtEncStressNumTargetThreads.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEncStressNumTargetThreads.Location = New System.Drawing.Point(312, 22)
-        Me.txtEncStressNumTargetThreads.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtEncStressNumTargetThreads.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEncStressNumTargetThreads.Name = "txtEncStressNumTargetThreads"
         Me.txtEncStressNumTargetThreads.ReadOnly = True
         Me.txtEncStressNumTargetThreads.Size = New System.Drawing.Size(342, 27)
@@ -4865,7 +4865,7 @@ Partial Class WinOfflineUI
         Me.txtEncStressNumPingThreads.BackColor = System.Drawing.Color.White
         Me.txtEncStressNumPingThreads.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEncStressNumPingThreads.Location = New System.Drawing.Point(312, 59)
-        Me.txtEncStressNumPingThreads.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtEncStressNumPingThreads.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEncStressNumPingThreads.Name = "txtEncStressNumPingThreads"
         Me.txtEncStressNumPingThreads.ReadOnly = True
         Me.txtEncStressNumPingThreads.Size = New System.Drawing.Size(342, 27)
@@ -4912,7 +4912,7 @@ Partial Class WinOfflineUI
         Me.pnlRemovalTool.Controls.Add(Me.pnlRemovalToolButtons)
         Me.pnlRemovalTool.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlRemovalTool.Location = New System.Drawing.Point(0, 0)
-        Me.pnlRemovalTool.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlRemovalTool.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlRemovalTool.Name = "pnlRemovalTool"
         Me.pnlRemovalTool.Size = New System.Drawing.Size(1023, 698)
         Me.pnlRemovalTool.TabIndex = 45
@@ -4925,9 +4925,9 @@ Partial Class WinOfflineUI
         Me.grpRemovalTool.Controls.Add(Me.txtRemovalTool)
         Me.grpRemovalTool.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpRemovalTool.Location = New System.Drawing.Point(0, 0)
-        Me.grpRemovalTool.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpRemovalTool.Margin = New System.Windows.Forms.Padding(4)
         Me.grpRemovalTool.Name = "grpRemovalTool"
-        Me.grpRemovalTool.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpRemovalTool.Padding = New System.Windows.Forms.Padding(4)
         Me.grpRemovalTool.Size = New System.Drawing.Size(1023, 439)
         Me.grpRemovalTool.TabIndex = 0
         Me.grpRemovalTool.TabStop = False
@@ -4939,7 +4939,7 @@ Partial Class WinOfflineUI
         Me.txtRemovalTool.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtRemovalTool.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtRemovalTool.Location = New System.Drawing.Point(4, 27)
-        Me.txtRemovalTool.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtRemovalTool.Margin = New System.Windows.Forms.Padding(4)
         Me.txtRemovalTool.Multiline = True
         Me.txtRemovalTool.Name = "txtRemovalTool"
         Me.txtRemovalTool.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -4956,9 +4956,9 @@ Partial Class WinOfflineUI
         Me.grpRemovalOptions.Controls.Add(Me.rbnRemoveITCM)
         Me.grpRemovalOptions.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpRemovalOptions.Location = New System.Drawing.Point(0, 440)
-        Me.grpRemovalOptions.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpRemovalOptions.Margin = New System.Windows.Forms.Padding(4)
         Me.grpRemovalOptions.Name = "grpRemovalOptions"
-        Me.grpRemovalOptions.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpRemovalOptions.Padding = New System.Windows.Forms.Padding(4)
         Me.grpRemovalOptions.Size = New System.Drawing.Size(1023, 191)
         Me.grpRemovalOptions.TabIndex = 1
         Me.grpRemovalOptions.TabStop = False
@@ -4983,7 +4983,7 @@ Partial Class WinOfflineUI
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkRetainHostUUID.AutoSize = True
         Me.chkRetainHostUUID.Location = New System.Drawing.Point(42, 59)
-        Me.chkRetainHostUUID.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.chkRetainHostUUID.Margin = New System.Windows.Forms.Padding(4)
         Me.chkRetainHostUUID.Name = "chkRetainHostUUID"
         Me.chkRetainHostUUID.Size = New System.Drawing.Size(360, 27)
         Me.chkRetainHostUUID.TabIndex = 2
@@ -4997,7 +4997,7 @@ Partial Class WinOfflineUI
         Me.rbnUninstallITCM.AutoSize = True
         Me.rbnUninstallITCM.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbnUninstallITCM.Location = New System.Drawing.Point(19, 90)
-        Me.rbnUninstallITCM.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rbnUninstallITCM.Margin = New System.Windows.Forms.Padding(4)
         Me.rbnUninstallITCM.Name = "rbnUninstallITCM"
         Me.rbnUninstallITCM.Size = New System.Drawing.Size(644, 27)
         Me.rbnUninstallITCM.TabIndex = 1
@@ -5013,7 +5013,7 @@ Partial Class WinOfflineUI
         Me.rbnRemoveITCM.Checked = True
         Me.rbnRemoveITCM.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbnRemoveITCM.Location = New System.Drawing.Point(19, 28)
-        Me.rbnRemoveITCM.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rbnRemoveITCM.Margin = New System.Windows.Forms.Padding(4)
         Me.rbnRemoveITCM.Name = "rbnRemoveITCM"
         Me.rbnRemoveITCM.Size = New System.Drawing.Size(655, 27)
         Me.rbnRemoveITCM.TabIndex = 0
@@ -5029,7 +5029,7 @@ Partial Class WinOfflineUI
         Me.pnlRemovalToolButtons.Controls.Add(Me.btnRemoveITCM)
         Me.pnlRemovalToolButtons.Controls.Add(Me.btnExitRemoveITCM)
         Me.pnlRemovalToolButtons.Location = New System.Drawing.Point(0, 635)
-        Me.pnlRemovalToolButtons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlRemovalToolButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlRemovalToolButtons.Name = "pnlRemovalToolButtons"
         Me.pnlRemovalToolButtons.Size = New System.Drawing.Size(1023, 61)
         Me.pnlRemovalToolButtons.TabIndex = 68
@@ -5042,7 +5042,7 @@ Partial Class WinOfflineUI
         Me.btnRemoveITCM.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnRemoveITCM.ForeColor = System.Drawing.Color.White
         Me.btnRemoveITCM.Location = New System.Drawing.Point(303, 11)
-        Me.btnRemoveITCM.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnRemoveITCM.Margin = New System.Windows.Forms.Padding(4)
         Me.btnRemoveITCM.Name = "btnRemoveITCM"
         Me.btnRemoveITCM.Size = New System.Drawing.Size(158, 38)
         Me.btnRemoveITCM.TabIndex = 78
@@ -5057,7 +5057,7 @@ Partial Class WinOfflineUI
         Me.btnExitRemoveITCM.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExitRemoveITCM.ForeColor = System.Drawing.Color.White
         Me.btnExitRemoveITCM.Location = New System.Drawing.Point(560, 11)
-        Me.btnExitRemoveITCM.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnExitRemoveITCM.Margin = New System.Windows.Forms.Padding(4)
         Me.btnExitRemoveITCM.Name = "btnExitRemoveITCM"
         Me.btnExitRemoveITCM.Size = New System.Drawing.Size(158, 38)
         Me.btnExitRemoveITCM.TabIndex = 81
@@ -5070,7 +5070,7 @@ Partial Class WinOfflineUI
         Me.pnlDebug.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlDebug.Font = New System.Drawing.Font("Calibri Light", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pnlDebug.Location = New System.Drawing.Point(0, 0)
-        Me.pnlDebug.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlDebug.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlDebug.Name = "pnlDebug"
         Me.pnlDebug.Size = New System.Drawing.Size(1023, 698)
         Me.pnlDebug.TabIndex = 33
@@ -5081,7 +5081,7 @@ Partial Class WinOfflineUI
         Me.rtbDebug.Dock = System.Windows.Forms.DockStyle.Fill
         Me.rtbDebug.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rtbDebug.Location = New System.Drawing.Point(0, 0)
-        Me.rtbDebug.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rtbDebug.Margin = New System.Windows.Forms.Padding(4)
         Me.rtbDebug.Name = "rtbDebug"
         Me.rtbDebug.ReadOnly = True
         Me.rtbDebug.Size = New System.Drawing.Size(1023, 698)
@@ -5097,7 +5097,7 @@ Partial Class WinOfflineUI
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "WinOfflineUI"
         Me.Padding = New System.Windows.Forms.Padding(0, 0, 4, 4)
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

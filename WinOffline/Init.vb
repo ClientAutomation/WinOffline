@@ -1347,7 +1347,7 @@ Partial Public Class WinOffline
         '     or incomplete executions where stage III was never run.
         '   This is detected when we process the SD job container, and the cached
         '     ID for the job doesn't match the current ID (JobContainer.vb).
-        Public Shared Function SDStageIReInit(ByVal CallStack As String) As Integer
+        Public Shared Function ReInit(ByVal CallStack As String) As Integer
 
             CallStack += "ReInit|"
 
@@ -1391,7 +1391,7 @@ Partial Public Class WinOffline
 
             ' Re-init debug log
             Logger.WriteDebug(CallStack, "Reinitialize debug log..")
-            Logger.SDStageIReInitDebugLog()
+            Logger.ReInitDebugLog()
             Logger.WriteDebug(CallStack, "Debug log reinitialized.")
 
             Return 0

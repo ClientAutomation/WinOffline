@@ -110,7 +110,6 @@ Partial Public Class WinOffline
                 KeyboardHook.SetHook() ' Hook the keyboard for low-level input (we are not a console app)
                 While (KeyboardHook.KeyboardHooked) ' Wait for keyboard release
                     Windows.Forms.Application.DoEvents()
-                    Thread.Sleep(Globals.THREAD_REST_INTERVAL)
                 End While
                 Globals.DbPassword = KeyboardHook.CapturedString.ToString ' Retrieve password
             End If

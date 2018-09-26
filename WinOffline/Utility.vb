@@ -631,9 +631,36 @@ Partial Public Class WinOffline
             Return False
         End Function
 
-        Public Shared Function IsProcessRunning(ByVal ProcessFriendlyName As String) As Boolean
+        Public Shared Function IsProcessRunning(ByVal ProcessFriendlyName As String, Optional ByVal MoreInfo As Boolean = False) As Boolean
             For Each RunningProcess As Process In Process.GetProcesses()
                 If RunningProcess.ProcessName.ToLower.Equals(ProcessFriendlyName.ToLower) Then
+                    If MoreInfo Then
+                        Dim ProcessWMI As ManagementObject = Nothing
+                        Dim CurrentID As Integer = Nothing
+                        Dim ParentID As Integer = Nothing
+                        Dim ParentName As String = Nothing
+                        Dim WMIQuery As ManagementObjectSearcher
+                        Dim CommandLine As String = Nothing
+                        WMIQuery = New ManagementObjectSearcher("SELECT * FROM Win32_Process WHERE ProcessId='" + RunningProcess.Id.ToString + "'")
+                        For Each WMIProcess As ManagementObject In WMIQuery.Get()
+                            CommandLine = WMIProcess("CommandLine").ToString
+                        Next
+                        Logger.WriteDebug(Logger.LastCallStack, "IsProcessRunning() found: " + RunningProcess.Id.ToString + "/" + RunningProcess.ProcessName + " " + CommandLine)
+                        Try
+                            CurrentID = RunningProcess.Id
+                            While True
+                                ProcessWMI = New ManagementObject("Win32_Process.Handle='" & CurrentID & "'")
+                                ParentID = ProcessWMI("ParentProcessID")
+                                ParentName = Process.GetProcessById(ParentID).ProcessName.ToString
+                                Logger.WriteDebug(Logger.LastCallStack, "IsProcessRunning() parent: " + ParentID.ToString + "/" + ParentName)
+                                If Globals.ParentProcessName Is Nothing Then Globals.ParentProcessName = ParentName.ToLower
+                                Globals.ParentProcessTree.Add(ParentName.ToLower)
+                                CurrentID = ParentID
+                            End While
+                        Catch ex As Exception
+                            If Globals.ParentProcessName Is Nothing Then Globals.ParentProcessName = "noparent"
+                        End Try
+                    End If
                     Return True
                 End If
             Next
@@ -694,11 +721,11 @@ Partial Public Class WinOffline
             End If
         End Function
 
-        Public Shared Function KillProcess(ByVal FileName As String) As Boolean
+        Public Shared Function KillProcess(ByVal FriendlyName As String) As Boolean
             Dim MatchFound As Boolean = False
             Try
                 For Each RunningProcess As Process In Process.GetProcesses()
-                    If RunningProcess.ProcessName.ToLower.Equals(FileName.ToLower) Then
+                    If RunningProcess.ProcessName.ToLower.Equals(FriendlyName.ToLower) Then
                         MatchFound = True
                         RunningProcess.Kill()
                     End If
@@ -844,7 +871,6 @@ Partial Public Class WinOffline
                 While RunningProcess.HasExited = False
                     If StandardOut IsNot Nothing Then StandardOut += RunningProcess.StandardOutput.ReadLine + Environment.NewLine
                     System.Windows.Forms.Application.DoEvents()
-                    Threading.Thread.Sleep(Globals.THREAD_REST_INTERVAL)
                 End While
                 RunningProcess.WaitForExit()
                 If StandardOut IsNot Nothing Then StandardOut += RunningProcess.StandardOutput.ReadToEnd.ToString

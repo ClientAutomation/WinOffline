@@ -361,7 +361,7 @@ Partial Public Class WinOfflineUI
                 SqlDisconnect()
                 Exit While
             End If
-            Thread.Sleep(Globals.THREAD_REST_INTERVAL)
+            Application.DoEvents()
         End While
 
     End Sub

@@ -52,7 +52,7 @@ Partial Public Class WinOffline
 
                 While (KeyboardHook.KeyboardHooked) ' Wait for keyboard release
                     Windows.Forms.Application.DoEvents()
-                    Thread.Sleep(Globals.THREAD_REST_INTERVAL)
+                    Thread.Sleep(50)
                 End While
 
                 Globals.DbPassword = KeyboardHook.CapturedString.ToString

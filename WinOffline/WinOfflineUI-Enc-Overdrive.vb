@@ -204,7 +204,7 @@ Partial Public Class WinOfflineUI
             PingThread = New Thread(Sub() PingWorker(Victim))
             LocalThreadList.Add(PingThread)
             PingThread.Start()
-            Thread.Sleep(Globals.THREAD_REST_INTERVAL)
+            Thread.Sleep(50)
         Next
 
         While LocalThreadList.Count > 0
@@ -213,7 +213,7 @@ Partial Public Class WinOfflineUI
                     LocalThreadList.RemoveAt(x)
                 End If
             Next
-            Thread.Sleep(Globals.THREAD_REST_INTERVAL)
+            Thread.Sleep(50)
         End While
 
     End Sub
@@ -254,7 +254,7 @@ Partial Public Class WinOfflineUI
                             LocalThreadList.RemoveAt(x)
                         End If
                     Next
-                    Thread.Sleep(Globals.THREAD_REST_INTERVAL)
+                    Thread.Sleep(50)
                 End While
                 Exit While ' Stop condition -- all target threads have finished
             Else
@@ -265,7 +265,7 @@ Partial Public Class WinOfflineUI
                     End If
                 Next
             End If
-            Thread.Sleep(Globals.THREAD_REST_INTERVAL)
+            Thread.Sleep(50)
         End While
 
         Delegate_Sub_Enable_Blue_Button(btnEncStressStart, True)
@@ -322,7 +322,7 @@ Partial Public Class WinOfflineUI
 
             ' Rest with frequent checks for the terminate signal
             For i = 0 To 599
-                Thread.Sleep(Globals.THREAD_REST_INTERVAL)
+                Thread.Sleep(50)
                 If TerminateSignal Then Exit While
             Next
         End While

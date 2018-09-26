@@ -11,9 +11,11 @@
         StateFile = Globals.WinOfflineTemp + "\" + Globals.ProcessFriendlyName + ".state"
 
         Try
-            If System.IO.File.Exists(StateFile) Then
-                Logger.WriteDebug(CallStack, "Found prior execution marker.")
+            ' Check for a state file, and if we are a user-driven process or not
+            If System.IO.File.Exists(StateFile) AndAlso
+                Not (Not Globals.RunningAsSystemIdentity AndAlso (Globals.AttachedtoConsole OrElse Globals.WinOfflineExplorer IsNot Nothing)) Then
 
+                Logger.WriteDebug(CallStack, "Found prior execution marker.")
                 Logger.WriteDebug(CallStack, "Set execution mode: Software Delivery")
                 Globals.SDBasedMode = True
 
@@ -39,7 +41,7 @@
                         '   If collected from temp cache, we have the output ID from the wrong/previous job.
                         '   Re-init will wipe the cache, along with all temps, then we will pickup the new/current job ID.
                         Globals.DirtyFlag = True
-                        Init.SDStageIReInit(CallStack)
+                        Init.ReInit(CallStack)
 
                         ' StageI
                         RunLevel = StageI(CallStack)
@@ -93,9 +95,14 @@
                 End If
 
             Else
-                Logger.WriteDebug(CallStack, "Execution marker not found.")
+                If System.IO.File.Exists(StateFile) AndAlso (Globals.AttachedtoConsole OrElse Globals.WinOfflineExplorer IsNot Nothing) Then
+                    Logger.WriteDebug(CallStack, "Cleanup prior unfinished execution.")
+                    Init.ReInit(CallStack)
+                Else
+                    Logger.WriteDebug(CallStack, "Execution marker not found.")
+                End If
 
-                ' No marker, dispatch based on SD/non-SD mode
+                ' Dispatch based on SD/non-SD mode
                 If Not Globals.SDBasedMode Then
                     Logger.WriteDebug(CallStack, "Execution mode: Non-Software Delivery")
 

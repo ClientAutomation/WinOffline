@@ -48,7 +48,6 @@ Partial Public Class WinOfflineUI
                 ConsoleOutput = RunningProcess.StandardOutput.ReadLine
                 Delegate_Sub_Append_Text(UIOutputControl, ConsoleOutput)
                 StandardOutput += ConsoleOutput + Environment.NewLine
-                Threading.Thread.Sleep(Globals.THREAD_REST_INTERVAL)
             End While
 
             RunningProcess.WaitForExit()
@@ -79,7 +78,7 @@ Partial Public Class WinOfflineUI
         Dim StandardOutput As String
         Dim RemainingOutput As String
         Dim ProcessStartInfo As ProcessStartInfo
-        Dim CAFExitCode As Integer
+        Dim ProcessExitCode As Integer
         Dim CAFStopHelperThread As Thread = Nothing
         Dim LoopCounter As Integer = 0
         Dim RestCounter As Integer = 0
@@ -133,6 +132,7 @@ Partial Public Class WinOfflineUI
 
                 RunningProcess = Process.Start(ProcessStartInfo)
 
+                ' If CAF reaches the 260 second countdown, deploy the helper-thread
                 While RunningProcess.HasExited = False
                     ConsoleOutput = RunningProcess.StandardOutput.ReadLine
                     Delegate_Sub_Append_Text(UIOutputControl, ConsoleOutput)
@@ -141,17 +141,18 @@ Partial Public Class WinOfflineUI
                         CAFStopHelperThread = New Thread(Sub() CafStopWorker(UIOutputControl))
                         CAFStopHelperThread.Start()
                     End If
-                    Threading.Thread.Sleep(Globals.THREAD_REST_INTERVAL)
                 End While
 
                 RunningProcess.WaitForExit()
                 RemainingOutput = RunningProcess.StandardOutput.ReadToEnd.ToString
                 StandardOutput += RemainingOutput
+
                 Delegate_Sub_Append_Text(UIOutputControl, RemainingOutput + Environment.NewLine)
                 Delegate_Sub_Append_Text(UIOutputControl, "Exit code: " + RunningProcess.ExitCode.ToString + Environment.NewLine)
-                CAFExitCode = RunningProcess.ExitCode
+                ProcessExitCode = RunningProcess.ExitCode
                 RunningProcess.Close()
 
+                ' Join helper-thread (wait for thread to terminate)
                 Try
                     If CAFStopHelperThread IsNot Nothing AndAlso CAFStopHelperThread.IsAlive Then
                         Delegate_Sub_Append_Text(UIOutputControl, "Waiting for helper thread to terminate.")
@@ -163,144 +164,60 @@ Partial Public Class WinOfflineUI
                     Delegate_Sub_Append_Text(UIOutputControl, ex.StackTrace)
                 End Try
 
-                If CAFExitCode <> 0 Then
+                If ProcessExitCode = 0 Then
+                    Thread.Sleep(1000) ' Just give it a second
+
+                    ' Wait up to 12 more seconds after successful "caf stop" completion, for CAF to actually stop
+                    LoopCounter = 0
+                    While WinOffline.Utility.IsProcessRunning("caf", True)
+                        Delegate_Sub_Append_Text(UIOutputControl, "CAF service: ACTIVE")
+                        LoopCounter += 1
+                        Thread.Sleep(3000)
+                        If LoopCounter >= 4 Then Exit While
+                    End While
+
+                    ' Otherwise kill CAF
+                    If WinOffline.Utility.IsProcessRunning("caf", True) Then KillCAF(UIOutputControl)
+
+                    ' We tried diligently
+                    If WinOffline.Utility.IsProcessRunning("caf", True) Then
+                        Delegate_Sub_Append_Text(UIOutputControl, "Error: Unable to terminate CAF service." + Environment.NewLine)
+                        Return
+                    End If
+                Else
                     If StandardOutput.ToLower.Contains("access is denied") Then
                         Delegate_Sub_Append_Text(UIOutputControl, "Administrator unable to stop CAF service.")
 
                         LaunchPadUI(UIOutputControl, "System", Globals.DSMFolder + "bin\caf.exe", "stop")
 
                         LoopCounter = 0
-
-                        While WinOffline.Utility.IsProcessRunning("caf.exe", "stop") Or WinOffline.Utility.IsProcessRunning("caf")
+                        While WinOffline.Utility.IsProcessRunning("caf.exe", "stop") OrElse WinOffline.Utility.IsProcessRunning("caf", True)
                             If LoopCounter = 0 Then
                                 Delegate_Sub_Append_Text(UIOutputControl, "CAF service: STOPPING  [This may take up to 5 minutes!]")
                             Else
                                 Delegate_Sub_Append_Text(UIOutputControl, "CAF service: STOPPING")
                             End If
                             LoopCounter += 1
-                            If LoopCounter >= 10 Then
-                                Delegate_Sub_Append_Text(UIOutputControl, "CAF service is not stopping gracefully.")
-                                Delegate_Sub_Append_Text(UIOutputControl, "Send first kill request to the CAF service..")
-
-                                ExecutionString = Globals.DSMFolder + "bin\caf.exe"
-                                ArgumentString = "kill all"
-
-                                Delegate_Sub_Append_Text(UIOutputControl, "Detached process: " + ExecutionString + " " + ArgumentString + Environment.NewLine)
-                                ProcessStartInfo = New ProcessStartInfo(ExecutionString, ArgumentString)
-                                ProcessStartInfo.WorkingDirectory = Globals.DSMFolder + "bin"
-                                ProcessStartInfo.UseShellExecute = False
-                                ProcessStartInfo.RedirectStandardOutput = True
-                                ProcessStartInfo.CreateNoWindow = True
-                                StandardOutput = ""
-                                RemainingOutput = ""
-
-                                RunningProcess = Process.Start(ProcessStartInfo)
-
-                                While RunningProcess.HasExited = False
-                                    ConsoleOutput = RunningProcess.StandardOutput.ReadLine
-                                    Delegate_Sub_Append_Text(UIOutputControl, ConsoleOutput)
-                                    StandardOutput += ConsoleOutput + Environment.NewLine
-                                    Threading.Thread.Sleep(Globals.THREAD_REST_INTERVAL)
-                                End While
-
-                                RunningProcess.WaitForExit()
-                                RemainingOutput = RunningProcess.StandardOutput.ReadToEnd.ToString
-                                StandardOutput += RemainingOutput
-                                Delegate_Sub_Append_Text(UIOutputControl, RemainingOutput + Environment.NewLine)
-                                Delegate_Sub_Append_Text(UIOutputControl, "Exit code: " + RunningProcess.ExitCode.ToString + Environment.NewLine)
-                                RunningProcess.Close()
-
-                                Delegate_Sub_Append_Text(UIOutputControl, "Send second kill request to the CAF service..")
-
-                                ExecutionString = Globals.DSMFolder + "bin\caf.exe"
-                                ArgumentString = "kill all"
-
-                                Delegate_Sub_Append_Text(UIOutputControl, "Detached process: " + ExecutionString + " " + ArgumentString + Environment.NewLine)
-                                ProcessStartInfo = New ProcessStartInfo(ExecutionString, ArgumentString)
-                                ProcessStartInfo.WorkingDirectory = Globals.DSMFolder + "bin"
-                                ProcessStartInfo.UseShellExecute = False
-                                ProcessStartInfo.RedirectStandardOutput = True
-                                ProcessStartInfo.CreateNoWindow = True
-                                StandardOutput = ""
-                                RemainingOutput = ""
-
-                                RunningProcess = Process.Start(ProcessStartInfo)
-
-                                While RunningProcess.HasExited = False
-                                    ConsoleOutput = RunningProcess.StandardOutput.ReadLine
-                                    Delegate_Sub_Append_Text(UIOutputControl, ConsoleOutput)
-                                    StandardOutput += ConsoleOutput + Environment.NewLine
-                                    Threading.Thread.Sleep(Globals.THREAD_REST_INTERVAL)
-                                End While
-
-                                RunningProcess.WaitForExit()
-                                RemainingOutput = RunningProcess.StandardOutput.ReadToEnd.ToString
-                                StandardOutput += RemainingOutput
-                                Delegate_Sub_Append_Text(UIOutputControl, RemainingOutput + Environment.NewLine)
-                                Delegate_Sub_Append_Text(UIOutputControl, "Exit code: " + RunningProcess.ExitCode.ToString + Environment.NewLine)
-                                RunningProcess.Close()
-
+                            If LoopCounter >= 12 Then ' Wait 120s before killiing CAF
+                                KillCAF(UIOutputControl)
                                 Exit While
                             End If
-
-                            RestCounter = 0
-
-                            While RestCounter < 199
-                                If TerminateSignal Then Return
-                                RestCounter += 1
-                                Thread.Sleep(Globals.THREAD_REST_INTERVAL)
-                            End While
-
+                            Thread.Sleep(10000)
                         End While
-
-                        If WinOffline.Utility.IsProcessRunning("caf") Then
+                        If WinOffline.Utility.IsProcessRunning("caf", True) Then
                             Delegate_Sub_Append_Text(UIOutputControl, "Error: Unable to terminate CAF service." + Environment.NewLine)
                             Return
                         End If
-
                     Else
-                        Delegate_Sub_Append_Text(UIOutputControl, "CAF service: WARNING [Terminated with non-zero exit code]" + Environment.NewLine)
-                    End If
+                        Delegate_Sub_Append_Text(UIOutputControl, "Warning: ""caf stop"" terminated abnormally." + Environment.NewLine)
 
-                Else
-                    Thread.Sleep(5000)
+                        ' Escalate to caf-kill
+                        If WinOffline.Utility.IsProcessRunning("caf", True) Then KillCAF(UIOutputControl)
 
-                    If WinOffline.Utility.IsProcessRunning("caf") Then
-                        Delegate_Sub_Append_Text(UIOutputControl, "CAF service has not stopped gracefully.")
-                        Delegate_Sub_Append_Text(UIOutputControl, "Send kill request to the CAF service..")
-
-                        ExecutionString = Globals.DSMFolder + "bin\caf.exe"
-                        ArgumentString = "kill all"
-
-                        Delegate_Sub_Append_Text(UIOutputControl, "Detached process: " + ExecutionString + " " + ArgumentString + Environment.NewLine)
-                        ProcessStartInfo = New ProcessStartInfo(ExecutionString, ArgumentString)
-                        ProcessStartInfo.WorkingDirectory = Globals.DSMFolder + "bin"
-                        ProcessStartInfo.UseShellExecute = False
-                        ProcessStartInfo.RedirectStandardOutput = True
-                        ProcessStartInfo.CreateNoWindow = True
-                        StandardOutput = ""
-                        RemainingOutput = ""
-
-                        RunningProcess = Process.Start(ProcessStartInfo)
-
-                        While RunningProcess.HasExited = False
-                            ConsoleOutput = RunningProcess.StandardOutput.ReadLine
-                            Delegate_Sub_Append_Text(UIOutputControl, ConsoleOutput)
-                            StandardOutput += ConsoleOutput + Environment.NewLine
-                            Threading.Thread.Sleep(Globals.THREAD_REST_INTERVAL)
-                        End While
-
-                        RunningProcess.WaitForExit()
-                        RemainingOutput = RunningProcess.StandardOutput.ReadToEnd.ToString
-                        StandardOutput += RemainingOutput
-                        Delegate_Sub_Append_Text(UIOutputControl, RemainingOutput + Environment.NewLine)
-                        Delegate_Sub_Append_Text(UIOutputControl, "Exit code: " + RunningProcess.ExitCode.ToString + Environment.NewLine)
-                        RunningProcess.Close()
-                    End If
-
-                    If WinOffline.Utility.IsProcessRunning("caf") Then
-                        Delegate_Sub_Append_Text(UIOutputControl, "Error: Unable to terminate CAF service." + Environment.NewLine)
-                        Return
+                        ' Check for success
+                        If WinOffline.Utility.IsProcessRunning("caf", True) Then
+                            Delegate_Sub_Append_Text(UIOutputControl, "Error: Unable to terminate CAF service." + Environment.NewLine)
+                        End If
                     End If
                 End If
             End If
@@ -327,6 +244,50 @@ Partial Public Class WinOfflineUI
         End Try
 
         Delegate_Sub_Append_Text(UIOutputControl, "CAF service: STOPPED" + Environment.NewLine)
+
+    End Sub
+
+    Private Sub KillCAF(ByVal UIOutputControl As Control)
+
+        Dim ExecutionString As String
+        Dim ArgumentString As String
+        Dim ProcessStartInfo As ProcessStartInfo
+        Dim RunningProcess As Process
+        Dim ConsoleOutput As String
+        Dim StandardOutput As String
+        Dim RemainingOutput As String
+
+        Delegate_Sub_Append_Text(UIOutputControl, "CAF service: KILL")
+
+        ExecutionString = Globals.DSMFolder + "bin\caf.exe"
+        ArgumentString = "kill all"
+
+        Delegate_Sub_Append_Text(UIOutputControl, "Detached process: " + ExecutionString + " " + ArgumentString)
+        ProcessStartInfo = New ProcessStartInfo(ExecutionString, ArgumentString)
+        ProcessStartInfo.WorkingDirectory = Globals.DSMFolder + "bin"
+        ProcessStartInfo.UseShellExecute = False
+        ProcessStartInfo.RedirectStandardOutput = True
+        ProcessStartInfo.CreateNoWindow = True
+        StandardOutput = ""
+        RemainingOutput = ""
+
+        RunningProcess = Process.Start(ProcessStartInfo)
+
+        While RunningProcess.HasExited = False
+            ConsoleOutput = RunningProcess.StandardOutput.ReadLine
+            Delegate_Sub_Append_Text(UIOutputControl, ConsoleOutput)
+            StandardOutput += ConsoleOutput + Environment.NewLine
+        End While
+
+        RunningProcess.WaitForExit()
+        RemainingOutput = RunningProcess.StandardOutput.ReadToEnd.ToString
+        StandardOutput += RemainingOutput
+        Delegate_Sub_Append_Text(UIOutputControl, RemainingOutput)
+        RunningProcess.Close()
+
+        Thread.Sleep(3000)
+
+        WinOffline.Utility.KillProcess("caf")
 
     End Sub
 
@@ -365,7 +326,7 @@ Partial Public Class WinOfflineUI
                         Return
                     End If
                     LoopCounter += 1
-                    Thread.Sleep(Globals.THREAD_REST_INTERVAL)
+                    Thread.Sleep(50)
                 End While
 
                 For x As Integer = CafProcessList.Count - 1 To 0 Step -1

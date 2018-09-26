@@ -412,7 +412,7 @@
 
         End Sub
 
-        Public Shared Sub SDStageIReInitDebugLog()
+        Public Shared Sub ReInitDebugLog()
 
             ' Referenced by Init.SDStageIReInit().
             ' Allows the prior debugging from a failed job to be purged.

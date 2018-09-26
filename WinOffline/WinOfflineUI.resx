@@ -367,6 +367,9 @@ Authenticate via sql credentials using the provided account. The (-dbpassword) s
 -dbpassword &lt;password&gt; (or -dbpasswd &lt;password&gt;)
 Provide password for provided sql account. Requires the (-dbuser) switch to be provided. If this switch is omitted, the user will be prompted.
 
+-dbserver &lt;server name&gt;
+Provide a server host name, as required for connecting to the database.
+
 -dbinstance &lt;instance name&gt;
 Provide a non-default instance name, as required for connecting to the database.
 

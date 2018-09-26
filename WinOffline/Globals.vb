@@ -4,7 +4,7 @@ Public Class Globals
 
     ' WinOffline and System Globals
     Public Shared CommandLineArgs As String() = Nothing                         ' Command line arguments passed to the application.
-    Public Shared AppVersion As String = "2018.09.21"                           ' Version string of the current build.
+    Public Shared AppVersion As String = "2018.09.26"                           ' Version string of the current build.
     Public Shared ProcessName As String = Nothing                               ' Fullpath including filename of the application process.
     Public Shared ProcessShortName As String = Nothing                          ' Filename of the application process.
     Public Shared ProcessFriendlyName As String = Nothing                       ' Friendly name of the application process.
@@ -17,7 +17,6 @@ Public Class Globals
     Public Shared ParentProcessTree As New List(Of String)                      ' List of all parent process names.
     Public Shared ProcessIdentity As Security.Principal.WindowsIdentity         ' The identity currently executing the process.
     Public Shared DispatcherReturnCode As Integer = 0                           ' Return code from dispatcher.
-    Public Const THREAD_REST_INTERVAL As Integer = 50                           ' Default rest interval for threads.
 
     ' Embedded Assembly Globals
     Public Shared MyAssembly As System.Reflection.Assembly = Nothing            ' Stores the application code that is currently running.

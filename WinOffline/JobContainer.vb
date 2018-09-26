@@ -182,7 +182,7 @@
         If Globals.CachedJobOutputID IsNot Nothing Then
             If Not Globals.CachedJobOutputID.Equals(Globals.CurrentJobOutputID) Then
                 Logger.WriteDebug(CallStack, "Error: Current job output ID does not match cached ID.")
-                RunLevel = Init.SDStageIReInit(CallStack)
+                RunLevel = Init.ReInit(CallStack)
                 If RunLevel <> 0 Then
                     Manifest.UpdateManifest(CallStack,
                                             Manifest.EXCEPTION_MANIFEST,
