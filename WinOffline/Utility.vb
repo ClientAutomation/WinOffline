@@ -651,14 +651,13 @@ Partial Public Class WinOffline
                             While True
                                 ProcessWMI = New ManagementObject("Win32_Process.Handle='" & CurrentID & "'")
                                 ParentID = ProcessWMI("ParentProcessID")
+                                If Not Integer.TryParse(ParentID, Nothing) OrElse ParentID <= 0 Then Exit While
                                 ParentName = Process.GetProcessById(ParentID).ProcessName.ToString
                                 Logger.WriteDebug(Logger.LastCallStack, "IsProcessRunning() parent: " + ParentID.ToString + "/" + ParentName)
-                                If Globals.ParentProcessName Is Nothing Then Globals.ParentProcessName = ParentName.ToLower
-                                Globals.ParentProcessTree.Add(ParentName.ToLower)
                                 CurrentID = ParentID
                             End While
                         Catch ex As Exception
-                            If Globals.ParentProcessName Is Nothing Then Globals.ParentProcessName = "noparent"
+                            ' Do nothing
                         End Try
                     End If
                     Return True

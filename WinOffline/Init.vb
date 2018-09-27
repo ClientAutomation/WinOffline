@@ -315,6 +315,7 @@ Partial Public Class WinOffline
             Dim CurrentID As Integer = Nothing
             Dim ParentID As Integer = Nothing
             Dim ParentName As String = Nothing
+            Dim LoopCounter As Integer
 
             CallStack += "InitProcess|"
 
@@ -325,7 +326,7 @@ Partial Public Class WinOffline
 
             Logger.WriteDebug(CallStack, "Process name: " + Globals.ProcessShortName)
             Logger.WriteDebug(CallStack, "Version: " + Globals.ProcessFriendlyName + " " + Globals.AppVersion)
-            Logger.WriteDebug(CallStack, ".NET framework version: " + Globals.DotNetVersion)
+            Logger.WriteDebug(CallStack, "Framework version: " + Globals.DotNetVersion)
             Logger.WriteDebug(CallStack, "Hostname: " + My.Computer.Name)
             Logger.WriteDebug(CallStack, "Running as: " + Globals.ProcessIdentity.Name)
             Logger.WriteDebug(CallStack, "PID: " + Globals.ProcessID.ToString)
@@ -333,14 +334,24 @@ Partial Public Class WinOffline
             ' Read up the parent process tree
             Try
                 CurrentID = Globals.ProcessID
+                LoopCounter = 0
                 While True
                     ProcessWMI = New ManagementObject("Win32_Process.Handle='" & CurrentID & "'")
                     ParentID = ProcessWMI("ParentProcessID")
+                    If Not Integer.TryParse(ParentID, Nothing) OrElse ParentID <= 0 Then
+                        If LoopCounter = 0 Then
+                            Globals.ParentProcessName = "noparent"
+                            Exit While
+                        Else
+                            Exit While
+                        End If
+                    End If
                     ParentName = Process.GetProcessById(ParentID).ProcessName.ToString
                     Logger.WriteDebug(CallStack, "Parent: " + ParentID.ToString + "/" + ParentName)
-                    If Globals.ParentProcessName Is Nothing Then Globals.ParentProcessName = ParentName.ToLower
+                    If LoopCounter = 0 Then Globals.ParentProcessName = ParentName.ToLower
                     Globals.ParentProcessTree.Add(ParentName.ToLower)
                     CurrentID = ParentID
+                    LoopCounter += 1
                 End While
             Catch ex As Exception
                 If Globals.ParentProcessName Is Nothing Then Globals.ParentProcessName = "noparent"

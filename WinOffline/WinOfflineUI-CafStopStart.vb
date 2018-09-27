@@ -320,20 +320,18 @@ Partial Public Class WinOfflineUI
                 Delegate_Sub_Append_Text(UIOutputControl, "Helper thread: Monitoring (" + CafProcessList.Count.ToString + ") processes.")
                 LoopCounter = 0
 
-                While LoopCounter < 50
+                While LoopCounter < 20
                     If Not WinOffline.Utility.IsProcessRunning("caf.exe", "stop") Then
                         Delegate_Sub_Append_Text(UIOutputControl, "Helper thread: Finished.")
                         Return
                     End If
                     LoopCounter += 1
-                    Thread.Sleep(50)
+                    Thread.Sleep(500)
                 End While
 
                 For x As Integer = CafProcessList.Count - 1 To 0 Step -1
                     ChildProcess = CafProcessList(x)
-                    Delegate_Sub_Append_Text(UIOutputControl, "Helper thread: Analyzing PID " + ChildProcess.Item(0).ToString + " -- " + ChildProcess.Item(1).ToString)
                     If Not WinOffline.Utility.IsProcessRunning(Integer.Parse(ChildProcess.Item(0))) Then
-                        Delegate_Sub_Append_Text(UIOutputControl, "Helper thread: Self-terminated PID " + ChildProcess.Item(0).ToString + " -- " + ChildProcess.Item(1).ToString)
                         CafProcessList.RemoveAt(x)
                         Continue For
                     End If
