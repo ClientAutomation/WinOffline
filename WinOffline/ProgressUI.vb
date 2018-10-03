@@ -32,9 +32,9 @@ Public Class ProgressUI
         TrayIcon.Dispose()
     End Sub
 
-    Public Sub Delegate_ProgressUI_GoModeless(ByVal AutoClose As Boolean)
+    Public Sub Delegate_GoModeless(ByVal AutoClose As Boolean)
         If IsHandleCreated AndAlso InvokeRequired Then
-            Dim MyDelegate As New HideFormCallback(AddressOf Delegate_ProgressUI_GoModeless)
+            Dim MyDelegate As New HideFormCallback(AddressOf Delegate_GoModeless)
             Invoke(MyDelegate, AutoClose)
         Else
             If AutoClose Then ' Check for autoclose option [TRUE = Autoclose based on Timer, FALSE = Hide immediately]

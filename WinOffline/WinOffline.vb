@@ -14,7 +14,12 @@
         Globals.DotNetVersion = Environment.Version.ToString
         Globals.CommandLineArgs = CommandLineArguments
 
-        If WindowsAPI.AttachConsole(-1) Then Globals.AttachedtoConsole = True Else Globals.AttachedtoConsole = False
+        ' Check for console window attachment
+        If WindowsAPI.AttachConsole(-1) Then
+            Globals.AttachedtoConsole = True
+        Else
+            Globals.AttachedtoConsole = False
+        End If
 
         ' Main process initialization
         RunLevel = Init.Init(CallStack)
@@ -41,7 +46,6 @@
         Else
             Logger.WriteDebug(CallStack, "Entry point: Non-Software Delivery")
             Globals.SDBasedMode = False
-
             If Not Globals.RunningAsSystemIdentity Then
                 If Globals.AttachedtoConsole Then
                     If Globals.ITCMInstalled = False Then
@@ -111,9 +115,9 @@
         ' Dispatch debug gui [User execution only]
         If Not Globals.RunningAsSystemIdentity AndAlso Globals.ProgressGUI IsNot Nothing Then
             If Globals.FinalStage Then
-                Globals.ProgressGUI.Delegate_ProgressUI_GoModeless(True) ' Autoclose the debug console [Autoclose = True]
+                Globals.ProgressGUI.Delegate_GoModeless(True) ' Autoclose the debug console [Autoclose = True]
             Else
-                Globals.ProgressGUI.Delegate_ProgressUI_GoModeless(False) ' Hide the debug console [Autoclose = False]
+                Globals.ProgressGUI.Delegate_GoModeless(False) ' Hide the debug console [Autoclose = False]
             End If
         End If
 
