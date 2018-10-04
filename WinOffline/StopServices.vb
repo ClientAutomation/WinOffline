@@ -388,6 +388,7 @@ Partial Public Class WinOffline
         Utility.KillProcessByCommandLine("w3wp.exe", "DSM_WebService_HM")
         Utility.KillProcessByCommandLine("w3wp.exe", "DSM_WebService")
         Utility.KillProcessByCommandLine("w3wp.exe", "ITCM_Application_Pool")
+        Utility.KillProcessByCommandLine("caf.exe", "status", True) ' Kill anyone checking the "caf status"
 
         ' Stop the CAF service
         Try
@@ -449,6 +450,7 @@ Partial Public Class WinOffline
                     LoopCounter = 0
                     While Utility.IsProcessRunning("caf", True)
                         Logger.WriteDebug(CallStack, "CAF service: ACTIVE")
+                        Utility.KillProcessByCommandLine("caf.exe", "status", True) ' Kill anyone checking the "caf status"
                         LoopCounter += 1
                         Thread.Sleep(3000)
                         If LoopCounter >= 4 Then Exit While
@@ -747,9 +749,8 @@ Partial Public Class WinOffline
         RunningProcess.Close()
 
         Thread.Sleep(3000)
-
-        Utility.KillProcess("caf")
-
+        Utility.KillProcess("caf", True)
+        Thread.Sleep(3000)
     End Sub
 
     Public Shared Sub CafStopWorker()

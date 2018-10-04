@@ -136,7 +136,7 @@ Partial Public Class WinOffline
                 Logger.WriteDebug(CallStack, "CAF service: DISABLED")
                 Exit Try
             End If
-            If Utility.IsProcessRunning("caf") Then
+            If Utility.IsProcessRunning("caf.exe", "service") Then
                 Logger.WriteDebug(CallStack, "CAF service: ACTIVE")
                 Exit Try
             End If

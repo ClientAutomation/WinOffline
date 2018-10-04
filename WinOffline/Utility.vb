@@ -641,11 +641,15 @@ Partial Public Class WinOffline
                         Dim ParentName As String = Nothing
                         Dim WMIQuery As ManagementObjectSearcher
                         Dim CommandLine As String = Nothing
-                        WMIQuery = New ManagementObjectSearcher("SELECT * FROM Win32_Process WHERE ProcessId='" + RunningProcess.Id.ToString + "'")
-                        For Each WMIProcess As ManagementObject In WMIQuery.Get()
-                            CommandLine = WMIProcess("CommandLine").ToString
-                        Next
-                        Logger.WriteDebug(Logger.LastCallStack, "IsProcessRunning() found: " + RunningProcess.Id.ToString + "/" + RunningProcess.ProcessName + " " + CommandLine)
+                        Try
+                            WMIQuery = New ManagementObjectSearcher("SELECT * FROM Win32_Process WHERE ProcessId='" + RunningProcess.Id.ToString + "'")
+                            For Each WMIProcess As ManagementObject In WMIQuery.Get()
+                                CommandLine = WMIProcess("CommandLine").ToString
+                            Next
+                        Catch ex As Exception
+                            CommandLine = "unavailable"
+                        End Try
+                        Logger.WriteDebug(Logger.LastCallStack, "IsProcessRunning() found: " + RunningProcess.Id.ToString + "/" + RunningProcess.ProcessName + " [" + CommandLine + "]")
                         Try
                             CurrentID = RunningProcess.Id
                             While True
@@ -720,13 +724,28 @@ Partial Public Class WinOffline
             End If
         End Function
 
-        Public Shared Function KillProcess(ByVal FriendlyName As String) As Boolean
+        Public Shared Function KillProcess(ByVal FriendlyName As String, Optional ByVal MoreInfo As Boolean = False) As Boolean
             Dim MatchFound As Boolean = False
+            Dim CommandLine As String = Nothing
             Try
                 For Each RunningProcess As Process In Process.GetProcesses()
                     If RunningProcess.ProcessName.ToLower.Equals(FriendlyName.ToLower) Then
                         MatchFound = True
+                        If MoreInfo Then ' Before killing process
+                            Try
+                                Dim WMIQuery As ManagementObjectSearcher
+                                WMIQuery = New ManagementObjectSearcher("SELECT * FROM Win32_Process WHERE ProcessId='" + RunningProcess.Id.ToString + "'")
+                                For Each WMIProcess As ManagementObject In WMIQuery.Get()
+                                    CommandLine = WMIProcess("CommandLine").ToString
+                                Next
+                            Catch ex As Exception
+                                CommandLine = "unavailable"
+                            End Try
+                        End If
                         RunningProcess.Kill()
+                        If MoreInfo Then ' After killing process
+                            Logger.WriteDebug(Logger.LastCallStack, "Killed: " + RunningProcess.Id.ToString + "/" + RunningProcess.ProcessName + " [" + CommandLine + "]")
+                        End If
                     End If
                 Next
             Catch ex As Exception
@@ -734,11 +753,26 @@ Partial Public Class WinOffline
             Return MatchFound
         End Function
 
-        Public Shared Function KillProcess(ByVal ProcessID As Integer) As Boolean
+        Public Shared Function KillProcess(ByVal ProcessID As Integer, Optional ByVal MoreInfo As Boolean = False) As Boolean
+            Dim CommandLine As String = Nothing
             Try
                 For Each RunningProcess As Process In Process.GetProcesses()
                     If RunningProcess.Id = ProcessID Then
+                        If MoreInfo Then ' Before killing process
+                            Try
+                                Dim WMIQuery As ManagementObjectSearcher
+                                WMIQuery = New ManagementObjectSearcher("SELECT * FROM Win32_Process WHERE ProcessId='" + RunningProcess.Id.ToString + "'")
+                                For Each WMIProcess As ManagementObject In WMIQuery.Get()
+                                    CommandLine = WMIProcess("CommandLine").ToString
+                                Next
+                            Catch ex As Exception
+                                CommandLine = "unavailable"
+                            End Try
+                        End If
                         RunningProcess.Kill()
+                        If MoreInfo Then ' After killing process
+                            Logger.WriteDebug(Logger.LastCallStack, "Killed: " + RunningProcess.Id.ToString + "/" + RunningProcess.ProcessName + " [" + CommandLine + "]")
+                        End If
                         Return True
                     End If
                 Next
@@ -747,7 +781,7 @@ Partial Public Class WinOffline
             Return False
         End Function
 
-        Public Shared Function KillProcessByCommandLine(ByVal ProcessShortName As String, ByVal ContainsCommandLine As String) As Boolean
+        Public Shared Function KillProcessByCommandLine(ByVal ProcessShortName As String, ByVal ContainsCommandLine As String, Optional ByVal MoreInfo As Boolean = False) As Boolean
             Dim WMIQuery As ManagementObjectSearcher
             Dim ProcessId As String = Nothing
             Dim CommandLine As String = Nothing
@@ -763,7 +797,7 @@ Partial Public Class WinOffline
                     End If
                     If CommandLine IsNot Nothing AndAlso CommandLine.ToLower.Contains(ContainsCommandLine.ToLower) Then
                         ProcessFound = True
-                        KillProcess(Integer.Parse(ProcessId))
+                        KillProcess(Integer.Parse(ProcessId), MoreInfo)
                     End If
                 Next
             Catch ex As Exception
