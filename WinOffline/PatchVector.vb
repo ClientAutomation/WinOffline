@@ -14,6 +14,7 @@
         Private _ReplaceFolder As String                    ' Replacement location folder for storing original files.
         Private _ReplaceSubFolder As New ArrayList          ' Sub folder within replacement folder, for storing each original file.
         Private _SkipIfNotFoundList As New ArrayList        ' File replacements to skip, if destination file is not originally present (i.e. source file is new).
+        Public Const UNAVAILABLE As Integer = -5            ' Apply action code: Unavailable. (Files are missing)
         Public Const NOT_APPLICABLE As Integer = -4         ' Apply action code: Not applicable.
         Public Const ALREADY_APPLIED As Integer = -3        ' Apply action code: Already applied.
         Public Const NO_ACTION As Integer = -2              ' Apply action code: No action.
@@ -22,6 +23,7 @@
         Public Const APPLY_FAIL As Integer = 1              ' Apply action code: Apply fail.
         Public Const EXECUTE_OK As Integer = 2              ' Apply action code: Execute ok.
         Public Const EXECUTE_FAIL As Integer = 3            ' Apply action code: Execute fail.
+        Public Const FILE_REVERSED As Integer = -2          ' File replacement code: Reversed.
         Public Const FILE_SKIPPED As Integer = -1           ' File replacement code: Skipped.
         Public Const FILE_OK As Integer = 0                 ' File replacement code: File ok.
         Public Const FILE_REBOOT_REQUIRED As Integer = 1    ' File replacement code: Reboot required.
@@ -43,9 +45,11 @@
             _FileReplaceResult = New ArrayList
             _CommentString = ""
 
+
+
             For Each ReplacedFile As String In GetShortNameReplaceList()
                 _SourceReplaceList.Add(_FileName.GetFilePath + "\" + ReplacedFile)
-                _FileReplaceResult.Add(-1)
+                _FileReplaceResult.Add(FILE_SKIPPED)
             Next
 
             For Each ReplacedFile As String In GetRawReplaceList()

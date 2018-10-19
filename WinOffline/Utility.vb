@@ -578,6 +578,14 @@ Partial Public Class WinOffline
             End Try
         End Function
 
+        Public Shared Function IsFolderEmpty(ByVal FolderName As String) As Boolean
+            If System.IO.Directory.Exists(FolderName) Then
+                If System.IO.Directory.GetDirectories(FolderName).Length > 0 Then Return False
+                If System.IO.Directory.GetFiles(FolderName).Length > 0 Then Return False
+            End If
+            Return True
+        End Function
+
         Public Shared Function IsHexChar(ByVal c As Char) As Boolean
             Dim result As Integer
             If Integer.TryParse(c.ToString, result) AndAlso result >= 0 AndAlso result <= 9 Then Return True

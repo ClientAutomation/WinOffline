@@ -40,6 +40,7 @@
                 For Each strLine As String In NewItem
                     ExceptionManifest.Add(strLine)
                 Next
+                ExceptionManifest.Add("//BREAK//")
             End If
 
             Return
@@ -107,7 +108,6 @@
                 CacheWriter = New System.IO.StreamWriter(CacheFile, False)
                 For n As Integer = 0 To ExceptionManifest.Count() - 1
                     strLine = ExceptionManifest.Item(n)
-                    Logger.WriteDebug(CallStack, "Write: " + strLine)
                     CacheWriter.WriteLine(strLine)
                 Next
                 Logger.WriteDebug(CallStack, "Close file: " + CacheFile)
@@ -233,17 +233,23 @@
             PatchSummary += Environment.NewLine
             If ExceptionManifest.Count = 0 Then
                 PatchSummary += "No exceptions thrown." + Environment.NewLine
+                PatchSummary += Environment.NewLine
             Else
-                For i As Integer = 0 To ExceptionManifest.Count() - 2 Step 2
-                    PatchSummary += Environment.NewLine + "Exception #" + ExceptionCounter.ToString + ":" + Environment.NewLine
-                    PatchSummary += "----------------" + Environment.NewLine
-                    PatchSummary += ExceptionManifest.Item(i).ToString + Environment.NewLine
-                    PatchSummary += ExceptionManifest.Item(i + 1).ToString + Environment.NewLine
-                    PatchSummary += "----------------" + Environment.NewLine
+                For i As Integer = 0 To ExceptionManifest.Count() - 1
+                    PatchSummary += "Exception #" + ExceptionCounter.ToString + ": " + ExceptionManifest.Item(i).ToString + Environment.NewLine
+                    For j As Integer = i + 1 To ExceptionManifest.Count() - 1
+                        If ExceptionManifest.Item(j).ToString.Equals("//BREAK//") Then
+                            i = j
+                            Exit For
+                        Else
+                            PatchSummary += ExceptionManifest.Item(j).ToString + Environment.NewLine
+                        End If
+                    Next
+                    PatchSummary += Environment.NewLine
                     ExceptionCounter += 1
                 Next
             End If
-            PatchSummary += Environment.NewLine
+
             For i As Integer = 0 To Globals.ProcessFriendlyName.Length + 12
                 PatchSummary += "-"
             Next
@@ -295,17 +301,22 @@
             PatchSummary += Environment.NewLine
             If ExceptionManifest.Count = 0 Then
                 PatchSummary += "No exceptions thrown." + Environment.NewLine
+                PatchSummary += Environment.NewLine
             Else
-                For i As Integer = 0 To ExceptionManifest.Count() - 2 Step 2
-                    PatchSummary += Environment.NewLine + "Exception #" + ExceptionCounter.ToString + ":" + Environment.NewLine
-                    PatchSummary += "----------------" + Environment.NewLine
-                    PatchSummary += ExceptionManifest.Item(i).ToString + Environment.NewLine
-                    PatchSummary += ExceptionManifest.Item(i + 1).ToString + Environment.NewLine
-                    PatchSummary += "----------------" + Environment.NewLine
+                For i As Integer = 0 To ExceptionManifest.Count() - 1
+                    PatchSummary += "Exception #" + ExceptionCounter.ToString + ": " + ExceptionManifest.Item(i).ToString + Environment.NewLine
+                    For j As Integer = i + 1 To ExceptionManifest.Count() - 1
+                        If ExceptionManifest.Item(j).ToString.Equals("//BREAK//") Then
+                            i = j
+                            Exit For
+                        Else
+                            PatchSummary += ExceptionManifest.Item(j).ToString + Environment.NewLine
+                        End If
+                    Next
+                    PatchSummary += Environment.NewLine
                     ExceptionCounter += 1
                 Next
             End If
-            PatchSummary += Environment.NewLine
             For i As Integer = 0 To Globals.ProcessFriendlyName.Length + 14
                 PatchSummary += "-"
             Next
@@ -362,7 +373,9 @@
                         For x As Integer = 0 To GetRemovalFromManifest(i).FileRemovalResult.Count - 1
                             ReplaceFile = GetRemovalFromManifest(i).RemovalFileName.Item(x)
                             PatchSummary += "- " + ReplaceFile + " ["
-                            If GetRemovalFromManifest(i).FileRemovalResult.Item(x) = RemovalVector.FILE_SKIPPED Then
+                            If GetRemovalFromManifest(i).FileRemovalResult.Item(x) = RemovalVector.FILE_REVERSED Then
+                                PatchSummary += "REVERSED]" + Environment.NewLine
+                            ElseIf GetRemovalFromManifest(i).FileRemovalResult.Item(x) = RemovalVector.FILE_SKIPPED Then
                                 PatchSummary += "SKIPPED]" + Environment.NewLine
                             ElseIf GetRemovalFromManifest(i).FileRemovalResult.Item(x) = RemovalVector.FILE_OK Then
                                 PatchSummary += "OK]" + Environment.NewLine
@@ -377,7 +390,10 @@
                 Else
                     For i As Integer = 0 To PatchManifest.Count - 1
                         PatchSummary += GetPatchFromManifest(i).PatchFile.GetFriendlyName + ": "
-                        If GetPatchFromManifest(i).PatchAction = PatchVector.NOT_APPLICABLE Then
+                        If GetPatchFromManifest(i).PatchAction = PatchVector.UNAVAILABLE Then
+                            PatchSummary += "UNAVAILABLE" + Environment.NewLine
+                            PatchSummary += GetPatchFromManifest(i).CommentString.Replace("NEWLINE", Environment.NewLine)
+                        ElseIf GetPatchFromManifest(i).PatchAction = PatchVector.NOT_APPLICABLE Then
                             PatchSummary += "NOT APPLICABLE" + Environment.NewLine
                             PatchSummary += GetPatchFromManifest(i).CommentString.Replace("NEWLINE", Environment.NewLine) + Environment.NewLine
                         ElseIf GetPatchFromManifest(i).PatchAction = PatchVector.ALREADY_APPLIED Then
@@ -401,25 +417,28 @@
                         Else
                             PatchSummary += "UNKNOWN" + Environment.NewLine
                         End If
-                        If GetPatchFromManifest(i).PatchAction = PatchVector.APPLY_OK Or
-                            GetPatchFromManifest(i).PatchAction = PatchVector.APPLY_FAIL Or
-                            GetPatchFromManifest(i).PatchAction = PatchVector.EXECUTE_OK Or
+                        If GetPatchFromManifest(i).PatchAction = PatchVector.APPLY_OK OrElse
+                            GetPatchFromManifest(i).PatchAction = PatchVector.APPLY_FAIL OrElse
+                            GetPatchFromManifest(i).PatchAction = PatchVector.EXECUTE_OK OrElse
                             GetPatchFromManifest(i).PatchAction = PatchVector.EXECUTE_FAIL Then
 
                             For x As Integer = 0 To GetPatchFromManifest(i).GetPreCommandList.Count - 1
                                 CommandFile = GetPatchFromManifest(i).GetPreCommandList.Item(x)
                                 If GetPatchFromManifest(i).PreCmdReturnCodes.Count > x Then
                                     ReturnCode = GetPatchFromManifest(i).PreCmdReturnCodes.Item(x)
+                                    PatchSummary += "- " + CommandFile + " [Return Code: " + ReturnCode + "]" + Environment.NewLine
                                 Else
-                                    ReturnCode = "SKIPPED"
+                                    ReturnCode = "NOT EXECUTED"
+                                    PatchSummary += "- " + CommandFile + " [" + ReturnCode + "]" + Environment.NewLine
                                 End If
-                                PatchSummary += "- " + CommandFile + " [Return Code: " + ReturnCode + "]" + Environment.NewLine
                             Next
 
                             For x As Integer = 0 To GetPatchFromManifest(i).DestReplaceList.Count - 1
                                 ReplaceFile = GetPatchFromManifest(i).DestReplaceList.Item(x)
                                 PatchSummary += "- " + ReplaceFile + " ["
-                                If GetPatchFromManifest(i).FileReplaceResult.Item(x) = PatchVector.FILE_SKIPPED Then
+                                If GetPatchFromManifest(i).FileReplaceResult.Item(x) = PatchVector.FILE_REVERSED Then
+                                    PatchSummary += "REVERSED]" + Environment.NewLine
+                                ElseIf GetPatchFromManifest(i).FileReplaceResult.Item(x) = PatchVector.FILE_SKIPPED Then
                                     PatchSummary += "SKIPPED]" + Environment.NewLine
                                 ElseIf GetPatchFromManifest(i).FileReplaceResult.Item(x) = PatchVector.FILE_OK Then
                                     PatchSummary += "OK]" + Environment.NewLine
@@ -434,10 +453,11 @@
                                 CommandFile = GetPatchFromManifest(i).GetSysCommandList.Item(x)
                                 If GetPatchFromManifest(i).SysCmdReturnCodes.Count > x Then
                                     ReturnCode = GetPatchFromManifest(i).SysCmdReturnCodes.Item(x)
+                                    PatchSummary += "- " + CommandFile + " [Return Code: " + ReturnCode + "]" + Environment.NewLine
                                 Else
-                                    ReturnCode = "SKIPPED"
+                                    ReturnCode = "NOT EXECUTED"
+                                    PatchSummary += "- " + CommandFile + " [" + ReturnCode + "]" + Environment.NewLine
                                 End If
-                                PatchSummary += "- " + CommandFile + " [Return Code: " + ReturnCode + "]" + Environment.NewLine
                             Next
 
                         End If

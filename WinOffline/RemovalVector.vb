@@ -19,6 +19,7 @@ Partial Public Class WinOffline
         Public Const SKIPPED As Integer = -1                ' Removal action code: Skipped.
         Public Const REMOVAL_OK As Integer = 0              ' Removal action code: Removal ok.
         Public Const REMOVAL_FAIL As Integer = 1            ' Removal action code: Removal fail.
+        Public Const FILE_REVERSED As Integer = -2          ' File replacement code: Reversed.
         Public Const FILE_SKIPPED As Integer = -1           ' File replacement code: Skipped.
         Public Const FILE_OK As Integer = 0                 ' File replacement code: File ok.
         Public Const FILE_REBOOT_REQUIRED As Integer = 1    ' File replacement code: Reboot required.
