@@ -265,10 +265,10 @@
                 Logger.WriteDebug(CallStack, "Compare: " + pVector.DestReplaceList.Item(x).ToString)
                 If Not Utility.IsFileEqual(pVector.SourceReplaceList.Item(x).ToString, pVector.DestReplaceList.Item(x).ToString) Then
                     If Not System.IO.File.Exists(pVector.DestReplaceList.Item(x).ToString) AndAlso
-                        pVector.SkipIfNotFoundList.Contains(FileVector.GetShortName(pVector.DestReplaceList.Item(x).ToString.ToLower)) Then
+                        pVector.SkipIfNotFoundList.Contains(pVector.DestReplaceList.Item(x).ToString.ToLower) Then
                         Logger.WriteDebug(CallStack, "Result: Mismatch [Skip file]") ' Skipped file -- no applicability information
                     ElseIf Not System.IO.File.Exists(pVector.DestReplaceList.Item(x).ToString) AndAlso
-                        Not pVector.SkipIfNotFoundList.Contains(FileVector.GetShortName(pVector.DestReplaceList.Item(x).ToString.ToLower)) Then
+                        Not pVector.SkipIfNotFoundList.Contains(pVector.DestReplaceList.Item(x).ToString.ToLower) Then
                         Logger.WriteDebug(CallStack, "Result: Mismatch [New file]")
                         AlreadyAppliedList.Add(False) ' New file -- not applied
                     Else
@@ -377,7 +377,7 @@
                 End Try
             Else
                 ' Add to "new file" list (We may need to skip replacing these new files later)
-                NewFileList.Add(FileVector.GetShortName(pVector.DestReplaceList.Item(x).ToString.ToLower))
+                NewFileList.Add(pVector.DestReplaceList.Item(x).ToString.ToLower)
             End If
         Next
 
@@ -401,7 +401,6 @@
                         WindowsAPI.MoveFileEx(RebootFileName, Nothing, WindowsAPI.MoveFileFlags.DelayUntilReboot)
                         pVector.FileReplaceResult.Item(x) = PatchVector.FILE_REBOOT_REQUIRED
                     Else
-                        Logger.WriteDebug(CallStack, "Delete original file: " + pVector.DestReplaceList.Item(x))
                         Utility.DeleteFile(CallStack, pVector.DestReplaceList.Item(x))
                     End If
                 Catch ex As Exception
@@ -431,8 +430,8 @@
         ' Copy in replacement files
         For x As Integer = 0 To pVector.SourceReplaceList.Count - 1
             Try
-                If pVector.SkipIfNotFoundList.Contains(FileVector.GetShortName(pVector.DestReplaceList.Item(x).ToString.ToLower)) And
-                NewFileList.Contains(FileVector.GetShortName(pVector.DestReplaceList.Item(x).ToString.ToLower)) Then
+                If pVector.SkipIfNotFoundList.Contains(pVector.DestReplaceList.Item(x).ToString.ToLower) AndAlso
+                NewFileList.Contains(pVector.DestReplaceList.Item(x).ToString.ToLower) Then
                     Logger.WriteDebug(CallStack, "Skip replacement file: " + pVector.SourceReplaceList.Item(x))
                     pVector.FileReplaceResult.Item(x) = PatchVector.SKIPPED
                     Continue For
@@ -449,7 +448,6 @@
                 Logger.WriteDebug(ex.StackTrace)
                 Manifest.UpdateManifest(CallStack, Manifest.EXCEPTION_MANIFEST, {ex.Message, ex.StackTrace})
                 For y As Integer = x To 0 Step -1 ' Undo all changes
-                    Logger.WriteDebug(CallStack, "Delete replacement file: " + pVector.DestReplaceList.Item(y))
                     Utility.DeleteFile(CallStack, pVector.DestReplaceList.Item(y))
                     DestinationFileName = ReplacedFolder + "\" + pVector.ReplaceSubFolder.Item(y) + "\" + FileVector.GetShortName(pVector.DestReplaceList.Item(y))
                     DestinationFileName = DestinationFileName.Replace("\\", "\")
@@ -472,7 +470,6 @@
         ' Special case: All file replacements skipped
         If pVector.SourceReplaceList.Count > 0 And pVector.WereAllFileReplacementsSkipped Then
             pVector.CommentString = "Reason: All patch file replacements skipped."
-            Logger.WriteDebug(CallStack, "Delete REPLACED subfolder: " + pVector.ReplaceFolder)
             Utility.DeleteFolder(CallStack, ReplacedFolder)
         End If
 
@@ -488,7 +485,6 @@
             pVector.CommentString = "Reason: Execution of SYSCMD script(s) failed."
             For y As Integer = 0 To pVector.DestReplaceList.Count - 1 ' Script failure, reverse all file replacement changes.
                 If Not (pVector.FileReplaceResult.Item(y) = PatchVector.FILE_SKIPPED) Then
-                    Logger.WriteDebug(CallStack, "Delete replacement file: " + pVector.DestReplaceList.Item(y))
                     Utility.DeleteFile(CallStack, pVector.DestReplaceList.Item(y))
                     pVector.FileReplaceResult.Item(y) = PatchVector.FILE_REVERSED
                     DestinationFileName = ReplacedFolder + "\" + pVector.ReplaceSubFolder.Item(y) + "\" + FileVector.GetShortName(pVector.DestReplaceList.Item(y))
@@ -606,15 +602,20 @@
         '       is to be considered a NEW FILE introduced by the application of the patch.
         '       Therefore, on removal of said patch, NEW FILES will simply be deleted, but
         '       also saved in the BACKOUT subfolder.
-        '
-        '       Maintaining a NewFile list is not really necessary, as lower sections of
-        '       code automatically save them to the BACKOUT subsolder and delete them
-        '       where they stand. But I'm leaving this code here for now, in case this
-        '       functionality is changed in the future.
         For Each InstalledFile As String In hVector.GetInstalledFiles
             If hVector.GetProductComponent.Equals(IT_CLIENT_MANAGER) Then
-                SubFolder = InstalledFile.ToLower.Replace(Globals.DSMFolder.ToLower, "")
-                SubFolder = SubFolder.Replace("\\", "\")
+                ' Sometimes the product code is a lie. For example, development coded the patch
+                ' as BITCM or DTSVMG, but then used a "FILE:..\SC\CBB\SomeFile.dat" to subvert the
+                ' product code, and go outside the parent folder to conduct a replacement. Therefore,
+                ' we need to check the InstalledFile path actually contains the DSMFolder, and if not,
+                ' we will check components within SC, followed by the generic SC folder.
+                If InstalledFile.ToLower.Contains(Globals.DSMFolder.ToLower) Then
+                    SubFolder = InstalledFile.ToLower.Replace(Globals.DSMFolder.ToLower, "")
+                    SubFolder = SubFolder.Replace("\\", "\")
+                ElseIf InstalledFile.ToLower.Contains(Globals.CAFolder.ToLower) Then
+                    SubFolder = InstalledFile.ToLower.Replace(Globals.CAFolder.ToLower, "")
+                    SubFolder = SubFolder.Replace("\\", "\")
+                End If
             ElseIf hVector.GetProductComponent.Equals(SHARED_COMPONENTS) Then
                 SubFolder = InstalledFile.ToLower.Replace(Globals.SharedCompFolder.ToLower, "")
                 SubFolder = SubFolder.Replace("\\", "\")
@@ -637,7 +638,7 @@
                 SubFolderList.Add(SubFolder) ' Add subfolder to list (so we don't have to recalculate this later)
             Else
                 NewFileList.Add(InstalledFile)
-                SubFolderList.Add(SubFolder) ' Add subfolder to list (so we don't have to recalculate this later)
+                SubFolderList.Add(SubFolder) ' Add subfolder to list
             End If
         Next
 
@@ -699,7 +700,6 @@
                     Logger.WriteDebug(ex.Message)
                     Logger.WriteDebug(ex.StackTrace)
                     Manifest.UpdateManifest(CallStack, Manifest.EXCEPTION_MANIFEST, {ex.Message, ex.StackTrace})
-                    Logger.WriteDebug(CallStack, "Delete BACKOUT folder: " + DestinationFolder)
                     Utility.DeleteFolder(CallStack, DestinationFolder)
                     rVector.RemovalFileName.Add(hVector.GetInstalledFiles.Item(x))
                     rVector.FileRemovalResult.Add(RemovalVector.FILE_FAILED)
@@ -731,7 +731,6 @@
                         rVector.RemovalFileName.Add(hVector.GetInstalledFiles.Item(x))
                         rVector.FileRemovalResult.Add(RemovalVector.FILE_REBOOT_REQUIRED)
                     Else
-                        Logger.WriteDebug(CallStack, "Delete current file: " + hVector.GetInstalledFiles.Item(x))
                         Utility.DeleteFile(CallStack, hVector.GetInstalledFiles.Item(x))
                         rVector.RemovalFileName.Add(hVector.GetInstalledFiles.Item(x))
                         rVector.FileRemovalResult.Add(RemovalVector.FILE_OK)
@@ -750,7 +749,6 @@
                             System.IO.File.Copy(DestinationFileName, hVector.GetInstalledFiles.Item(y), True)
                         End If
                     Next
-                    Logger.WriteDebug(CallStack, "Delete BACKOUT subfolder: " + DestinationFolder)
                     Utility.DeleteFolder(CallStack, DestinationFolder)
                     rVector.RemovalFileName.Add(hVector.GetInstalledFiles.Item(x))
                     rVector.FileRemovalResult.Add(RemovalVector.FILE_FAILED)
@@ -776,7 +774,6 @@
                 Logger.WriteDebug(ex.StackTrace)
                 Manifest.UpdateManifest(CallStack, Manifest.EXCEPTION_MANIFEST, {ex.Message, ex.StackTrace})
                 For y As Integer = x To 0 Step -1
-                    Logger.WriteDebug(CallStack, "Delete restored file: " + hVector.GetInstalledFiles.Item(y))
                     Utility.DeleteFile(CallStack, hVector.GetInstalledFiles.Item(y))
                     DestinationFileName = DestinationFolder + "\" + SubFolderList.Item(y)
                     DestinationFileName = DestinationFileName.Replace("\\", "\")
@@ -786,7 +783,6 @@
                         System.IO.File.Copy(DestinationFileName, hVector.GetInstalledFiles.Item(y), True)
                     End If
                 Next
-                Logger.WriteDebug(CallStack, "Delete BACKOUT subfolder: " + DestinationFolder)
                 Utility.DeleteFolder(CallStack, DestinationFolder)
                 rVector.RemovalFileName.Add(hVector.GetInstalledFiles.Item(x))
                 rVector.FileRemovalResult.Add(RemovalVector.FILE_FAILED)
@@ -797,7 +793,6 @@
         Next
 
         ' Remove REPLACED folder
-        Logger.WriteDebug(CallStack, "Delete REPLACED subfolder: " + ReplacedFolder)
         Utility.DeleteFolder(CallStack, ReplacedFolder)
 
         ' Remove an empty BACKOUT.OLD folder

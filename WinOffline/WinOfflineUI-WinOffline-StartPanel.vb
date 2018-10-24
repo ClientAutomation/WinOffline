@@ -21,27 +21,28 @@ Partial Public Class WinOfflineUI
             Exit Sub
         End If
 
-        ReadHistoryFile("Client Automation", Globals.DSMFolder + Globals.HostName + ".his")
-        ReadHistoryFile("Shared Components", Globals.SharedCompFolder + Globals.HostName + ".his")
-        ReadHistoryFile("CA Message Queuing Service", Globals.CAMFolder + "\" + Globals.HostName + ".his")
+        ReadHistoryFiles("Client Automation", Globals.DSMFolder)
+        ReadHistoryFiles("Shared Components", Globals.SharedCompFolder)
+        ReadHistoryFiles("CA Message Queuing Service", Globals.CAMFolder + "\")
 
         If Globals.SSAFolder IsNot Nothing Then
-            ReadHistoryFile("Secure Socket Adapter", Globals.SSAFolder + Globals.HostName + ".his")
+            ReadHistoryFiles("Secure Socket Adapter", Globals.SSAFolder)
         End If
         If Globals.DTSFolder IsNot Nothing Then
-            ReadHistoryFile("Data Transport Service", Globals.DTSFolder + "\" + Globals.HostName + ".his")
+            ReadHistoryFiles("Data Transport Service", Globals.DTSFolder + "\")
         End If
         If Globals.EGCFolder IsNot Nothing Then
-            ReadHistoryFile("DSM Explorer GUI", Globals.EGCFolder + "\" + Globals.HostName + ".his")
+            ReadHistoryFiles("DSM Explorer GUI", Globals.EGCFolder + "\")
         End If
 
         treHistory.Nodes(0).EnsureVisible()
 
     End Sub
 
-    Private Sub ReadHistoryFile(ByVal Component As String, ByVal HistoryFile As String)
+    Private Sub ReadHistoryFiles(ByVal Component As String, ByVal HistoryBaseFolder As String)
 
         Dim ComponentRootNode As New TreeNode(Component)
+        Dim FileList As String()
         Dim HistoryFileReader As System.IO.StreamReader
         Dim HistoryArray As New ArrayList
         Dim strLine As String
@@ -57,15 +58,18 @@ Partial Public Class WinOfflineUI
 
         treHistory.Nodes.Add(ComponentRootNode)
 
-        If System.IO.File.Exists(HistoryFile) Then
+        If System.IO.Directory.Exists(HistoryBaseFolder) Then
             Try
-                HistoryFileReader = New System.IO.StreamReader(HistoryFile)
-
-                Do While HistoryFileReader.Peek() >= 0
-                    HistoryArray.Add(HistoryFileReader.ReadLine())
-                Loop
-
-                HistoryFileReader.Close()
+                FileList = System.IO.Directory.GetFiles(HistoryBaseFolder)
+                For n As Integer = 0 To FileList.Length - 1
+                    If FileList(n).ToLower.EndsWith(".his") Then
+                        HistoryFileReader = New System.IO.StreamReader(FileList(n))
+                        Do While HistoryFileReader.Peek() >= 0
+                            HistoryArray.Add(HistoryFileReader.ReadLine())
+                        Loop
+                        HistoryFileReader.Close()
+                    End If
+                Next
             Catch ex As Exception
                 Dim NewNode As New TreeNode("Failed to read history file.")
                 ComponentRootNode.Nodes.Add(NewNode)

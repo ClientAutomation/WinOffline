@@ -667,6 +667,8 @@ Partial Public Class WinOffline
                                 ParentName = Process.GetProcessById(ParentID).ProcessName.ToString
                                 Logger.WriteDebug(Logger.LastCallStack, "IsProcessRunning() parent: " + ParentID.ToString + "/" + ParentName)
                                 CurrentID = ParentID
+                                ParentID = 0
+                                If Not IsProcessRunning(ProcessFriendlyName, False) Then Return False ' Original process stopped while we were gathering more info.
                             End While
                         Catch ex As Exception
                             ' Do nothing

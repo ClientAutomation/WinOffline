@@ -14,26 +14,26 @@
         CallStack += "HistoryFile|"
 
         ' Read component history files
-        Runlevel = ReadHistoryFile(CallStack, IT_CLIENT_MANAGER, Globals.DSMFolder + Globals.HostName + ".his")
+        Runlevel = ReadHistoryFiles(CallStack, IT_CLIENT_MANAGER, Globals.DSMFolder)
         If Runlevel <> 0 Then
             Logger.WriteDebug(CallStack, "Error: Failed to process ITCM history file.")
             Return 1
         End If
 
-        Runlevel = ReadHistoryFile(CallStack, SHARED_COMPONENTS, Globals.SharedCompFolder + Globals.HostName + ".his")
+        Runlevel = ReadHistoryFiles(CallStack, SHARED_COMPONENTS, Globals.SharedCompFolder)
         If Runlevel <> 0 Then
             Logger.WriteDebug(CallStack, "Error: Failed to process shared components history file.")
             Return 2
         End If
 
-        Runlevel = ReadHistoryFile(CallStack, CA_MESSAGE_QUEUING, Globals.CAMFolder + "\" + Globals.HostName + ".his")
+        Runlevel = ReadHistoryFiles(CallStack, CA_MESSAGE_QUEUING, Globals.CAMFolder + "\")
         If Runlevel <> 0 Then
             Logger.WriteDebug(CallStack, "Error: Failed to process CAM history file.")
             Return 3
         End If
 
         If Globals.SSAFolder IsNot Nothing Then
-            Runlevel = ReadHistoryFile(CallStack, SECURE_SOCKET_ADAPATER, Globals.SSAFolder + Globals.HostName + ".his")
+            Runlevel = ReadHistoryFiles(CallStack, SECURE_SOCKET_ADAPATER, Globals.SSAFolder)
             If Runlevel <> 0 Then
                 Logger.WriteDebug(CallStack, "Error: Failed to process SSA history file.")
                 Return 4
@@ -41,7 +41,7 @@
         End If
 
         If Globals.DTSFolder IsNot Nothing Then
-            Runlevel = ReadHistoryFile(CallStack, DATA_TRANSPORT, Globals.DTSFolder + "\" + Globals.HostName + ".his")
+            Runlevel = ReadHistoryFiles(CallStack, DATA_TRANSPORT, Globals.DTSFolder + "\")
             If Runlevel <> 0 Then
                 Logger.WriteDebug(CallStack, "Error: Failed to process DTS history file.")
                 Return 5
@@ -49,7 +49,7 @@
         End If
 
         If Globals.EGCFolder IsNot Nothing Then
-            Runlevel = ReadHistoryFile(CallStack, EXPLORER_GUI, Globals.EGCFolder + Globals.HostName + ".his")
+            Runlevel = ReadHistoryFiles(CallStack, EXPLORER_GUI, Globals.EGCFolder)
             If Runlevel <> 0 Then
                 Logger.WriteDebug(CallStack, "Error: Failed to process EGC history file.")
                 Return 6
@@ -60,35 +60,42 @@
 
     End Function
 
-    Public Shared Function ReadHistoryFile(ByVal CallStack As String, ByVal Component As String, ByVal HistoryFile As String)
+    Public Shared Function ReadHistoryFiles(ByVal CallStack As String, ByVal Component As String, ByVal HistoryBaseFolder As String)
 
-        Dim HistoryFileFound As Boolean = False             ' Flag indicating if history file is available.
-        Dim HistoryFileReader As System.IO.StreamReader     ' Input stream for reading history file.
-        Dim HistoryArray As New ArrayList                   ' Array for storing raw history from file.
-        Dim strLine As String                               ' Temp string for parsing the raw history.
-        Dim HistoryEvents As New ArrayList                  ' Array for grouping related history file entries.
-        Dim hVector As HistoryVector                        ' History vector object.
-        Dim PatchCount As Integer = 0                       ' Patch counter (for summary purposes)
+        Dim FileList As String()
+        Dim HistoryFileFound As Boolean = False
+        Dim HistoryFileReader As System.IO.StreamReader
+        Dim HistoryArray As New ArrayList
+        Dim strLine As String
+        Dim HistoryEvents As New ArrayList
+        Dim hVector As HistoryVector
+        Dim PatchCount As Integer = 0
 
         Logger.WriteDebug(CallStack, "Component: " + Component)
 
-        If System.IO.File.Exists(HistoryFile) Then
+        If System.IO.Directory.Exists(HistoryBaseFolder) Then
             Try
-                ' Read history file
-                HistoryFileFound = True
-                Logger.WriteDebug(CallStack, "Open file: " + HistoryFile)
-                Logger.WriteDebug("############################################################")
-                HistoryFileReader = New System.IO.StreamReader(HistoryFile)
-                Do While HistoryFileReader.Peek() >= 0
-                    strLine = HistoryFileReader.ReadLine()
-                    Logger.WriteDebug(strLine)
-                    HistoryArray.Add(strLine)
-                Loop
-                Logger.WriteDebug("############################################################")
-                Logger.WriteDebug(CallStack, "Close file: " + HistoryFile)
-                HistoryFileReader.Close()
 
-                ' Process history file
+                ' Read all history files (Default is ComputerName.his, but system may have been renamed)
+                FileList = System.IO.Directory.GetFiles(HistoryBaseFolder)
+                For n As Integer = 0 To FileList.Length - 1
+                    If FileList(n).ToLower.EndsWith(".his") Then
+                        HistoryFileFound = True
+                        Logger.WriteDebug(CallStack, "Open file: " + FileList(n))
+                        Logger.WriteDebug("############################################################")
+                        HistoryFileReader = New System.IO.StreamReader(FileList(n))
+                        Do While HistoryFileReader.Peek() >= 0
+                            strLine = HistoryFileReader.ReadLine()
+                            Logger.WriteDebug(strLine)
+                            HistoryArray.Add(strLine)
+                        Loop
+                        Logger.WriteDebug("############################################################")
+                        Logger.WriteDebug(CallStack, "Close file: " + FileList(n))
+                        HistoryFileReader.Close()
+                    End If
+                Next
+
+                ' Process history
                 For i As Integer = 0 To HistoryArray.Count - 1
                     strLine = HistoryArray.Item(i)
                     If strLine.StartsWith("[") And strLine.ToLower.Contains("installed") Then

@@ -45,31 +45,50 @@
             _FileReplaceResult = New ArrayList
             _CommentString = ""
 
+            ' All these lists are built in parallel with each other:
+            '   _SourceReplaceList --> Replacement source file
+            '   _FileReplaceResult --> Replacement result code
+            '   _DestReplaceList --> Replacement destination file
+            '   _ReplaceSubFolder --> Replacement subfolder
+            '   _ReplaceFolder --> Replacement base folder
 
-
+            ' Generate source file list and stub SKIPPED for replacement status
             For Each ReplacedFile As String In GetShortNameReplaceList()
                 _SourceReplaceList.Add(_FileName.GetFilePath + "\" + ReplacedFile)
                 _FileReplaceResult.Add(FILE_SKIPPED)
             Next
 
+            ' Generate destination file list
             For Each ReplacedFile As String In GetRawReplaceList()
+                Dim ReplaceDestination As String = Nothing
                 If IsClientAuto() Then
-                    _DestReplaceList.Add(Globals.DSMFolder + ReplacedFile)
+                    ReplaceDestination = Globals.DSMFolder + ReplacedFile
                 ElseIf IsSharedComponent() Then
                     If ReplacedFile.ToLower.StartsWith("capki\capki") Then ' Special case -- CAPKI may not be with other shared components
-                        _DestReplaceList.Add(Globals.CAPKIFolder + ReplacedFile.ToLower.Replace("capki\capki", "")) ' Use CAPKI folder
+                        ReplaceDestination = Globals.CAPKIFolder + ReplacedFile.ToLower.Replace("capki\capki", "") ' Use CAPKI folder
                     Else
-                        _DestReplaceList.Add(Globals.SharedCompFolder + ReplacedFile)
+                        ReplaceDestination = Globals.SharedCompFolder + ReplacedFile
                     End If
                 ElseIf IsCAM() Then
-                    _DestReplaceList.Add(Globals.CAMFolder + "\" + ReplacedFile)
+                    ReplaceDestination = Globals.CAMFolder + "\" + ReplacedFile
                 ElseIf IsSSA() Then
-                    _DestReplaceList.Add(Globals.SSAFolder + ReplacedFile)
+                    ReplaceDestination = Globals.SSAFolder + ReplacedFile
                 ElseIf IsDataTransport() Then
-                    _DestReplaceList.Add(Globals.DTSFolder + "\" + ReplacedFile)
+                    ReplaceDestination = Globals.DTSFolder + "\" + ReplacedFile
                 ElseIf IsExplorerGUI() Then
-                    _DestReplaceList.Add(Globals.EGCFolder + ReplacedFile)
+                    ReplaceDestination = Globals.EGCFolder + ReplacedFile
                 End If
+
+                ' Resolve parent directories e.g. D:\CA\DSM\..\SC\CBB\_SomeFile.txt --> D:\CA\SC\CBB\_SomeFile.txt
+                While ReplaceDestination.Contains("\..\")
+                    Dim Front As String = ReplaceDestination.Substring(0, ReplaceDestination.IndexOf("\..\"))
+                    Front = Front.Substring(0, Front.LastIndexOf("\"))
+                    Dim Back As String = ReplaceDestination.Substring(ReplaceDestination.IndexOf("\..\") + 3)
+                    ReplaceDestination = Front + Back
+                End While
+                _DestReplaceList.Add(ReplaceDestination)
+
+                ' Generate a subfolder list
                 If ReplacedFile.Contains("\") Then
                     _ReplaceSubFolder.Add(ReplacedFile.Substring(0, ReplacedFile.LastIndexOf("\")))
                 Else
@@ -150,14 +169,38 @@
 
         Public Function GetSkipFileList() As ArrayList
             Dim ReturnList As New ArrayList
-            For Each strLine As String In InstructionList
-                If strLine.ToLower.StartsWith("file:") And strLine.ToLower.Contains(":skipifnotfound:") Then
-                    strLine = strLine.Substring(strLine.IndexOf(":") + 1)
-                    strLine = strLine.Substring(0, strLine.IndexOf(":"))
-                    If strLine.Contains("\") Then
-                        strLine = strLine.Substring(strLine.LastIndexOf("\") + 1)
+            For Each ReplacedFile As String In InstructionList
+                If ReplacedFile.ToLower.StartsWith("file:") And ReplacedFile.ToLower.Contains(":skipifnotfound:") Then
+                    ReplacedFile = ReplacedFile.Substring(ReplacedFile.IndexOf(":") + 1)
+                    ReplacedFile = ReplacedFile.Substring(0, ReplacedFile.IndexOf(":"))
+                    Dim ReplaceDestination As String = Nothing
+                    If IsClientAuto() Then
+                        ReplaceDestination = Globals.DSMFolder + ReplacedFile
+                    ElseIf IsSharedComponent() Then
+                        If ReplacedFile.ToLower.StartsWith("capki\capki") Then ' Special case -- CAPKI may not be with other shared components
+                            ReplaceDestination = Globals.CAPKIFolder + ReplacedFile.ToLower.Replace("capki\capki", "") ' Use CAPKI folder
+                        Else
+                            ReplaceDestination = Globals.SharedCompFolder + ReplacedFile
+                        End If
+                    ElseIf IsCAM() Then
+                        ReplaceDestination = Globals.CAMFolder + "\" + ReplacedFile
+                    ElseIf IsSSA() Then
+                        ReplaceDestination = Globals.SSAFolder + ReplacedFile
+                    ElseIf IsDataTransport() Then
+                        ReplaceDestination = Globals.DTSFolder + "\" + ReplacedFile
+                    ElseIf IsExplorerGUI() Then
+                        ReplaceDestination = Globals.EGCFolder + ReplacedFile
                     End If
-                    ReturnList.Add(strLine.ToLower)
+
+                    ' Resolve parent directories e.g. D:\CA\DSM\..\SC\CBB\_SomeFile.txt --> D:\CA\SC\CBB\_SomeFile.txt
+                    While ReplaceDestination.Contains("\..\")
+                        Dim Front As String = ReplaceDestination.Substring(0, ReplaceDestination.IndexOf("\..\"))
+                        Front = Front.Substring(0, Front.LastIndexOf("\"))
+                        Dim Back As String = ReplaceDestination.Substring(ReplaceDestination.IndexOf("\..\") + 3)
+                        ReplaceDestination = Front + Back
+                    End While
+
+                    ReturnList.Add(ReplaceDestination.ToLower)
                 End If
             Next
             Return ReturnList
