@@ -460,6 +460,17 @@
                                 End If
                             Next
 
+                            For x As Integer = 0 To GetPatchFromManifest(i).GetPostCommandList.Count - 1
+                                CommandFile = GetPatchFromManifest(i).GetPostCommandList.Item(x)
+                                If GetPatchFromManifest(i).PostCmdReturnCodes.Count > x Then
+                                    ReturnCode = GetPatchFromManifest(i).PostCmdReturnCodes.Item(x)
+                                    PatchSummary += "- " + CommandFile + " [Return Code: " + ReturnCode + "]" + Environment.NewLine
+                                Else
+                                    ReturnCode = "NOT EXECUTED"
+                                    PatchSummary += "- " + CommandFile + " [" + ReturnCode + "]" + Environment.NewLine
+                                End If
+                            Next
+
                         End If
                         PatchSummary += Environment.NewLine
                     Next

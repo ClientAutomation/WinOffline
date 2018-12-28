@@ -185,7 +185,7 @@
 
     End Sub
 
-    Public Shared Sub ExecutePostCmd(ByVal CallStack As String, ByRef pVector As PatchVector)
+    Public Shared Sub ExecuteSysCmd(ByVal CallStack As String, ByRef pVector As PatchVector)
 
         Dim ExecutionString As String
         Dim ProcessStartInfo As ProcessStartInfo
@@ -225,6 +225,51 @@
             Logger.WriteDebug(CallStack, "Exit code: " + RunningProcess.ExitCode.ToString)
 
             pVector.SysCmdReturnCodes.Add(RunningProcess.ExitCode.ToString)
+            RunningProcess.Close()
+        Next
+
+    End Sub
+
+    Public Shared Sub ExecutePostCmd(ByVal CallStack As String, ByRef pVector As PatchVector)
+
+        Dim ExecutionString As String
+        Dim ProcessStartInfo As ProcessStartInfo
+        Dim RunningProcess As Process
+        Dim ConsoleOutput As String
+        Dim StandardOutput As String
+        Dim RemainingOutput As String
+
+        ' Run POSTSYSCMD sripts
+        For Each strLine As String In pVector.GetPostCommandList
+            ExecutionString = pVector.PatchFile.GetFilePath + "\" + strLine
+            Logger.WriteDebug(CallStack, "Execute script: " + ExecutionString)
+
+            ProcessStartInfo = New ProcessStartInfo(ExecutionString)
+            ProcessStartInfo.WorkingDirectory = pVector.PatchFile.GetFilePath
+            ProcessStartInfo.UseShellExecute = False
+            ProcessStartInfo.RedirectStandardOutput = True
+            ProcessStartInfo.CreateNoWindow = True
+            StandardOutput = ""
+            RemainingOutput = ""
+            Logger.WriteDebug("------------------------------------------------------------")
+
+            RunningProcess = Process.Start(ProcessStartInfo)
+
+            While RunningProcess.HasExited = False
+                ConsoleOutput = RunningProcess.StandardOutput.ReadLine
+                Logger.WriteDebug(ConsoleOutput)
+                StandardOutput += ConsoleOutput + Environment.NewLine
+            End While
+
+            RunningProcess.WaitForExit()
+            RemainingOutput = RunningProcess.StandardOutput.ReadToEnd.ToString
+            StandardOutput += RemainingOutput
+
+            Logger.WriteDebug(RemainingOutput)
+            Logger.WriteDebug("------------------------------------------------------------")
+            Logger.WriteDebug(CallStack, "Exit code: " + RunningProcess.ExitCode.ToString)
+
+            pVector.PostCmdReturnCodes.Add(RunningProcess.ExitCode.ToString)
             RunningProcess.Close()
         Next
 
@@ -475,7 +520,7 @@
 
         ' Run SYSCMD sripts
         Try
-            ExecutePostCmd(CallStack, pVector)
+            ExecuteSysCmd(CallStack, pVector)
         Catch ex As Exception
             Logger.WriteDebug(CallStack, "Error: Execution of SYSCMD script(s) failed.")
             Logger.WriteDebug(ex.Message)

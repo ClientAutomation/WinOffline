@@ -9,8 +9,8 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("WinOffline")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("CA Technologies, Inc.")> 
+<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("WinOffline")>
 <Assembly: AssemblyCopyright("")>
 <Assembly: AssemblyTrademark("")> 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2018.10.23")>
-<Assembly: AssemblyFileVersion("2018.10.23")>
+<Assembly: AssemblyVersion("2018.12.28")>
+<Assembly: AssemblyFileVersion("2018.12.28")>

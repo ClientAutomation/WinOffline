@@ -348,6 +348,26 @@
             Logger.WriteDebug(CallStack, "Warning: Start services method reports a failure.")
         End If
 
+        ' Run POSTSYSCMD sripts with CAF running
+        If Not (Globals.RemovePatchSwitch OrElse Globals.SimulatePatchSwitch) AndAlso Utility.IsProcessRunning("caf") Then
+            For i As Integer = 0 To Manifest.PatchManifestCount - 1
+                If Manifest.GetPatchFromManifest(i).GetPostCommandList.Count > 0 AndAlso
+                    (Manifest.GetPatchFromManifest(i).PatchAction = PatchVector.APPLY_OK OrElse
+                    Manifest.GetPatchFromManifest(i).PatchAction = PatchVector.EXECUTE_OK) Then
+                    Try
+                        ExecutePostCmd(CallStack, Manifest.GetPatchFromManifest(i))
+                    Catch ex As Exception
+                        Logger.WriteDebug(CallStack, "Error: Execution of POSTSYSCMD script(s) failed.")
+                        Logger.WriteDebug(ex.Message)
+                        Logger.WriteDebug(ex.StackTrace)
+                        Manifest.UpdateManifest(CallStack, Manifest.EXCEPTION_MANIFEST, {ex.Message, ex.StackTrace})
+                        Logger.WriteDebug(CallStack, "Patch POSTSYSCMD failed: " + Manifest.GetPatchFromManifest(i).PatchFile.GetFriendlyName)
+                        Manifest.GetPatchFromManifest(i).CommentString = "Reason: Execution of POSTSYSCMD script(s) failed."
+                    End Try
+                End If
+            Next
+        End If
+
         ' Switch: Launch DSM Explorer
         If Globals.LaunchGuiSwitch AndAlso Not Globals.RunningAsSystemIdentity AndAlso System.IO.File.Exists(Globals.DSMFolder + "bin\dsmgui.exe") Then
             Logger.WriteDebug(CallStack, "Switch: Launch DSM Explorer.")

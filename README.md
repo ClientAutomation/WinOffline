@@ -50,7 +50,6 @@ VERSIONCHECK
 > Designate patch is ITCM version specific. The patch will be SKIPPED if the version does not match.
 
 > Examples:  
-VERSIONCHECK:12.9.0.338  
 VERSIONCHECK:14.0.0.199  
 VERSIONCHECK:14.0.1000.194  
 VERSIONCHECK:14.0.2000.255  
@@ -62,6 +61,34 @@ PRODUCT:DTSVMG
 FILE:bin\cfsmcapi.dll
 FILE:bin\cfmessenger.dll
 VERSIONCHECK:12.9.0.338
+```
+
+POSTSYSCMD
+> Execute additional script(s) after the CAF service has been restarted since patching.
+
+Sample JCL file with POSTSYSCMD:
+```
+PLATFORM:WINDOWS
+PRODUCT:DTSVMG
+COMPONENT:DTSVMG-DTSVMG
+RELEASE:R14
+GENLEVEL:SP2
+VERSION:20010222
+PREREQS:
+MPREREQS:
+COREQS:
+MCOREQS:
+VERSIONCHECK:14.0.2000.255
+PRESYSCMD:Install-VC-Redist-x86.cmd
+DEPENDS:vc_redist.x86.exe
+FILE:bin\RCGraphics.dll:SKIPIFNOTFOUND:
+FILE:bin\rcHost.exe:SKIPIFNOTFOUND:
+FILE:bin\RCOS.dll:SKIPIFNOTFOUND:
+FILE:bin\rcPropDialog.dll:SKIPIFNOTFOUND:
+FILE:bin\rcPropDialog_EN.dll:SKIPIFNOTFOUND:
+FILE:bin\rcVideoCapture.dll:SKIPIFNOTFOUND:
+POSTSYSCMD:Import-Policy.cmd
+DEPENDS:rcHostConfig_sep.xml
 ```
 
 DEPENDS
@@ -89,21 +116,8 @@ JCL file requirements and formatting:
 > * WinOffline supportd JCLs having multiple insturction tags (PRESYSCMD, FILE, or SYSCMD).
 > * WinOffline always runs the PRESYSCMD tags, in the order they are found, before performing FILE replacements.
 > * WinOffline always runs the SYSCMD tags, in the order they are found, after performing FILE replacements.
+> * WinOffline always runs the POSTSYSCMD tags, in the order they are found, after the CAF service is restarted.
 > * Similar to the DEPENDS tag, WinOffline also supports multiple comma separated items in the PRESYSCMD or SYSCMD tags.
-
-Here's a sample JCL file:
-```
-PLATFORM:WINDOWS
-PRODUCT:BITCM
-PRESYSCMD:ScriptA.cmd
-DEPENDS:ScriptC.cmd
-FILE:bin\_SomeFile.txt
-FILE:bin\_SomeFile2.txt
-SYSCMD:ScriptB.cmd
-SYSCMD:ScriptF.cmd,ScriptG.cmd
-DEPENDS:ScriptD.cmd,ScriptE.cmd
-VERSIONCHECK:14.0.1000.194
-```
 
 ## WinOffline Command Line Switches
 

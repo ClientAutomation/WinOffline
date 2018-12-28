@@ -7,6 +7,7 @@
         Private _PatchAction As Integer                     ' Action code/result from applying patch.
         Private _PreCmdReturnCodes As ArrayList             ' Stores return codes from all PRESYSCMD scripts.
         Private _SysCmdReturnCodes As ArrayList             ' Stores return codes from all SYSCMD scripts.
+        Private _PostCmdReturnCodes As ArrayList            ' Stores return codes from all POSTSYSCMD scripts.
         Private _FileReplaceResult As ArrayList             ' Stores result of file replacement operations.
         Private _CommentString As String                    ' Stores a comment.
         Private _SourceReplaceList As New ArrayList         ' Source location filename for each file replacement.
@@ -42,6 +43,7 @@
             _PatchAction = NO_ACTION
             _PreCmdReturnCodes = New ArrayList
             _SysCmdReturnCodes = New ArrayList
+            _PostCmdReturnCodes = New ArrayList
             _FileReplaceResult = New ArrayList
             _CommentString = ""
 
@@ -238,6 +240,22 @@
             Return ReturnList
         End Function
 
+        Public Function GetPostCommandList() As ArrayList
+            Dim ReturnList As New ArrayList
+            For Each strLine As String In InstructionList
+                If strLine.ToLower.StartsWith("postsyscmd:") Then
+                    strLine = strLine.Substring(strLine.IndexOf(":") + 1)
+                    strLine = strLine.Replace(" ", "")
+                    If strLine.Contains(",") Then
+                        ReturnList.AddRange(strLine.Split(","))
+                    Else
+                        ReturnList.Add(strLine)
+                    End If
+                End If
+            Next
+            Return ReturnList
+        End Function
+
         Public Function GetDependsList() As ArrayList
             Dim ReturnList As New ArrayList
             For Each strLine As String In InstructionList
@@ -263,6 +281,9 @@
                 ReturnArray.Add(strLine)
             Next
             For Each strLine As String In GetSysCommandList()
+                ReturnArray.Add(strLine)
+            Next
+            For Each strLine As String In GetPostCommandList()
                 ReturnArray.Add(strLine)
             Next
             For Each strLine As String In GetDependsList()
@@ -291,11 +312,11 @@
                 ReturnString += GetRawInstruction("RELEASE").Replace(":", "=") + Environment.NewLine
                 ReturnString += GetRawInstruction("GENLEVEL").Replace(":", "=") + Environment.NewLine
                 ReturnString += GetRawInstruction("COMPONENT").Replace(":", "=") + Environment.NewLine
-                ReturnString += GetRawInstruction("PREREQS").Replace(":", "=") + Environment.NewLine
-                ReturnString += GetRawInstruction("MPREREQS").Replace(":", "=") + Environment.NewLine
-                ReturnString += GetRawInstruction("COREQS").Replace(":", "=") + Environment.NewLine
-                ReturnString += GetRawInstruction("MCOREQS").Replace(":", "=") + Environment.NewLine
-                ReturnString += GetRawInstruction("SUPERSEDE").Replace(":", "=")
+                If Not GetRawInstruction("PREREQS").Equals("") Then ReturnString += GetRawInstruction("PREREQS").Replace(":", "=") + Environment.NewLine Else ReturnString += "PREREQS=" + Environment.NewLine
+                If Not GetRawInstruction("MPREREQS").Equals("") Then ReturnString += GetRawInstruction("MPREREQS").Replace(":", "=") + Environment.NewLine Else ReturnString += "MPREREQS=" + Environment.NewLine
+                If Not GetRawInstruction("COREQS").Equals("") Then ReturnString += GetRawInstruction("COREQS").Replace(":", "=") + Environment.NewLine Else ReturnString += "COREQS=" + Environment.NewLine
+                If Not GetRawInstruction("MCOREQS").Equals("") Then ReturnString += GetRawInstruction("MCOREQS").Replace(":", "=") + Environment.NewLine Else ReturnString += "MCOREQS=" + Environment.NewLine
+                If Not GetRawInstruction("SUPERSEDE").Equals("") Then ReturnString += GetRawInstruction("SUPERSEDE").Replace(":", "=") Else ReturnString += "SUPERSEDE="
                 For x As Integer = 0 To _DestReplaceList.Count - 1
                     Dim strLine As String = _DestReplaceList.Item(x)
                     If _FileReplaceResult.Item(x) = FILE_OK Or _FileReplaceResult.Item(x) = FILE_REBOOT_REQUIRED Then
@@ -426,6 +447,16 @@
                 _SysCmdReturnCodes = value.Clone
             End Set
         End Property
+
+        Public Property PostCmdReturnCodes As ArrayList
+            Get
+                Return _PostCmdReturnCodes
+            End Get
+            Set(value As ArrayList)
+                _PostCmdReturnCodes = value.Clone
+            End Set
+        End Property
+
         Public Property FileReplaceResult As ArrayList
             Get
                 Return _FileReplaceResult
@@ -489,6 +520,10 @@
             For Each strLine As String In _SysCmdReturnCodes
                 ReturnString += strLine + ";"
             Next
+            ReturnString += Environment.NewLine() + "POSTSYSCMD:"
+            For Each strLine As String In _PostCmdReturnCodes
+                ReturnString += strLine + ";"
+            Next
             ReturnString += Environment.NewLine() + "FILE_REPLACE:"
             For Each strLine As String In _FileReplaceResult
                 ReturnString += strLine + ";"
@@ -543,6 +578,15 @@
                     strLine2 = strLine2.Substring(strLine2.IndexOf(";") + 1)
                 End While
                 pVector.SysCmdReturnCodes = CodeList
+                strLine2 = CacheReader.ReadLine ' Read POSTSYSCMD return codes
+                strLine2 = strLine2.Replace("POSTSYSCMD:", "")
+                CodeList = New ArrayList
+                While strLine2.Contains(";") And strLine2.Length > 1
+                    strLine3 = strLine2.Substring(0, strLine2.IndexOf(";"))
+                    CodeList.Add(strLine3)
+                    strLine2 = strLine2.Substring(strLine2.IndexOf(";") + 1)
+                End While
+                pVector.PostCmdReturnCodes = CodeList
                 strLine2 = CacheReader.ReadLine ' Read file replacement codes
                 strLine2 = strLine2.Replace("FILE_REPLACE:", "")
                 CodeList = New ArrayList

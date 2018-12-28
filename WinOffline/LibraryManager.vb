@@ -416,17 +416,22 @@ Partial Public Class WinOffline
                 End If
             Next
 
-            Logger.WriteDebug(CallStack, "Software read from database: " + DbRegSwUUID.Count.ToString)
-            Logger.WriteDebug(CallStack, "Software read from library: " + (DctRegSw.Count + DctMissingArcCount + DctMissingVolCount + DctMissingRegInfoCount + DctDuplicateCount + DctNotInDbCount).ToString)
-            Logger.WriteDebug(CallStack, "Library items to cleanup: " + (DctMissingArcCount + DctMissingVolCount + DctMissingRegInfoCount + DctDuplicateCount + DctNotInDbCount).ToString)
-            Logger.WriteDebug(CallStack, "Library folders to cleanup: " + (ArcsForDeletion.Count + RcpsForDeletion.Count).ToString)
-            Logger.WriteDebug(CallStack, "Database items to cleanup: " + DbNotInDct.Count.ToString)
+            ' Process staging records (ITCM server only)
+            If ITCMServer Then
+                ' Get list of staged packages
+            End If
 
-            LibraryEvents.Add("Software read from database: " + DbRegSwUUID.Count.ToString)
-            LibraryEvents.Add("Software read from library: " + (DctRegSw.Count + DctMissingArcCount + DctMissingVolCount + DctMissingRegInfoCount + DctDuplicateCount + DctNotInDbCount).ToString)
-            LibraryEvents.Add("Library items to cleanup: " + (DctMissingArcCount + DctMissingVolCount + DctMissingRegInfoCount + DctDuplicateCount + DctNotInDbCount).ToString)
-            LibraryEvents.Add("Library folders to cleanup: " + (ArcsForDeletion.Count + RcpsForDeletion.Count).ToString)
-            LibraryEvents.Add("Database items to cleanup: " + DbNotInDct.Count.ToString)
+            Logger.WriteDebug(CallStack, "Database packages (total): " + DbRegSwUUID.Count.ToString)
+            Logger.WriteDebug(CallStack, "Database packages (invalid): " + DbNotInDct.Count.ToString)
+            Logger.WriteDebug(CallStack, "Library packages (total): " + (DctRegSw.Count + DctMissingArcCount + DctMissingVolCount + DctMissingRegInfoCount + DctDuplicateCount + DctNotInDbCount).ToString)
+            Logger.WriteDebug(CallStack, "Library packages (invalid): " + (DctMissingArcCount + DctMissingVolCount + DctMissingRegInfoCount + DctDuplicateCount + DctNotInDbCount).ToString)
+            Logger.WriteDebug(CallStack, "Library folders (invalid): " + (ArcsForDeletion.Count + RcpsForDeletion.Count).ToString)
+
+            LibraryEvents.Add("Database packages (total): " + DbRegSwUUID.Count.ToString)
+            LibraryEvents.Add("Database packages (invalid): " + DbNotInDct.Count.ToString)
+            LibraryEvents.Add("Library packages (total): " + (DctRegSw.Count + DctMissingArcCount + DctMissingVolCount + DctMissingRegInfoCount + DctDuplicateCount + DctNotInDbCount).ToString)
+            LibraryEvents.Add("Library packages (invalid): " + (DctMissingArcCount + DctMissingVolCount + DctMissingRegInfoCount + DctDuplicateCount + DctNotInDbCount).ToString)
+            LibraryEvents.Add("Library folders (invalid): " + (ArcsForDeletion.Count + RcpsForDeletion.Count).ToString)
 
             ' Cleanup database
             If Globals.CleanupSDLibrarySwitch AndAlso Not Globals.CheckSDLibrarySwitch Then

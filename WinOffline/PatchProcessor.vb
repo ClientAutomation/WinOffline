@@ -240,11 +240,11 @@
                                     "Please verify the PRODUCT: tag in the patch file."})
             Return 4
         End If
-        If NewPatch.GetShortNameReplaceList.Count + NewPatch.GetPreCommandList.Count + NewPatch.GetSysCommandList.Count = 0 Then
-            Logger.WriteDebug(CallStack, "Error: Patch file is missing instructions (i.e. 'FILE:', 'PRESYSCMD:' or 'SYSCMD:' tags).")
+        If NewPatch.GetShortNameReplaceList.Count + NewPatch.GetPreCommandList.Count + NewPatch.GetSysCommandList.Count + NewPatch.GetPostCommandList.Count = 0 Then
+            Logger.WriteDebug(CallStack, "Error: Patch file is missing instructions (i.e. 'FILE:', 'PRESYSCMD:', 'SYSCMD:' or 'POSTSYSCMD:' tags).")
             Manifest.UpdateManifest(CallStack,
                                     Manifest.EXCEPTION_MANIFEST,
-                                    {"Error: Patch file is missing instructions (i.e. 'FILE:', 'PRESYSCMD:' or 'SYSCMD:' tags).",
+                                    {"Error: Patch file is missing instructions (i.e. 'FILE:', 'PRESYSCMD:', 'SYSCMD:', 'POSTSYSCMD:' tags).",
                                     "Please verify the " + NewPatch.PatchFile.GetShortName + " patch."})
             Return 5
         End If
